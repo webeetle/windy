@@ -13,6 +13,12 @@ export const Contained = () => {
       <Button color="indigo">Button</Button>
       <Button color="purple">Button</Button>
       <Button color="pink">Button</Button>
+      <Button color="purple" disabled>
+        Disabled
+      </Button>
+      <Button color="pink" disabled>
+        Disabled
+      </Button>
     </div>
   );
 };
@@ -44,6 +50,12 @@ export const Bordered = () => {
       <Button color="pink" layout="bordered">
         Button
       </Button>
+      <Button color="purple" layout="bordered" disabled>
+        Disabled
+      </Button>
+      <Button color="pink" layout="bordered" disabled>
+        Disabled
+      </Button>
     </div>
   );
 };
@@ -73,6 +85,9 @@ export const Text = () => {
       </Button>
       <Button color="pink" layout="text">
         Button
+      </Button>
+      <Button layout="text" disabled>
+        Disabled
       </Button>
     </div>
   );
