@@ -1,2 +1,2 @@
-import Alert from "./components/Alert/Alert";
-export { Alert };
+import AlertComponent from "./components/Alert/Alert.jsx";
+export { AlertComponent };

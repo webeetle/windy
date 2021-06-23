@@ -16,8 +16,8 @@ var AlertComponent = function AlertComponent(_ref) {
   return /*#__PURE__*/React__default['default'].createElement("div", null, /*#__PURE__*/React__default['default'].createElement("span", null, message));
 };
 
-StatelessComponent.propTypes = {
+AlertComponent.propTypes = {
   message: PropTypes__default['default'].string
 };
 
-exports.Alert = AlertComponent;
+exports.AlertComponent = AlertComponent;
