@@ -18,6 +18,7 @@ export default {
     "react-proptypes",
     "classnames",
     "@headlessui/react",
+    "tailwind-override",
   ],
   plugins: [
     resolve(),
