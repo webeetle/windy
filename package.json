@@ -1,6 +1,6 @@
 {
   "name": "@webeetle/windy",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "UI Kit in React based on TailwindCSS",
   "main": "dist/bundle.js",
   "files": [
