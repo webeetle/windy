@@ -2,8 +2,7 @@
   "name": "@webeetle/windy",
   "version": "0.0.1",
   "description": "UI Kit in React based on TailwindCSS",
-  "main": "dist/index.js",
-  "style": "dist/styles.css",
+  "main": "dist/bundle.js",
   "files": [
     "dist"
   ],
