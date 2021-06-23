@@ -1,6 +1,7 @@
 import classnames from "classnames";
 import React from "react";
 import PropTypes from "prop-types";
+import { overrideTailwindClasses } from "tailwind-override";
 
 const Button = ({
   size = false,
@@ -92,10 +93,12 @@ const Button = ({
         typeof props.onClick === "function" ? props.onClick() : null
       }
       style={{ ...props.style }}
-      className={classnames(
-        decorateButton(),
-        "inline-flex items-center outline-none focus:outline-none transition duration-150 ease-in-out",
-        `${props.className ?? ""}`
+      className={overrideTailwindClasses(
+        classnames(
+          decorateButton(),
+          "inline-flex items-center outline-none focus:outline-none transition duration-150 ease-in-out",
+          `${props.className ?? ""}`
+        )
       )}
     >
       {props.children}
