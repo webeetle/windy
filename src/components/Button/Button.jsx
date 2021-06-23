@@ -11,6 +11,7 @@ const Button = ({
   light = true,
   dark = false,
   rounded = true,
+  disabled = false,
   ...props
 }) => {
   const decorateButton = () => {
@@ -93,6 +94,7 @@ const Button = ({
         typeof props.onClick === "function" ? props.onClick() : null
       }
       style={{ ...props.style }}
+      disabled={disabled}
       className={overrideTailwindClasses(
         classnames(
           decorateButton(),
@@ -112,6 +114,7 @@ Button.propTypes = {
   layout: PropTypes.oneOf(["text", "bordered", "contained"]),
   className: PropTypes.string,
   rounded: PropTypes.bool,
+  disabled: PropTypes.bool,
   light: PropTypes.bool,
   dark: PropTypes.bool,
   shadow: PropTypes.bool,

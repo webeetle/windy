@@ -20,7 +20,7 @@ export const Contained = () => {
 export const Bordered = () => {
   return (
     <div className="flex items-center space-x-5">
-      <Button color="gray" layout="bordered">
+      <Button disabled={true} color="gray" layout="bordered">
         Button
       </Button>
       <Button color="red" layout="bordered">
