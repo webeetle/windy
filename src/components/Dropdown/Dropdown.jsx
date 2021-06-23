@@ -19,7 +19,7 @@ const Dropdown = ({
     {
       label: "Text With Icon",
       icon: <EditIcon />,
-      handler: () => console.log("Clicked"),
+      handler: () => alert("Clicked"),
     },
     { label: "Text", icon: null, handler: () => console.log("Clicked") },
   ],
