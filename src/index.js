@@ -1,2 +1,3 @@
 import Button from "./components/Button/Button.jsx";
-export { Button };
+import Panel from "./components/Panel/Panel.jsx";
+export { Button, Panel };
