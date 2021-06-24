@@ -7,7 +7,7 @@ const Button = ({
   size = false,
   color = "indigo",
   layout = "contained",
-  shadow = false,
+  shadow = true,
   light = true,
   dark = false,
   rounded = "md",
@@ -81,7 +81,7 @@ const Button = ({
           "border-pink-300 text-pink-700 hover:bg-pink-50 active:bg-pink-200":
             color === "pink",
 
-          "shadow-md hover:shadow-md": shadow,
+          "shadow hover:shadow-sm": shadow,
 
           "text-sm font-medium px-4 py-2": !size || size === "md",
           "text-xs font-medium px-3 py-2": size === "sm",
@@ -104,7 +104,7 @@ const Button = ({
           "text-white": light && !dark,
           "text-black": dark,
 
-          "shadow-lg hover:shadow-md": shadow,
+          "shadow hover:shadow-sm": shadow,
 
           "text-sm font-medium px-4 py-2": !size || size === "md",
           "text-xs font-medium px-3 py-2": size === "sm",
@@ -141,7 +141,16 @@ const Button = ({
 
 Button.propTypes = {
   size: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
-  color: PropTypes.string,
+  color: PropTypes.oneOf([
+    "gray",
+    "red",
+    "yellow",
+    "green",
+    "blue",
+    "indigo",
+    "purple",
+    "pink",
+  ]),
   layout: PropTypes.oneOf(["text", "bordered", "contained"]),
   className: PropTypes.string,
   rounded: PropTypes.oneOf(["sm", "md", "lg", "full", "none"]),

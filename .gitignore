@@ -2,3 +2,4 @@ node_modules
 .bundless
 package-lock.json
 dist
+distvitro

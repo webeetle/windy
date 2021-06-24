@@ -1,17 +1,24 @@
 {
   "name": "@webeetle/windy",
   "version": "0.2.0",
-  "description": "UI Kit in React based on TailwindCSS",
+  "description": "UI Kit in React based on Tailwind",
   "main": "dist/bundle.js",
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webeetle/windy"
+  },
+  "bugs": {
+    "url": "https://github.com/webeetle/windy/issues"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c"
   },
   "author": "Webeetle",
-  "license": "ISC",
+  "license": "Apache 2.0",
   "dependencies": {
     "@headlessui/react": "^1.3.0",
     "classnames": "^2.3.1",

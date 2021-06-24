@@ -9,7 +9,7 @@ const Dropdown = ({
   size = false,
   color = "blue",
   layout = "contained",
-  shadow = false,
+  shadow = true,
   light = true,
   dark = false,
   rounded = "md",
@@ -93,6 +93,7 @@ const Dropdown = ({
           "text-xs font-medium px-2.5 py-1.5": size === "xs",
           "text-base font-medium px-4 py-2": size === "lg",
           "text-base font-medium px-6 py-3": size === "xl",
+          "shadow hover:shadow-sm": shadow,
         };
 
       case "bordered":
@@ -126,6 +127,7 @@ const Dropdown = ({
           "text-xs font-medium px-2.5 py-1.5": size === "xs",
           "text-base font-medium px-4 py-2": size === "lg",
           "text-base font-medium px-6 py-3": size === "xl",
+          "shadow hover:shadow-sm": shadow,
         };
 
       default:
@@ -207,7 +209,16 @@ const Dropdown = ({
 
 Dropdown.propTypes = {
   size: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
-  color: PropTypes.string,
+  color: PropTypes.oneOf([
+    "gray",
+    "red",
+    "yellow",
+    "green",
+    "blue",
+    "indigo",
+    "purple",
+    "pink",
+  ]),
   layout: PropTypes.oneOf(["text", "bordered", "contained"]),
   className: PropTypes.string,
   options: PropTypes.array,
