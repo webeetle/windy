@@ -10,10 +10,38 @@ const Button = ({
   shadow = false,
   light = true,
   dark = false,
-  rounded = true,
+  rounded = "md",
   disabled = false,
   ...props
 }) => {
+  const roundedHandler = () => {
+    switch (rounded) {
+      case "none":
+        return {
+          "rounded-none": rounded === "none",
+        };
+      case "sm":
+        return {
+          "rounded-sm": rounded === "sm",
+        };
+      case "md":
+        return {
+          "rounded-md": rounded === "md",
+        };
+      case "lg":
+        return {
+          "rounded-lg": rounded === "lg",
+        };
+      case "full":
+        return {
+          "rounded-full": rounded === "full",
+        };
+      default:
+        return {
+          "rounded-md": rounded === "md",
+        };
+    }
+  };
   const decorateButton = () => {
     switch (layout) {
       case "text": {
@@ -54,7 +82,6 @@ const Button = ({
             color === "pink",
 
           "shadow-md hover:shadow-md": shadow,
-          "rounded-lg": rounded,
 
           "text-sm font-medium px-4 py-2": !size || size === "md",
           "text-xs font-medium px-3 py-2": size === "sm",
@@ -78,7 +105,6 @@ const Button = ({
           "text-black": dark,
 
           "shadow-lg hover:shadow-md": shadow,
-          "rounded-lg": rounded,
 
           "text-sm font-medium px-4 py-2": !size || size === "md",
           "text-xs font-medium px-3 py-2": size === "sm",
@@ -102,6 +128,7 @@ const Button = ({
       className={overrideTailwindClasses(
         classnames(
           decorateButton(),
+          roundedHandler(),
           "inline-flex items-center outline-none focus:outline-none transition duration-150 ease-in-out",
           `${props.className ?? ""}`
         )
@@ -117,7 +144,7 @@ Button.propTypes = {
   color: PropTypes.string,
   layout: PropTypes.oneOf(["text", "bordered", "contained"]),
   className: PropTypes.string,
-  rounded: PropTypes.bool,
+  rounded: PropTypes.oneOf(["sm", "md", "lg", "full", "none"]),
   disabled: PropTypes.bool,
   light: PropTypes.bool,
   dark: PropTypes.bool,

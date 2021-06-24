@@ -15,23 +15,16 @@ const Dropdown = ({
   rounded = "md",
   disabled = false,
   buttonText = "Options",
-  options = [
-    {
-      label: "Text With Icon",
-      icon: <EditIcon />,
-      className: "hover:bg-indigo-100",
-      handler: () => alert("Clicked"),
-    },
-    {
-      label: "Text",
-      icon: null,
-      handler: () => console.log("Clicked"),
-    },
-  ],
+  caret = true,
+  options = [],
   ...props
 }) => {
   const roundedHandler = () => {
     switch (rounded) {
+      case "none":
+        return {
+          "rounded-none": rounded === "none",
+        };
       case "sm":
         return {
           "rounded-sm": rounded === "sm",
@@ -155,7 +148,7 @@ const Dropdown = ({
           )}
         >
           {buttonText}
-          <ArrowDown />
+          {caret && <ArrowDown />}
         </Menu.Button>
       </div>
       <Transition
@@ -218,7 +211,7 @@ Dropdown.propTypes = {
   layout: PropTypes.oneOf(["text", "bordered", "contained"]),
   className: PropTypes.string,
   options: PropTypes.array,
-  rounded: PropTypes.string,
+  rounded: PropTypes.oneOf(["sm", "md", "lg", "full", "none"]),
   disabled: PropTypes.bool,
   light: PropTypes.bool,
   dark: PropTypes.bool,
@@ -226,6 +219,7 @@ Dropdown.propTypes = {
   onClick: PropTypes.func,
   style: PropTypes.any,
   buttonText: PropTypes.string,
+  caret: PropTypes.bool,
 };
 
 export default Dropdown;
@@ -244,21 +238,6 @@ const ArrowDown = (props) => {
         d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
         clip-rule="evenodd"
       />
-    </svg>
-  );
-};
-
-const EditIcon = (props) => {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-    >
-      <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V6.414A2 2 0 0016.414 5L14 2.586A2 2 0 0012.586 2H9z" />
-      <path d="M3 8a2 2 0 012-2v10h8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
     </svg>
   );
 };
