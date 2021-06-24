@@ -14,7 +14,7 @@ const Dropdown = ({
   dark = false,
   rounded = "md",
   disabled = false,
-  buttonText = "Options",
+  buttonText = "",
   caret = true,
   options = [],
   ...props
