@@ -19,9 +19,14 @@ const Dropdown = ({
     {
       label: "Text With Icon",
       icon: <EditIcon />,
+      className: "hover:bg-indigo-100",
       handler: () => alert("Clicked"),
     },
-    { label: "Text", icon: null, handler: () => console.log("Clicked") },
+    {
+      label: "Text",
+      icon: null,
+      handler: () => console.log("Clicked"),
+    },
   ],
   ...props
 }) => {
@@ -62,10 +67,6 @@ const Dropdown = ({
           "hover:text-indigo-500 px-4 py-2": color === "indigo",
           "hover:text-purple-500 px-4 py-2": color === "purple",
           "hover:text-pink-500 px-4 py-2": color === "pink",
-          "opacity-50 pointer-events-none px-4 py-2": disabled,
-          "text-sm font-medium px-4 py-2": !size || size === "md",
-          "text-xs font-medium px-4 py-2": size === "sm" || size === "xs",
-          "text-base font-medium px-4 py-2": size === "lg" || size === "xl",
           //Dark Mode
           // "text-white": light && !dark,
           "text-black": dark,
@@ -166,7 +167,7 @@ const Dropdown = ({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute z-20 right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="px-1 py-1 ">
             {options.length > 0 &&
               options.map((opt) => (
@@ -177,12 +178,30 @@ const Dropdown = ({
                         ? opt.handler
                         : null
                     }
-                    className="text-gray-900 group flex rounded-md items-center w-full px-2 py-2 text-sm outline-none focus:outline-none cursor-pointer"
+                    className="text-gray-900 group flex rounded-md items-center w-full text-sm outline-none focus:outline-none cursor-pointer"
                   >
-                    <div className="w-1/4 text-center">
-                      {opt.icon ? opt.icon : null}
-                    </div>
-                    <div className="w-3/4">{opt.label}</div>
+                    {opt.icon ? (
+                      <div
+                        className={overrideTailwindClasses(
+                          classnames(
+                            `w-full flex space-x-3 hover:bg-gray-100 py-2 px-3 rounded ${opt.className}`
+                          )
+                        )}
+                      >
+                        <div>{opt.icon}</div>
+                        <div>{opt.label}</div>
+                      </div>
+                    ) : (
+                      <div
+                        className={overrideTailwindClasses(
+                          classnames(
+                            `w-full hover:bg-gray-100 py-2 px-3 rounded ${opt.className}`
+                          )
+                        )}
+                      >
+                        {opt.label}
+                      </div>
+                    )}
                   </div>
                 </Menu.Item>
               ))}
