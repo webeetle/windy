@@ -11,6 +11,8 @@ const Input = ({
   rounded = "md",
   size = "md",
   label = null,
+  prefix = null,
+  suffix = null,
   ...rest
 }) => {
   const roundedHandler = () => {
@@ -41,31 +43,38 @@ const Input = ({
         };
     }
   };
+
+  const inptclss = () =>
+    classnames(
+      "w-full flex-1 px-3 py-2 focus:outline-none",
+
+      { "pointer-events-none": rest.disabled }
+    );
   const clss = () =>
     overrideTailwindClasses(
       classnames(
         { "w-full": fullWidth },
         { "shadow hover:shadow-sm": shadow },
         {
-          "focus:border-gray-800 border-gray-300": color === "gray",
-          "focus:border-red-800 border-red-300": color === "red",
-          "focus:border-yellow-800 border-yellow-300": color === "yellow",
-          "focus:border-green-800 border-green-300": color === "green",
-          "focus:border-blue-800 border-blue-300": color === "blue",
-          "focus:border-indigo-800 border-indigo-300": color === "indigo",
-          "focus:border-purple-800 border-purple-300": color === "purple",
-          "focus:border-pink-800 border-pink-300": color === "pink",
+          "text-base font-medium ": !size || size === "md",
+          "text-sm font-medium ": size === "sm",
+          "text-xs font-medium ": size === "xs",
+          "text-lg font-medium ": size === "lg",
+          "text-xl font-medium ": size === "xl",
         },
         {
-          "text-base font-medium px-2 py-2": !size || size === "md",
-          "text-sm font-medium px-2 py-2": size === "sm",
-          "text-xs font-medium px-1.5 py-1": size === "xs",
-          "text-lg font-medium px-3 py-2": size === "lg",
-          "text-xl font-medium px-4 py-3": size === "xl",
+          "ring-gray-300": color === "gray",
+          "ring-red-300": color === "red",
+          "ring-yellow-300": color === "yellow",
+          "ring-green-300": color === "green",
+          "ring-blue-300": color === "blue",
+          "ring-indigo-300": color === "indigo",
+          "ring-purple-300": color === "purple",
+          "ring-pink-300": color === "pink",
         },
         { "opacity-50 pointer-events-none": rest.disabled },
         roundedHandler(),
-        "block flex-1 min-w-0 focus:outline-none border transition duration-150 ease-in-out",
+        "flex min-w-0 overflow-hidden ring-1",
         `${className ?? ""}`
       )
     );
@@ -80,7 +89,19 @@ const Input = ({
           {label}
         </label>
       )}
-      <input {...rest} className={clss()} />
+      <div className={clss()}>
+        {prefix && (
+          <span className="inline-flex items-center px-3 rounded-l-md bg-gray-50 text-gray-500 sm:text-sm">
+            {prefix}
+          </span>
+        )}
+        <input className={inptclss()} {...rest} />
+        {suffix && (
+          <span className="inline-flex items-center px-3 rounded-l-md bg-gray-50 text-gray-500 sm:text-sm">
+            {suffix}
+          </span>
+        )}
+      </div>
     </>
   );
 };

@@ -20,22 +20,44 @@ export const ColorAndLabel = () => {
       <div className="w-1/2">
         <Input
           fullWidth
+          label={"A small label"}
           id="ok"
-          label="A Long Label"
-          type="text"
           color="indigo"
-          name="peppe"
+          type="text"
           placeholder="indigo"
-          Long
+        />
+      </div>
+      <div className="w-1/2">
+        <Input
+          label={"A very very long label"}
+          fullWidth
+          type="text"
+          color="red"
+          placeholder="red"
+        />
+      </div>
+    </div>
+  );
+};
+
+export const PrefixAndSuffix = () => {
+  return (
+    <div className="flex space-x-5 items-end">
+      <div className="w-1/2">
+        <Input
+          fullWidth
+          id="ok"
+          prefix="prefix.com/"
+          type="text"
+          placeholder="Lorem ipsum"
         />
       </div>
       <div className="w-1/2">
         <Input
           fullWidth
           type="text"
-          color="red"
-          name="peppe"
-          placeholder="red"
+          suffix="suffix.com"
+          placeholder="Lorem ipsum"
         />
       </div>
     </div>
