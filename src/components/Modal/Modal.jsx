@@ -10,6 +10,7 @@ const Modal = ({
   onClose = () => null,
   onClickIcon = () => null,
   showCloseButton = true,
+  color = "white",
   title = "Dialog",
   size = "md",
   actions = [],
@@ -17,6 +18,49 @@ const Modal = ({
   rounded = "sm",
   className = "",
 }) => {
+  //TODO : Enable Header Color Features
+  const decorateHeaderColor = () => {
+    switch (color) {
+      case "white":
+        return {
+          "bg-white text-black": color === "white",
+        };
+      case "gray":
+        return {
+          "bg-gray-500 text-white": color === "gray",
+        };
+      case "red":
+        return {
+          "bg-red-500 text-white": color === "red",
+        };
+      case "yellow":
+        return {
+          "bg-yellow-500 text-white": color === "yellow",
+        };
+
+      case "green":
+        return {
+          "bg-green-500 text-white": color === "green",
+        };
+      case "blue":
+        return {
+          "bg-blue-500 text-white": color === "blue",
+        };
+      case "indigo":
+        return {
+          "bg-indigo-500 text-white": color === "indigo",
+        };
+      case "purple":
+        return {
+          "bg-purple-500 text-white": color === "purple",
+        };
+      case "pink":
+        return {
+          "bg-pink-500 text-white": color === "pink",
+        };
+    }
+  };
+
   const decorateRoundedModal = () => {
     switch (rounded) {
       case "sm":
@@ -116,7 +160,12 @@ const Modal = ({
                 <div className="flex flex-col justify-between h-full">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900 py-3"
+                    className={overrideTailwindClasses(
+                      classnames(
+                        // decorateHeaderColor(),
+                        "text-lg font-medium leading-6 text-gray-900 py-3"
+                      )
+                    )}
                   >
                     <div className="flex items-center justify-between">
                       {title}
@@ -134,7 +183,7 @@ const Modal = ({
                   <div className="flex-1 h-auto overflow-y-auto">
                     {children}
                   </div>
-                  <div className="flex items-center space-x-5 mt-4">
+                  <div className="flex items-center ml-auto space-x-5 mt-4">
                     {actions &&
                       actions.map((Button) => {
                         return <div>{Button}</div>;

@@ -3,7 +3,7 @@ import Modal from "./Modal";
 import "tailwindcss/dist/tailwind.css";
 import Button from "../Button/Button";
 
-export const Contained = () => {
+export const Basic = () => {
   const [opened, setOpened] = useState(false);
 
   function closeModal() {
@@ -28,8 +28,9 @@ export const Contained = () => {
       <Modal
         isOpen={opened}
         onClickIcon={closeModal}
-        size="full"
-        rounded="none"
+        color="blue"
+        size="md"
+        rounded="md"
         actions={[
           <Button
             onClick={closeModal}
@@ -37,7 +38,15 @@ export const Contained = () => {
             color="blue"
             rounded="md"
           >
-            Ciao
+            Nothing
+          </Button>,
+          <Button
+            onClick={() => alert("Confirmed")}
+            layout="bordered"
+            color="blue"
+            rounded="md"
+          >
+            Confirm
           </Button>,
         ]}
       >
