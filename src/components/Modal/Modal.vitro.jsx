@@ -27,6 +27,9 @@ export const Contained = () => {
       </div>
       <Modal
         isOpen={opened}
+        onClickIcon={closeModal}
+        size="full"
+        rounded="none"
         actions={[
           <Button
             onClick={closeModal}
@@ -38,7 +41,15 @@ export const Contained = () => {
           </Button>,
         ]}
       >
-        I'm the modal
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
+          non hic molestias vel, excepturi ad accusantium eos necessitatibus
+          neque accusamus pariatur obcaecati assumenda amet, illum alias illo?
+          Delectus, laboriosam quam. Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Inventore, non hic molestias vel, excepturi ad
+          accusantium eos necessitatibus neque accusamus pariatur obcaecati
+          assumenda amet, illum alias illo? Delectus, laboriosam quam.
+        </div>
       </Modal>
     </div>
   );
