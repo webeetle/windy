@@ -1,14 +1,70 @@
 import React from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
+import PropTypes from "prop-types";
 
+import { overrideTailwindClasses } from "tailwind-override";
+import classnames from "classnames";
 const Modal = ({
   isOpen = false,
-  title = "Dialog",
-  actions = [],
   onClose = () => null,
+  onClickIcon = () => null,
+  showCloseButton = true,
+  title = "Dialog",
+  size = "md",
+  actions = [],
   children,
+  rounded = "sm",
+  className = "",
 }) => {
+  const decorateRoundedModal = () => {
+    switch (rounded) {
+      case "sm":
+        return {
+          "rounded-md": rounded === "sm",
+        };
+
+      case "md":
+        return {
+          "rounded-xl": rounded === "md",
+        };
+      case "lg":
+        return {
+          "rounded-2xl": rounded === "lg",
+        };
+      case "none":
+        return {
+          "rounded-none": rounded === "none",
+        };
+      default:
+        return {
+          "rounded-2xl": rounded === "lg",
+        };
+    }
+  };
+  const decorateSizeModal = () => {
+    switch (size) {
+      case "md":
+        return {
+          "mx-auto w-2/4 h-2/4 text-center": size === "md",
+        };
+      case "lg":
+        return {
+          "mx-auto w-3/4 h-3/4 text-center": size === "lg",
+        };
+
+      case "full":
+        return {
+          "mx-auto w-full h-full text-center": size === "full",
+        };
+
+      default:
+        return {
+          "mx-auto w-2/4 h-2/4 text-center": size === "md",
+        };
+    }
+  };
+
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -17,7 +73,11 @@ const Modal = ({
           className="fixed inset-0 z-10 overflow-y-auto"
           onClose={() => (typeof onClose() === "function" ? onClose() : null)}
         >
-          <div className="min-h-screen px-4 text-center">
+          <div
+            className={overrideTailwindClasses(
+              classnames(decorateRoundedModal(), decorateSizeModal(), "mx-auto")
+            )}
+          >
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -44,19 +104,42 @@ const Modal = ({
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                <Dialog.Title
-                  as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
-                >
-                  {title}
-                </Dialog.Title>
-                {children}
-                <div className="flex items-center space-x-5 mt-4">
-                  {actions &&
-                    actions.map((Button) => {
-                      return <div>{Button}</div>;
-                    })}
+              <div
+                className={overrideTailwindClasses(
+                  classnames(
+                    decorateRoundedModal(),
+                    decorateSizeModal(),
+                    "inline-block  p-3 text-left align-middle transition-all transform bg-white shadow-xl"
+                  )
+                )}
+              >
+                <div className="flex flex-col justify-between h-full">
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg font-medium leading-6 text-gray-900 py-3"
+                  >
+                    <div className="flex items-center justify-between">
+                      {title}
+                      {showCloseButton && (
+                        <CloseIcon
+                          onClick={() =>
+                            typeof onClickIcon() === "function"
+                              ? onClickIcon()
+                              : null
+                          }
+                        />
+                      )}
+                    </div>
+                  </Dialog.Title>
+                  <div className="flex-1 h-auto overflow-y-auto">
+                    {children}
+                  </div>
+                  <div className="flex items-center space-x-5 mt-4">
+                    {actions &&
+                      actions.map((Button) => {
+                        return <div>{Button}</div>;
+                      })}
+                  </div>
                 </div>
               </div>
             </Transition.Child>
@@ -67,4 +150,35 @@ const Modal = ({
   );
 };
 
+Modal.propTypes = {
+  size: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
+  rounded: PropTypes.oneOf(["sm", "md", "lg", "full", "none"]),
+  isOpen: PropTypes.bool,
+  showCloseButton: PropTypes.bool,
+  title: PropTypes.string,
+  size: PropTypes.string,
+  className: PropTypes.string,
+  actions: PropTypes.array,
+  onClose: PropTypes.func,
+  children: PropTypes.any,
+};
+
 export default Modal;
+
+const CloseIcon = (props) => {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5 cursor-pointer"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+        clip-rule="evenodd"
+      />
+    </svg>
+  );
+};
