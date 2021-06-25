@@ -25,41 +25,43 @@ export const Basic = () => {
           Open dialog
         </button>
       </div>
-      <Modal
-        isOpen={opened}
-        onClickIcon={closeModal}
-        color="blue"
-        size="md"
-        rounded="md"
-        actions={[
-          <Button
-            onClick={closeModal}
-            layout="bordered"
-            color="blue"
-            rounded="md"
-          >
-            Nothing
-          </Button>,
-          <Button
-            onClick={() => alert("Confirmed")}
-            layout="bordered"
-            color="blue"
-            rounded="md"
-          >
-            Confirm
-          </Button>,
-        ]}
-      >
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
-          non hic molestias vel, excepturi ad accusantium eos necessitatibus
-          neque accusamus pariatur obcaecati assumenda amet, illum alias illo?
-          Delectus, laboriosam quam. Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Inventore, non hic molestias vel, excepturi ad
-          accusantium eos necessitatibus neque accusamus pariatur obcaecati
-          assumenda amet, illum alias illo? Delectus, laboriosam quam.
-        </div>
-      </Modal>
+      {opened && (
+        <Modal
+          isOpen={opened}
+          onClickIcon={closeModal}
+          color="blue"
+          size="md"
+          rounded="md"
+          actions={[
+            <Button
+              onClick={closeModal}
+              layout="bordered"
+              color="blue"
+              rounded="md"
+            >
+              Nothing
+            </Button>,
+            <Button
+              onClick={() => alert("Confirmed")}
+              layout="bordered"
+              color="blue"
+              rounded="md"
+            >
+              Confirm
+            </Button>,
+          ]}
+        >
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
+            non hic molestias vel, excepturi ad accusantium eos necessitatibus
+            neque accusamus pariatur obcaecati assumenda amet, illum alias illo?
+            Delectus, laboriosam quam. Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Inventore, non hic molestias vel, excepturi ad
+            accusantium eos necessitatibus neque accusamus pariatur obcaecati
+            assumenda amet, illum alias illo? Delectus, laboriosam quam.
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

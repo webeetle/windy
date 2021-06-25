@@ -1,69 +1,186 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 
-const Select = ({ options = [], onSelect = () => null }) => {
+import PropTypes from "prop-types";
+
+import { overrideTailwindClasses } from "tailwind-override";
+import classnames from "classnames";
+
+const Select = ({
+  color = "white",
+  rounded = "md",
+  shadow = "md",
+  options = [],
+  onSelect = () => null,
+}) => {
   const [selected, setSelected] = useState(options[0]);
 
+  const decorateShadowSelect = () => {
+    switch (shadow) {
+      case "sm":
+        return {
+          "shadow-sm": shadow === "sm",
+        };
+
+      case "md":
+        return {
+          "shadow-md": shadow === "md",
+        };
+
+      case "lg":
+        return {
+          "shadow-lg": shadow === "lg",
+        };
+
+      case "xl":
+        return {
+          "shadow-xl": shadow === "xl",
+        };
+
+      default:
+        break;
+    }
+  };
+
+  const decorateRoundedSelect = () => {
+    switch (rounded) {
+      case "none":
+        return {
+          "rounded-none": rounded === "none",
+        };
+
+      case "md":
+        return {
+          "rounded-md": rounded === "md",
+        };
+
+      case "lg":
+        return {
+          "rounded-lg": rounded === "lg",
+        };
+
+      case "xl":
+        return {
+          "rounded-xl": rounded === "xl",
+        };
+
+      case "full":
+        return {
+          "rounded-full": rounded === "full",
+        };
+
+      default:
+        break;
+    }
+  };
+
+  const decorateBgSelect = () => {
+    switch (color) {
+      case "white":
+        return {
+          "bg-white text-black": color === "white",
+        };
+      case "gray":
+        return {
+          "bg-gray-500 text-white": color === "gray",
+        };
+      case "red":
+        return {
+          "bg-red-500 text-white": color === "red",
+        };
+      case "yellow":
+        return {
+          "bg-yellow-500 text-white": color === "yellow",
+        };
+
+      case "green":
+        return {
+          "bg-green-500 text-white": color === "green",
+        };
+      case "blue":
+        return {
+          "bg-blue-500 text-white": color === "blue",
+        };
+      case "indigo":
+        return {
+          "bg-indigo-500 text-white": color === "indigo",
+        };
+      case "purple":
+        return {
+          "bg-purple-500 text-white": color === "purple",
+        };
+      case "pink":
+        return {
+          "bg-pink-500 text-white": color === "pink",
+        };
+    }
+  };
+
   return (
-    <div className="w-72">
-      <Listbox value={selected} onChange={setSelected}>
-        <div className="relative mt-1">
-          <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
-            <span className="block truncate">{selected.name}</span>
-            <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-              <SelectorIcon
-                className="w-5 h-5 text-gray-400"
-                aria-hidden="true"
-              />
-            </span>
-          </Listbox.Button>
-          <Transition
-            as={Fragment}
-            leave="transition ease-in duration-100"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {options &&
-                options.map((opt, optIdx) => (
-                  <Listbox.Option
-                    key={optIdx}
-                    className={({ active }) =>
-                      `${
-                        active ? "text-amber-900 bg-amber-100" : "text-gray-900"
-                      }
+    <Listbox value={selected} onChange={setSelected}>
+      <div className="relative mt-1">
+        <Listbox.Button
+          className={overrideTailwindClasses(
+            classnames(
+              decorateRoundedSelect(),
+              decorateShadowSelect(),
+              decorateBgSelect(),
+              "relative w-full py-2 pl-3 pr-10 text-left cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm"
+            )
+          )}
+        >
+          <span className="block truncate">{selected.name}</span>
+          <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+            <SelectorIcon
+              className="w-5 h-5 text-gray-400"
+              aria-hidden="true"
+            />
+          </span>
+        </Listbox.Button>
+        <Transition
+          as={Fragment}
+          leave="transition ease-in duration-100"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            {options &&
+              options.map((opt, optIdx) => (
+                <Listbox.Option
+                  key={optIdx}
+                  className={({ active }) =>
+                    `${active ? "text-amber-900 bg-amber-100" : "text-gray-900"}
                           cursor-default select-none relative py-2 pl-10 pr-4`
-                    }
-                    value={opt}
-                  >
-                    {({ selected, active }) => (
-                      <>
+                  }
+                  value={opt}
+                >
+                  {({ selected, active }) => (
+                    <>
+                      <span
+                        className={`${
+                          selected ? "font-medium" : "font-normal"
+                        } block truncate`}
+                      >
+                        {opt.name}
+                      </span>
+                      {selected ? (
                         <span
                           className={`${
-                            selected ? "font-medium" : "font-normal"
-                          } block truncate`}
-                        >
-                          {opt.name}
-                        </span>
-                        {selected ? (
-                          <span
-                            className={`${
-                              active ? "text-amber-600" : "text-amber-600"
-                            }
+                            active ? "text-amber-600" : "text-amber-600"
+                          }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
-                          >
-                            <CheckIcon className="w-5 h-5" aria-hidden="true" />
-                          </span>
-                        ) : null}
-                      </>
-                    )}
-                  </Listbox.Option>
-                ))}
-            </Listbox.Options>
-          </Transition>
-        </div>
-      </Listbox>
-    </div>
+                        >
+                          <CheckIcon className="w-5 h-5" aria-hidden="true" />
+                        </span>
+                      ) : null}
+                    </>
+                  )}
+                </Listbox.Option>
+              ))}
+          </Listbox.Options>
+        </Transition>
+      </div>
+    </Listbox>
   );
 };
 export default Select;
