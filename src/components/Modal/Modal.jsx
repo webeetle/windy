@@ -11,7 +11,7 @@ const Modal = ({
   onClickIcon = () => null,
   showCloseButton = true,
   color = "white",
-  title = "Dialog",
+  title = "",
   size = "md",
   actions = [],
   children,
@@ -27,36 +27,44 @@ const Modal = ({
         };
       case "gray":
         return {
-          "bg-gray-500 text-white": color === "gray",
+          "bg-gradient-to-l from-gray-500 to-gray-600 px-5 text-white rounded-md shadow-md":
+            color === "gray",
         };
       case "red":
         return {
-          "bg-red-500 text-white": color === "red",
+          "bg-gradient-to-l from-red-500 to-red-600 px-5 text-white rounded-md shadow-md":
+            color === "red",
         };
       case "yellow":
         return {
-          "bg-yellow-500 text-white": color === "yellow",
+          "bg-gradient-to-l from-yellow-500 to-yellow-600 px-5 rounded-md shadow-md":
+            color === "yellow",
         };
 
       case "green":
         return {
-          "bg-green-500 text-white": color === "green",
+          "bg-gradient-to-l from-green-500 to-green-600 text-white px-5 rounded-md shadow-md":
+            color === "green",
         };
       case "blue":
         return {
-          "bg-blue-500 text-white": color === "blue",
+          "bg-gradient-to-l from-blue-500 to-blue-600 text-white px-5 rounded-md shadow-md":
+            color === "blue",
         };
       case "indigo":
         return {
-          "bg-indigo-500 text-white": color === "indigo",
+          "bg-gradient-to-l from-indigo-500 to-indigo-600 text-white px-5 rounded-md shadow-md":
+            color === "indigo",
         };
       case "purple":
         return {
-          "bg-purple-500 text-white": color === "purple",
+          "bg-gradient-to-l from-purple-500 to-purple-600 text-white px-5 rounded-md shadow-md":
+            color === "purple",
         };
       case "pink":
         return {
-          "bg-pink-500 text-white": color === "pink",
+          "bg-gradient-to-l from-pink-500 to-pink-600 text-white px-5 rounded-md shadow-md":
+            color === "pink",
         };
     }
   };
@@ -88,13 +96,17 @@ const Modal = ({
   };
   const decorateSizeModal = () => {
     switch (size) {
+      case "sm":
+        return {
+          "mx-auto w-full md:w-2/4 md:h-2/4 text-center": size === "sm",
+        };
       case "md":
         return {
-          "mx-auto w-2/4 h-2/4 text-center": size === "md",
+          "mx-auto w-full md:w-3/5 md:h-3/5 text-center": size === "md",
         };
       case "lg":
         return {
-          "mx-auto w-3/4 h-3/4 text-center": size === "lg",
+          "mx-auto w-full md:w-3/4 md:h-3/4 text-center": size === "lg",
         };
 
       case "full":
@@ -104,17 +116,27 @@ const Modal = ({
 
       default:
         return {
-          "mx-auto w-2/4 h-2/4 text-center": size === "md",
+          "mx-auto w-full md:w-2/4 h-2/4 text-center": size === "md",
         };
     }
   };
 
   return (
     <>
-      <Transition appear show={isOpen} as={Fragment}>
+      <Transition
+        appear
+        enter="ease-out duration-300"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="ease-in duration-200"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+        show={isOpen}
+        as={Fragment}
+      >
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
+          className="fixed inset-0 z-50 overflow-y-auto bg-gray-500 bg-opacity-50"
           onClose={() => (typeof onClose() === "function" ? onClose() : null)}
         >
           <div
@@ -134,7 +156,7 @@ const Modal = ({
               <Dialog.Overlay className="fixed inset-0" />
             </Transition.Child>
             <span
-              className="inline-block h-screen align-middle"
+              className="inline-block h-screen align-bottom md:align-middle"
               aria-hidden="true"
             >
               &#8203;
@@ -153,7 +175,7 @@ const Modal = ({
                   classnames(
                     decorateRoundedModal(),
                     decorateSizeModal(),
-                    "inline-block  p-3 text-left align-middle transition-all transform bg-white shadow-xl"
+                    "inline-block px-5 py-3 text-left align-middle transition-all transform bg-white shadow-xl"
                   )
                 )}
               >
@@ -162,33 +184,37 @@ const Modal = ({
                     as="h3"
                     className={overrideTailwindClasses(
                       classnames(
-                        // decorateHeaderColor(),
-                        "text-lg font-medium leading-6 text-gray-900 py-3"
+                        "text-lg font-medium leading-6 text-gray-900 py-3",
+                        decorateHeaderColor()
                       )
                     )}
                   >
                     <div className="flex items-center justify-between">
                       {title}
                       {showCloseButton && (
-                        <CloseIcon
+                        <button
+                          className="focus:outline-none"
                           onClick={() =>
                             typeof onClickIcon() === "function"
                               ? onClickIcon()
                               : null
                           }
-                        />
+                        >
+                          <CloseIcon />
+                        </button>
                       )}
                     </div>
                   </Dialog.Title>
-                  <div className="flex-1 h-auto overflow-y-auto">
+                  <div className="flex-1 h-auto overflow-y-auto mt-5">
                     {children}
                   </div>
-                  <div className="flex items-center ml-auto space-x-5 mt-4">
-                    {actions &&
-                      actions.map((Button) => {
+                  {actions && actions.length > 0 && (
+                    <div className="block md:flex space-x-0 space-y-5 md:space-y-0 md:space-x-5 md:ml-auto mt-5 items-center">
+                      {actions.map((Button) => {
                         return <div>{Button}</div>;
                       })}
-                  </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </Transition.Child>

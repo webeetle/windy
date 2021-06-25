@@ -55,6 +55,16 @@ export const ColorAndLabel = () => {
   );
 };
 
+export const TypeHTML5 = () => {
+  return (
+    <div className="flex space-x-5 items-end">
+      <div className="w-full">
+        <Input fullWidth label={"A date type"} type="date" />
+      </div>
+    </div>
+  );
+};
+
 export const PrefixAndSuffix = () => {
   return (
     <div className="space-y-5">
@@ -64,7 +74,7 @@ export const PrefixAndSuffix = () => {
             fullWidth
             prefix="prefix.com/"
             type="text"
-            placeholder="Lorem ipsum"
+            placeholder="Prefix"
           />
         </div>
         <div className="w-1/2">
@@ -72,7 +82,7 @@ export const PrefixAndSuffix = () => {
             fullWidth
             type="text"
             suffix="suffix.com"
-            placeholder="disabled"
+            placeholder="Suffix"
           />
         </div>
       </div>
