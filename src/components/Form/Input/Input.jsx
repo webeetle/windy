@@ -15,7 +15,7 @@ const Input = ({
   suffix = null,
   ...rest
 }) => {
-  const roundedHandler = () => {
+  const roundedInptHandler = () => {
     switch (rounded) {
       case "none":
         return {
@@ -23,23 +23,33 @@ const Input = ({
         };
       case "sm":
         return {
-          "rounded-sm": rounded === "sm",
+          "rounded-sm": !suffix && !prefix && rounded === "sm",
+          "rounded-l-sm": suffix && rounded === "sm",
+          "rounded-r-sm": prefix && rounded === "sm",
         };
       case "md":
         return {
-          "rounded-md": rounded === "md",
+          "rounded-md": !suffix && !prefix && rounded === "md",
+          "rounded-l-md": suffix && rounded === "md",
+          "rounded-r-md": prefix && rounded === "md",
         };
       case "lg":
         return {
-          "rounded-lg": rounded === "lg",
+          "rounded-lg": !suffix && !prefix && rounded === "lg",
+          "rounded-l-lg": suffix && rounded === "lg",
+          "rounded-r-lg": prefix && rounded === "lg",
         };
       case "full":
         return {
-          "rounded-full": rounded === "full",
+          "rounded-full": !suffix && !prefix && rounded === "full",
+          "rounded-l-full": suffix && rounded === "full",
+          "rounded-r-full": prefix && rounded === "full",
         };
       default:
         return {
-          "rounded-md": rounded === "md",
+          "rounded-md": !suffix && !prefix && rounded === "md",
+          "rounded-l-md": suffix && rounded === "md",
+          "rounded-r-md": prefix && rounded === "md",
         };
     }
   };
@@ -47,6 +57,7 @@ const Input = ({
   const inptclss = () =>
     classnames(
       "w-full flex-1 px-3 py-2 z-10 focus:outline-none ring-1",
+      { "shadow hover:shadow-sm": shadow },
       {
         "focus:ring-gray-700 focus:ring-2 ring-gray-300": color === "gray",
         "focus:ring-red-700 focus:ring-2 ring-red-300": color === "red",
@@ -60,14 +71,32 @@ const Input = ({
           color === "purple",
         "focus:ring-pink-700 focus:ring-2 ring-pink-300": color === "pink",
       },
+      roundedInptHandler(),
       { "pointer-events-none bg-gray-50": rest.disabled },
       `${className ?? ""}`
     );
+  const clssSuffixPrefix = (def) =>
+    overrideTailwindClasses(
+      classnames(
+        def,
+        { shadow: shadow },
+        {
+          "bg-gray-50 text-gray-500": color === "gray",
+          "bg-red-50 text-red-500": color === "red",
+          "bg-yellow-50 text-yellow-500": color === "yellow",
+          "bg-green-50 text-green-500": color === "green",
+          "bg-blue-50 text-blue-500": color === "blue",
+          "bg-indigo-50 text-indigo-500": color === "indigo",
+          "bg-purple-50 text-purple-500": color === "purple",
+          "bg-pink-50 text-pink-500": color === "pink",
+        }
+      )
+    );
+
   const clss = () =>
     overrideTailwindClasses(
       classnames(
         { "w-full": fullWidth },
-        { "shadow hover:shadow-sm": shadow },
         {
           "text-base font-medium ": !size || size === "md",
           "text-sm font-medium ": size === "sm",
@@ -77,8 +106,7 @@ const Input = ({
         },
 
         { "opacity-50 pointer-events-none": rest.disabled },
-        roundedHandler(),
-        "flex min-w-0 overfow-hidden"
+        "flex min-w-0"
       )
     );
 
@@ -94,13 +122,21 @@ const Input = ({
       )}
       <div className={clss()}>
         {prefix && (
-          <span className="inline-flex items-center px-3 bg-gray-50 text-gray-500 sm:text-sm">
+          <span
+            className={clssSuffixPrefix(
+              "inline-flex items-center px-3 sm:text-sm"
+            )}
+          >
             {prefix}
           </span>
         )}
         <input className={inptclss()} {...rest} />
         {suffix && (
-          <span className="inline-flex items-center px-3 bg-gray-50 text-gray-500 sm:text-sm">
+          <span
+            className={clssSuffixPrefix(
+              "inline-flex items-center px-3 sm:text-sm"
+            )}
+          >
             {suffix}
           </span>
         )}
