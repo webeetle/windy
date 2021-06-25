@@ -231,7 +231,6 @@ Modal.propTypes = {
   isOpen: PropTypes.bool,
   showCloseButton: PropTypes.bool,
   title: PropTypes.string,
-  size: PropTypes.string,
   className: PropTypes.string,
   actions: PropTypes.array,
   onClose: PropTypes.func,
