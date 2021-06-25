@@ -46,9 +46,22 @@ const Input = ({
 
   const inptclss = () =>
     classnames(
-      "w-full flex-1 px-3 py-2 focus:outline-none",
-
-      { "pointer-events-none": rest.disabled }
+      "w-full flex-1 px-3 py-2 z-10 focus:outline-none ring-1",
+      {
+        "focus:ring-gray-700 focus:ring-2 ring-gray-300": color === "gray",
+        "focus:ring-red-700 focus:ring-2 ring-red-300": color === "red",
+        "focus:ring-yellow-700 focus:ring-2 ring-yellow-300":
+          color === "yellow",
+        "focus:ring-green-700 focus:ring-2 ring-green-300": color === "green",
+        "focus:ring-blue-700 focus:ring-2 ring-blue-300": color === "blue",
+        "focus:ring-indigo-700 focus:ring-2 ring-indigo-300":
+          color === "indigo",
+        "focus:ring-purple-700 focus:ring-2 ring-purple-300":
+          color === "purple",
+        "focus:ring-pink-700 focus:ring-2 ring-pink-300": color === "pink",
+      },
+      { "pointer-events-none bg-gray-50": rest.disabled },
+      `${className ?? ""}`
     );
   const clss = () =>
     overrideTailwindClasses(
@@ -62,20 +75,10 @@ const Input = ({
           "text-lg font-medium ": size === "lg",
           "text-xl font-medium ": size === "xl",
         },
-        {
-          "ring-gray-300": color === "gray",
-          "ring-red-300": color === "red",
-          "ring-yellow-300": color === "yellow",
-          "ring-green-300": color === "green",
-          "ring-blue-300": color === "blue",
-          "ring-indigo-300": color === "indigo",
-          "ring-purple-300": color === "purple",
-          "ring-pink-300": color === "pink",
-        },
+
         { "opacity-50 pointer-events-none": rest.disabled },
         roundedHandler(),
-        "flex min-w-0 overflow-hidden ring-1",
-        `${className ?? ""}`
+        "flex min-w-0 overfow-hidden"
       )
     );
 
@@ -91,13 +94,13 @@ const Input = ({
       )}
       <div className={clss()}>
         {prefix && (
-          <span className="inline-flex items-center px-3 rounded-l-md bg-gray-50 text-gray-500 sm:text-sm">
+          <span className="inline-flex items-center px-3 bg-gray-50 text-gray-500 sm:text-sm">
             {prefix}
           </span>
         )}
         <input className={inptclss()} {...rest} />
         {suffix && (
-          <span className="inline-flex items-center px-3 rounded-l-md bg-gray-50 text-gray-500 sm:text-sm">
+          <span className="inline-flex items-center px-3 bg-gray-50 text-gray-500 sm:text-sm">
             {suffix}
           </span>
         )}

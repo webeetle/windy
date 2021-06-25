@@ -5,11 +5,11 @@ import "tailwindcss/dist/tailwind.css";
 export const Size = () => {
   return (
     <div className="space-y-5">
-      <Input size="xs" type="text" name="peppe" placeholder="input xs" />
-      <Input size="sm" type="text" name="peppe" placeholder="input sm" />
-      <Input type="text" name="peppe" placeholder="input md" />
-      <Input size="lg" type="text" name="peppe" placeholder="input lg" />
-      <Input size="xl" type="text" name="peppe" placeholder="input xl" />
+      <Input disabled size="xs" type="text" placeholder="disabled input xs" />
+      <Input size="sm" type="text" placeholder="input sm" />
+      <Input type="text" placeholder="input md" />
+      <Input size="lg" type="text" placeholder="input lg" />
+      <Input size="xl" type="text" placeholder="input xl" />
     </div>
   );
 };
@@ -54,10 +54,11 @@ export const PrefixAndSuffix = () => {
       </div>
       <div className="w-1/2">
         <Input
+          disabled
           fullWidth
           type="text"
           suffix="suffix.com"
-          placeholder="Lorem ipsum"
+          placeholder="disabled"
         />
       </div>
     </div>
