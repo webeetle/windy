@@ -17,6 +17,11 @@ const Select = ({
 
   const decorateShadowSelect = () => {
     switch (shadow) {
+      case "none":
+        return {
+          "shadow-none": shadow === "none",
+        };
+
       case "sm":
         return {
           "shadow-sm": shadow === "sm",
