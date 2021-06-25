@@ -10,6 +10,7 @@ const Button = ({
   shadow = true,
   light = true,
   dark = false,
+  gradient = true,
   rounded = "md",
   disabled = false,
   ...props
@@ -93,14 +94,32 @@ const Button = ({
       case "contained": {
         return {
           "opacity-50 pointer-events-none": disabled,
-          "bg-gray-500 hover:bg-gray-600": color === "gray",
-          "bg-red-500 hover:bg-red-600": color === "red",
-          "bg-yellow-500 hover:bg-yellow-600": color === "yellow",
-          "bg-green-500 hover:bg-green-600": color === "green",
-          "bg-blue-500 hover:bg-blue-600": color === "blue",
-          "bg-indigo-500 hover:bg-indigo-600": color === "indigo",
-          "bg-purple-500 hover:bg-purple-600": color === "purple",
-          "bg-pink-500 hover:bg-pink-600": color === "pink",
+          "bg-gray-500 hover:bg-gray-600": !gradient && color === "gray",
+          "bg-red-500 hover:bg-red-600": !gradient && color === "red",
+          "bg-yellow-500 hover:bg-yellow-600": !gradient && color === "yellow",
+          "bg-green-500 hover:bg-green-600": !gradient && color === "green",
+          "bg-blue-500 hover:bg-blue-600": !gradient && color === "blue",
+          "bg-indigo-500 hover:bg-indigo-600": !gradient && color === "indigo",
+          "bg-purple-500 hover:bg-purple-600": !gradient && color === "purple",
+          "bg-pink-500 hover:bg-pink-600": !gradient && color === "pink",
+
+          "bg-gradient-to-l from-gray-500 to-gray-600 hover:opacity-80":
+            gradient && color === "gray",
+          "bg-gradient-to-l from-red-500 to-red-600 hover:opacity-80":
+            gradient && color === "red",
+          "bg-gradient-to-l from-yellow-500 to-yellow-600 hover:opacity-80":
+            gradient && color === "yellow",
+          "bg-gradient-to-l from-green-500 to-green-600 hover:opacity-80":
+            gradient && color === "green",
+          "bg-gradient-to-l from-blue-500 to-blue-600 hover:opacity-80":
+            gradient && color === "blue",
+          "bg-gradient-to-l from-indigo-500 to-indigo-600 hover:opacity-80":
+            gradient && color === "indigo",
+          "bg-gradient-to-l from-purple-500 to-purple-600 hover:opacity-80":
+            gradient && color === "purple",
+          "bg-gradient-to-l from-pink-500 to-pink-600 hover:opacity-80":
+            gradient && color === "pink",
+
           "text-white": light && !dark,
           "text-black": dark,
 
@@ -111,7 +130,7 @@ const Button = ({
           "text-xs font-medium px-2.5 py-1.5": size === "xs",
           "text-base font-medium px-4 py-2": size === "lg",
           "text-base font-medium px-6 py-3": size === "xl",
-          "border border-transparent": true,
+          "border-none border-transparent": true,
         };
       }
     }
