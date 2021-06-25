@@ -177,6 +177,7 @@ Button.propTypes = {
   light: PropTypes.bool,
   dark: PropTypes.bool,
   shadow: PropTypes.bool,
+  gradient: PropTypes.bool,
   onClick: PropTypes.func,
   children: PropTypes.any,
   style: PropTypes.any,
