@@ -11,6 +11,7 @@ const Select = ({
   rounded = "md",
   shadow = "md",
   options = [],
+  disabled = false,
   onSelect = () => null,
 }) => {
   const [selected, setSelected] = useState(options[0]);
@@ -83,47 +84,56 @@ const Select = ({
     switch (color) {
       case "white":
         return {
+          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent border focus:ring-2 ring-black border-black text-black hover:bg-gray-50":
             color === "white",
         };
       case "gray":
         return {
+          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent border focus:ring-2 focus:ring-gray-500 border-gray-500 text-black hover:bg-gray-50":
             color === "gray",
         };
       case "red":
         return {
+          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent border focus:ring-2 focus:ring-red-500 border-red-500 text-black hover:bg-red-50":
             color === "red",
         };
       case "yellow":
         return {
+          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent border focus:ring-2 focus:ring-yellow-500 border-yellow-500 text-black hover:bg-yellow-50":
             color === "yellow",
         };
 
       case "green":
         return {
+          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent border focus:ring-2 focus:ring-green-500 border-green-500 text-black hover:bg-green-50":
             color === "green",
         };
       case "blue":
         return {
+          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent border focus:ring-2 focus:ring-blue-500 border-blue-500 text-black hover:bg-blue-50":
             color === "blue",
         };
       case "indigo":
         return {
+          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent border focus:ring-2 focus:ring-indigo-500 border-indigo-500 text-black hover:bg-indigo-50":
             color === "indigo",
         };
       case "purple":
         return {
+          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent border focus:ring-2 focus:ring-purple-500 border-purple-500 text-black hover:bg-purple-50":
             color === "purple",
         };
       case "pink":
         return {
+          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent border focus:ring-2 focus:ring-pink-500 border-pink-500 text-black hover:bg-pink-50":
             color === "pink",
         };
@@ -132,6 +142,7 @@ const Select = ({
 
   return (
     <Listbox
+      disabled={disabled}
       value={selected}
       onChange={(opt) => {
         setSelected(opt);
@@ -215,6 +226,8 @@ Select.propTypes = {
   rounded: PropTypes.string,
   shadow: PropTypes.string,
   options: PropTypes.array,
+  disabled: PropTypes.bool,
+  onSelect: PropTypes.func,
 };
 
 export default Select;

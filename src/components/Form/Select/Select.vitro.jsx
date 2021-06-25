@@ -78,8 +78,9 @@ export const Rounded = () => {
       <div className="w-48">
         <Select
           shadow="lg"
-          color="purple"
+          color="indigo"
           rounded="lg"
+          disabled={true}
           onSelect={({ value }) => alert(value)}
           options={[
             { label: "Wade Cooper", value: "Wade Cooper" },
