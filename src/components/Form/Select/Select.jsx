@@ -83,46 +83,61 @@ const Select = ({
     switch (color) {
       case "white":
         return {
-          "bg-white text-black": color === "white",
+          "bg-transparent border-2 border-black text-black hover:bg-gray-50":
+            color === "white",
         };
       case "gray":
         return {
-          "bg-gray-500 text-white": color === "gray",
+          "bg-transparent border-2 border-gray-500 text-black hover:bg-gray-50":
+            color === "gray",
         };
       case "red":
         return {
-          "bg-red-500 text-white": color === "red",
+          "bg-transparent border-2 border-red-500 text-black hover:bg-red-50":
+            color === "red",
         };
       case "yellow":
         return {
-          "bg-yellow-500 text-white": color === "yellow",
+          "bg-transparent border-2 border-yellow-500 text-black hover:bg-yellow-50":
+            color === "yellow",
         };
 
       case "green":
         return {
-          "bg-green-500 text-white": color === "green",
+          "bg-transparent border-2 border-green-500 text-black hover:bg-green-50":
+            color === "green",
         };
       case "blue":
         return {
-          "bg-blue-500 text-white": color === "blue",
+          "bg-transparent border-2 border-blue-500 text-black hover:bg-blue-50":
+            color === "blue",
         };
       case "indigo":
         return {
-          "bg-indigo-500 text-white": color === "indigo",
+          "bg-transparent border-2 border-indigo-500 text-black hover:bg-indigo-50":
+            color === "indigo",
         };
       case "purple":
         return {
-          "bg-purple-500 text-white": color === "purple",
+          "bg-transparent border-2 border-purple-500 text-black hover:bg-purple-50":
+            color === "purple",
         };
       case "pink":
         return {
-          "bg-pink-500 text-white": color === "pink",
+          "bg-transparent border-2 border-pink-500 text-black hover:bg-pink-50":
+            color === "pink",
         };
     }
   };
 
   return (
-    <Listbox value={selected} onChange={setSelected}>
+    <Listbox
+      value={selected}
+      onChange={(value) => {
+        setSelected();
+        onSelect(value);
+      }}
+    >
       <div className="relative mt-1">
         <Listbox.Button
           className={overrideTailwindClasses(
