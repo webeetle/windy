@@ -27,7 +27,6 @@ const Checkbox = ({
     </svg>
   );
   const inptclss = () => {
-    console.log("render", innerCheck);
     return overrideTailwindClasses(
       classnames(
         "bg-white border cursor-pointer w-4 h-4 flex flex-shrink-0 justify-center items-center focus:outline-none transition duration-150 ease-in-out",
