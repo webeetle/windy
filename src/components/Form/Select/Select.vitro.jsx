@@ -8,14 +8,14 @@ export const Basic = () => {
       <div className="w-72">
         <Select
           rounded="none"
-          onSelect={(value) => alert(value)}
+          onSelect={({ value }) => alert(value)}
           options={[
-            { name: "Wade Cooper" },
-            { name: "Arlene Mccoy" },
-            { name: "Devon Webb" },
-            { name: "Tom Cook" },
-            { name: "Tanya Fox" },
-            { name: "Hellen Schmidt" },
+            { label: "Wade Cooper", value: "Wade Cooper" },
+            { label: "Arlene Mccoy", value: "Arlene Mccoy" },
+            { label: "Devon Webb", value: "Devon Webb" },
+            { label: "Tom Cook", value: "Tom Cook" },
+            { label: "Tanya Fox", value: "Tanya Fox" },
+            { label: "Hellen Schmidt", value: "Hellen Schmidt" },
           ]}
         />
       </div>
@@ -32,14 +32,14 @@ export const Rounded = () => {
           rounded="none"
           color="white"
           rounded="none"
-          onSelect={(value) => alert(value)}
+          onSelect={({ value }) => alert(value)}
           options={[
-            { name: "Wade Cooper" },
-            { name: "Arlene Mccoy" },
-            { name: "Devon Webb" },
-            { name: "Tom Cook" },
-            { name: "Tanya Fox" },
-            { name: "Hellen Schmidt" },
+            { label: "Wade Cooper", value: "Wade Cooper" },
+            { label: "Arlene Mccoy", value: "Arlene Mccoy" },
+            { label: "Devon Webb", value: "Devon Webb" },
+            { label: "Tom Cook", value: "Tom Cook" },
+            { label: "Tanya Fox", value: "Tanya Fox" },
+            { label: "Hellen Schmidt", value: "Hellen Schmidt" },
           ]}
         />
       </div>
@@ -48,14 +48,14 @@ export const Rounded = () => {
           shadow="sm"
           color="blue"
           rounded="sm"
-          onSelect={(value) => alert(value)}
+          onSelect={({ value }) => alert(value)}
           options={[
-            { name: "Wade Cooper" },
-            { name: "Arlene Mccoy" },
-            { name: "Devon Webb" },
-            { name: "Tom Cook" },
-            { name: "Tanya Fox" },
-            { name: "Hellen Schmidt" },
+            { label: "Wade Cooper", value: "Wade Cooper" },
+            { label: "Arlene Mccoy", value: "Arlene Mccoy" },
+            { label: "Devon Webb", value: "Devon Webb" },
+            { label: "Tom Cook", value: "Tom Cook" },
+            { label: "Tanya Fox", value: "Tanya Fox" },
+            { label: "Hellen Schmidt", value: "Hellen Schmidt" },
           ]}
         />
       </div>
@@ -64,14 +64,14 @@ export const Rounded = () => {
           shadow="md"
           color="purple"
           rounded="md"
-          onSelect={(value) => alert(value)}
+          onSelect={({ value }) => alert(value)}
           options={[
-            { name: "Wade Cooper" },
-            { name: "Arlene Mccoy" },
-            { name: "Devon Webb" },
-            { name: "Tom Cook" },
-            { name: "Tanya Fox" },
-            { name: "Hellen Schmidt" },
+            { label: "Wade Cooper", value: "Wade Cooper" },
+            { label: "Arlene Mccoy", value: "Arlene Mccoy" },
+            { label: "Devon Webb", value: "Devon Webb" },
+            { label: "Tom Cook", value: "Tom Cook" },
+            { label: "Tanya Fox", value: "Tanya Fox" },
+            { label: "Hellen Schmidt", value: "Hellen Schmidt" },
           ]}
         />
       </div>
@@ -80,14 +80,14 @@ export const Rounded = () => {
           shadow="lg"
           color="purple"
           rounded="lg"
-          onSelect={(value) => alert(value)}
+          onSelect={({ value }) => alert(value)}
           options={[
-            { name: "Wade Cooper" },
-            { name: "Arlene Mccoy" },
-            { name: "Devon Webb" },
-            { name: "Tom Cook" },
-            { name: "Tanya Fox" },
-            { name: "Hellen Schmidt" },
+            { label: "Wade Cooper", value: "Wade Cooper" },
+            { label: "Arlene Mccoy", value: "Arlene Mccoy" },
+            { label: "Devon Webb", value: "Devon Webb" },
+            { label: "Tom Cook", value: "Tom Cook" },
+            { label: "Tanya Fox", value: "Tanya Fox" },
+            { label: "Hellen Schmidt", value: "Hellen Schmidt" },
           ]}
         />
       </div>
@@ -96,14 +96,14 @@ export const Rounded = () => {
           shadow="xl"
           color="pink"
           rounded="xl"
-          onSelect={(value) => alert(value)}
+          onSelect={({ value }) => alert(value)}
           options={[
-            { name: "Wade Cooper" },
-            { name: "Arlene Mccoy" },
-            { name: "Devon Webb" },
-            { name: "Tom Cook" },
-            { name: "Tanya Fox" },
-            { name: "Hellen Schmidt" },
+            { label: "Wade Cooper", value: "Wade Cooper" },
+            { label: "Arlene Mccoy", value: "Arlene Mccoy" },
+            { label: "Devon Webb", value: "Devon Webb" },
+            { label: "Tom Cook", value: "Tom Cook" },
+            { label: "Tanya Fox", value: "Tanya Fox" },
+            { label: "Hellen Schmidt", value: "Hellen Schmidt" },
           ]}
         />
       </div>
@@ -112,14 +112,14 @@ export const Rounded = () => {
           shadow="xl"
           color="yellow"
           rounded="full"
-          onSelect={(value) => alert(value)}
+          onSelect={({ value }) => alert(value)}
           options={[
-            { name: "Wade Cooper" },
-            { name: "Arlene Mccoy" },
-            { name: "Devon Webb" },
-            { name: "Tom Cook" },
-            { name: "Tanya Fox" },
-            { name: "Hellen Schmidt" },
+            { label: "Wade Cooper", value: "Wade Cooper" },
+            { label: "Arlene Mccoy", value: "Arlene Mccoy" },
+            { label: "Devon Webb", value: "Devon Webb" },
+            { label: "Tom Cook", value: "Tom Cook" },
+            { label: "Tanya Fox", value: "Tanya Fox" },
+            { label: "Hellen Schmidt", value: "Hellen Schmidt" },
           ]}
         />
       </div>
