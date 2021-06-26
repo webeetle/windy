@@ -34,10 +34,11 @@ export const Size = () => {
         shadow="none"
         onClick={() => alert("Clicked")}
         pointer
+        size="xs"
       />
-      <Badge text="Hello" color="red" shadow="sm" size="md" />
-      <Badge text="Hello" color="yellow" shadow="md" size="lg" />
-      <Badge text="Hello" color="green" shadow="lg" size="xl" />
+      <Badge text="Hello" color="red" shadow="sm" size="sm" />
+      <Badge text="Hello" color="yellow" shadow="md" size="md" />
+      <Badge text="Hello" color="green" shadow="lg" size="lg" />
     </div>
   );
 };

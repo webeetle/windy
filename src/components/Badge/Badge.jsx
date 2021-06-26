@@ -5,7 +5,11 @@ import { overrideTailwindClasses } from "tailwind-override";
 import classnames from "classnames";
 
 //Utils
-import { generateShadow, generateRounded } from "../../Utils/Utils";
+import {
+  generateShadow,
+  generateRounded,
+  generateSize,
+} from "../../Utils/Utils";
 
 const Badge = ({
   text = "Badge",
@@ -15,7 +19,7 @@ const Badge = ({
   disabled = false,
   dark = false,
   light = true,
-  size = "sm",
+  size,
   shadow,
   className = "",
   pointer = false,
@@ -48,13 +52,6 @@ const Badge = ({
           //Dark Mode
           // "text-white": light && !dark,
           "text-black": dark,
-          //Size
-          "text-sm font-medium px-4 py-2": !size || size === "md",
-          "text-xs font-medium px-3 py-2": size === "sm",
-          "text-xs font-medium px-2.5 py-1.5": size === "xs",
-          "text-base font-medium px-4 py-2": size === "lg",
-          "text-base font-medium px-6 py-3": size === "xl",
-          "shadow hover:shadow-sm": shadow,
         };
 
       default:
@@ -70,9 +67,10 @@ const Badge = ({
           decorateBadgeLayout(),
           generateRounded(rounded),
           generateShadow(shadow),
-          `w-auto bg-${color}-200 border ${className ?? ""} ${
-            pointer && "cursor-pointer"
-          }`
+          generateSize(size),
+          `w-auto  bg-${color}-200 border transition duration-150 ease-in-out hover:shadow-none ${
+            className ?? ""
+          } ${pointer && "cursor-pointer"}`
         )
       )}
     >
