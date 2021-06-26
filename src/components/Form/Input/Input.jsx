@@ -7,7 +7,7 @@ const Input = ({
   fullWidth,
   color = "gray",
   className,
-  shadow = true,
+  shadow = "md",
   rounded = "md",
   size = "md",
   label = null,
@@ -15,6 +15,37 @@ const Input = ({
   suffix = null,
   ...rest
 }) => {
+  const decorateShadowInpt = () => {
+    switch (shadow) {
+      case "none":
+        return {
+          "shadow-none": shadow === "none",
+        };
+
+      case "sm":
+        return {
+          "shadow-sm": shadow === "sm",
+        };
+
+      case "md":
+        return {
+          "shadow-md": shadow === "md",
+        };
+
+      case "lg":
+        return {
+          "shadow-lg": shadow === "lg",
+        };
+
+      case "xl":
+        return {
+          "shadow-xl": shadow === "xl",
+        };
+
+      default:
+        break;
+    }
+  };
   const roundedInptHandler = () => {
     switch (rounded) {
       case "none":
@@ -57,8 +88,7 @@ const Input = ({
   const inptclss = () =>
     overrideTailwindClasses(
       classnames(
-        "w-full flex-1 px-3 py-2 z-10 focus:outline-none ring-1",
-        { "shadow hover:shadow-sm": shadow },
+        "w-full flex-1 px-3 py-2 focus:outline-none ring-1",
         {
           "focus:ring-gray-700 focus:ring-2 ring-gray-300": color === "gray",
           "focus:ring-red-700 focus:ring-2 ring-red-300": color === "red",
@@ -73,6 +103,10 @@ const Input = ({
           "focus:ring-pink-700 focus:ring-2 ring-pink-300": color === "pink",
         },
         roundedInptHandler(),
+        decorateShadowInpt(),
+        {
+          "z-10": suffix || prefix,
+        },
         { "pointer-events-none bg-gray-50": rest.disabled },
         `${className ?? ""}`
       )
@@ -81,7 +115,7 @@ const Input = ({
     overrideTailwindClasses(
       classnames(
         def,
-        { shadow: shadow },
+        decorateShadowInpt(),
         {
           "bg-gray-50 text-gray-500": color === "gray",
           "bg-red-50 text-red-500": color === "red",
@@ -91,6 +125,19 @@ const Input = ({
           "bg-indigo-50 text-indigo-500": color === "indigo",
           "bg-purple-50 text-purple-500": color === "purple",
           "bg-pink-50 text-pink-500": color === "pink",
+        },
+        {
+          "focus:ring-gray-700 focus:ring-2 ring-gray-300": color === "gray",
+          "focus:ring-red-700 focus:ring-2 ring-red-300": color === "red",
+          "focus:ring-yellow-700 focus:ring-2 ring-yellow-300":
+            color === "yellow",
+          "focus:ring-green-700 focus:ring-2 ring-green-300": color === "green",
+          "focus:ring-blue-700 focus:ring-2 ring-blue-300": color === "blue",
+          "focus:ring-indigo-700 focus:ring-2 ring-indigo-300":
+            color === "indigo",
+          "focus:ring-purple-700 focus:ring-2 ring-purple-300":
+            color === "purple",
+          "focus:ring-pink-700 focus:ring-2 ring-pink-300": color === "pink",
         }
       )
     );
@@ -126,7 +173,7 @@ const Input = ({
         {prefix && (
           <span
             className={clssSuffixPrefix(
-              "inline-flex items-center px-3 sm:text-sm"
+              "inline-flex items-center px-3 sm:text-sm ring-1"
             )}
           >
             {prefix}
@@ -136,7 +183,7 @@ const Input = ({
         {suffix && (
           <span
             className={clssSuffixPrefix(
-              "inline-flex items-center px-3 sm:text-sm"
+              "inline-flex items-center px-3 sm:text-sm ring-1"
             )}
           >
             {suffix}
@@ -149,7 +196,7 @@ const Input = ({
 Input.propTypes = {
   className: PropTypes.string,
   fullWidth: PropTypes.bool,
-  shadow: PropTypes.bool,
+  shadow: PropTypes.string,
   color: PropTypes.oneOf([
     "gray",
     "red",

@@ -7,14 +7,17 @@ import { overrideTailwindClasses } from "tailwind-override";
 import classnames from "classnames";
 
 const Select = ({
-  color = "white",
+  color = "gray",
   rounded = "md",
   shadow = "md",
   options = [],
   disabled = false,
   onSelect = () => null,
+  ...rest
 }) => {
-  const [selected, setSelected] = useState(options[0]);
+  const [selected, setSelected] = useState(
+    rest.selected ? options.find((x) => x.value === rest.selected) : options[0]
+  );
 
   const decorateShadowSelect = () => {
     switch (shadow) {
@@ -85,56 +88,56 @@ const Select = ({
       case "white":
         return {
           "opacity-50 pointer-events-none px-4 py-2": disabled,
-          "bg-transparent border focus:ring-2 ring-black border-black text-black hover:bg-gray-50":
+          "bg-transparent focus:ring-2 ring-0 ring-black border-black text-black hover:bg-gray-50":
             color === "white",
         };
       case "gray":
         return {
           "opacity-50 pointer-events-none px-4 py-2": disabled,
-          "bg-transparent border focus:ring-2 focus:ring-gray-500 border-gray-500 text-black hover:bg-gray-50":
+          "bg-transparent focus:ring-2 focus:ring-gray-500 ring-gray-300 text-black hover:bg-gray-50":
             color === "gray",
         };
       case "red":
         return {
           "opacity-50 pointer-events-none px-4 py-2": disabled,
-          "bg-transparent border focus:ring-2 focus:ring-red-500 border-red-500 text-black hover:bg-red-50":
+          "bg-transparent focus:ring-2 focus:ring-red-500 ring-red-500 text-black hover:bg-red-50":
             color === "red",
         };
       case "yellow":
         return {
           "opacity-50 pointer-events-none px-4 py-2": disabled,
-          "bg-transparent border focus:ring-2 focus:ring-yellow-500 border-yellow-500 text-black hover:bg-yellow-50":
+          "bg-transparent focus:ring-2 focus:ring-yellow-500 ring-yellow-500 text-black hover:bg-yellow-50":
             color === "yellow",
         };
 
       case "green":
         return {
           "opacity-50 pointer-events-none px-4 py-2": disabled,
-          "bg-transparent border focus:ring-2 focus:ring-green-500 border-green-500 text-black hover:bg-green-50":
+          "bg-transparent focus:ring-2 focus:ring-green-500 ring-green-500 text-black hover:bg-green-50":
             color === "green",
         };
       case "blue":
         return {
           "opacity-50 pointer-events-none px-4 py-2": disabled,
-          "bg-transparent border focus:ring-2 focus:ring-blue-500 border-blue-500 text-black hover:bg-blue-50":
+          "bg-transparent focus:ring-2 focus:ring-blue-500 ring-blue-500 text-black hover:bg-blue-50":
             color === "blue",
         };
       case "indigo":
         return {
           "opacity-50 pointer-events-none px-4 py-2": disabled,
-          "bg-transparent border focus:ring-2 focus:ring-indigo-500 border-indigo-500 text-black hover:bg-indigo-50":
+          "bg-transparent focus:ring-2 focus:ring-indigo-500 ring-indigo-500 text-black hover:bg-indigo-50":
             color === "indigo",
         };
       case "purple":
         return {
           "opacity-50 pointer-events-none px-4 py-2": disabled,
-          "bg-transparent border focus:ring-2 focus:ring-purple-500 border-purple-500 text-black hover:bg-purple-50":
+          "bg-transparent focus:ring-2 focus:ring-purple-500 ring-purple-500 text-black hover:bg-purple-50":
             color === "purple",
         };
       case "pink":
         return {
           "opacity-50 pointer-events-none px-4 py-2": disabled,
-          "bg-transparent border focus:ring-2 focus:ring-pink-500 border-pink-500 text-black hover:bg-pink-50":
+          "bg-transparent focus:ring-2 focus:ring-pink-500 ring-pink-500 text-black hover:bg-pink-50":
             color === "pink",
         };
     }
@@ -153,10 +156,10 @@ const Select = ({
         <Listbox.Button
           className={overrideTailwindClasses(
             classnames(
-              decorateRoundedSelect(),
-              decorateShadowSelect(),
+              "w-full flex-1 px-3 py-2 text-left focus:outline-none ring-1",
               decorateBgSelect(),
-              "relative w-full py-2 pl-3 pr-10 text-left focus:outline-none cursor-default sm:text-sm"
+              decorateRoundedSelect(),
+              decorateShadowSelect()
             )
           )}
         >
@@ -182,12 +185,16 @@ const Select = ({
                   className={({ active, selected }) =>
                     `${
                       active
-                        ? `text-amber-900 bg-${color}-100`
+                        ? `text-amber-900 bg-${
+                            color === "white" ? "gray" : color
+                          }-100`
                         : selected
-                        ? `text-amber-900 bg-${color}-100`
+                        ? `text-amber-900 bg-${
+                            color === "white" ? "gray" : color
+                          }-100`
                         : "text-gray-900"
                     }
-                          cursor-default select-none relative py-2 pl-10 pr-4`
+                          cursor-pointer select-none relative py-2 pl-10 pr-4`
                   }
                   value={opt}
                 >

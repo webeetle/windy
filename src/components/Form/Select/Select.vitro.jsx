@@ -8,7 +8,8 @@ export const Basic = () => {
       <div className="w-72">
         <Select
           rounded="none"
-          onSelect={({ value }) => alert(`Selected : ${value}`)}
+          onSelect={({ value }) => console.log(`Selected : ${value}`)}
+          selected={"Tom Cook"}
           options={[
             { label: "Wade Cooper", value: "Wade Cooper" },
             { label: "Arlene Mccoy", value: "Arlene Mccoy" },
@@ -32,7 +33,7 @@ export const Rounded = () => {
           rounded="none"
           color="white"
           rounded="none"
-          onSelect={({ value }) => alert(`Selected : ${value}`)}
+          onSelect={({ value }) => console.log(`Selected : ${value}`)}
           options={[
             { label: "Wade Cooper", value: "Wade Cooper" },
             { label: "Arlene Mccoy", value: "Arlene Mccoy" },
@@ -48,7 +49,7 @@ export const Rounded = () => {
           shadow="sm"
           color="blue"
           rounded="sm"
-          onSelect={({ value }) => alert(`Selected : ${value}`)}
+          onSelect={({ value }) => console.log(`Selected : ${value}`)}
           options={[
             { label: "Wade Cooper", value: "Wade Cooper" },
             { label: "Arlene Mccoy", value: "Arlene Mccoy" },
@@ -64,7 +65,7 @@ export const Rounded = () => {
           shadow="md"
           color="purple"
           rounded="md"
-          onSelect={({ value }) => alert(`Selected : ${value}`)}
+          onSelect={({ value }) => console.log(`Selected : ${value}`)}
           options={[
             { label: "Wade Cooper", value: "Wade Cooper" },
             { label: "Arlene Mccoy", value: "Arlene Mccoy" },
@@ -81,7 +82,7 @@ export const Rounded = () => {
           color="indigo"
           rounded="lg"
           disabled={true}
-          onSelect={({ value }) => alert(`Selected : ${value}`)}
+          onSelect={({ value }) => console.log(`Selected : ${value}`)}
           options={[
             { label: "Wade Cooper", value: "Wade Cooper" },
             { label: "Arlene Mccoy", value: "Arlene Mccoy" },
@@ -97,7 +98,7 @@ export const Rounded = () => {
           shadow="xl"
           color="pink"
           rounded="xl"
-          onSelect={({ value }) => alert(`Selected : ${value}`)}
+          onSelect={({ value }) => console.log(`Selected : ${value}`)}
           options={[
             { label: "Wade Cooper", value: "Wade Cooper" },
             { label: "Arlene Mccoy", value: "Arlene Mccoy" },
@@ -113,7 +114,7 @@ export const Rounded = () => {
           shadow="xl"
           color="yellow"
           rounded="full"
-          onSelect={({ value }) => alert(`Selected : ${value}`)}
+          onSelect={({ value }) => console.log(`Selected : ${value}`)}
           options={[
             { label: "Wade Cooper", value: "Wade Cooper" },
             { label: "Arlene Mccoy", value: "Arlene Mccoy" },

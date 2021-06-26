@@ -1,27 +1,38 @@
 import classnames from "classnames";
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 
-const Checkbox = ({
+const Radio = ({
   color = "indigo",
   className,
   shadow = true,
-  rounded = true,
   label = null,
   gradient = true,
   checked,
+  name,
   onClick,
   ...rest
 }) => {
   const [isChecked, setisChecked] = useState(checked);
+  const myRef = useRef(null);
+
+  const eventHandler = (e) => {
+    setisChecked(false);
+  };
+
+  useEffect(() => {
+    document.addEventListener(`${name}:empty`, eventHandler, false);
+    return () => {
+      document.removeEventListener(`${name}:empty`, eventHandler);
+    };
+  }, []);
 
   const inptclss = () =>
     overrideTailwindClasses(
       classnames(
-        "appearance-none h-4 w-4 bg-white border cursor-pointer ring-white ring-2 ring-inset",
+        "appearance-none rounded-full h-4 w-4 bg-white border cursor-pointer ring-white ring-2 ring-inset",
         { "shadow hover:shadow-sm": shadow },
-        { "rounded-sm": rounded },
         { "border-transparent": isChecked },
         {
           "bg-gray-500": !gradient && isChecked && color === "gray",
@@ -69,19 +80,23 @@ const Checkbox = ({
   return (
     <label className="flex justify-start items-center space-x-2 cursor-pointer">
       <input
+        ref={myRef}
         onClick={(e) => {
-          setisChecked(e.target.checked);
-          if (typeof onClick === "function") onClick(e);
+          if (!isChecked) {
+            document.dispatchEvent(new Event(`${name}:empty`));
+            setisChecked(true);
+            if (typeof onClick === "function") onClick(e);
+          }
         }}
         {...rest}
-        type="checkbox"
+        type="radio"
         className={inptclss()}
       />
       {label && <div className="select-none">{label}</div>}
     </label>
   );
 };
-Checkbox.propTypes = {
+Radio.propTypes = {
   className: PropTypes.string,
   shadow: PropTypes.bool,
   rounded: PropTypes.bool,
@@ -99,4 +114,4 @@ Checkbox.propTypes = {
   ]),
 };
 
-export default Checkbox;
+export default Radio;
