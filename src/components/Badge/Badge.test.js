@@ -1,10 +1,29 @@
-// Link.react.test.js
 import React from "react";
-import renderer from "react-test-renderer";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import Badge from "./Badge";
 
-test("Link changes the class when hovered", () => {
-  const component = renderer.create(<Badge text="Hello"></Badge>);
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+it("<Badge/> Test", () => {
+  render(
+    <Badge
+      text="Hello"
+      color="blue"
+      disabled={true}
+      onClick={() => {}}
+      rounded="full"
+      shadow="none"
+    />
+  );
+
+  const badgeElement = screen.getByTestId("badge-1");
+
+  expect(badgeElement).toBeInTheDocument();
+
+  expect(badgeElement).toHaveTextContent("Hello");
+
+  expect(badgeElement).toHaveClass("bg-blue-200");
+  expect(badgeElement).toHaveClass("rounded-full");
+  expect(badgeElement).toHaveClass("shadow-none");
+
+  expect(badgeElement).toHaveClass("pointer-events-none");
+  fireEvent.click(badgeElement);
 });

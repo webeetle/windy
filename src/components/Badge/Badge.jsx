@@ -61,6 +61,7 @@ const Badge = ({
 
   return (
     <div
+      data-testid="badge-1"
       {...props}
       className={overrideTailwindClasses(
         classnames(
