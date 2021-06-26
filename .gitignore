@@ -1,4 +1,5 @@
 node_modules
+coverage
 .bundless
 package-lock.json
 dist
