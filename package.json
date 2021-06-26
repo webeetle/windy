@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "jest --coverage",
-    "build": "rollup -c"
+    "build": "npm run test -- -u && rollup -c"
   },
   "author": "Webeetle",
   "license": "Apache 2.0",
