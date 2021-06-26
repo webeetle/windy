@@ -96,6 +96,7 @@ const Button = ({
 
   return (
     <button
+      data-testid="Button-1"
       onClick={() =>
         typeof props.onClick === "function" ? props.onClick() : null
       }
@@ -137,7 +138,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   light: PropTypes.bool,
   dark: PropTypes.bool,
-  shadow: PropTypes.bool,
+  shadow: PropTypes.string,
   gradient: PropTypes.bool,
   onClick: PropTypes.func,
   children: PropTypes.any,
