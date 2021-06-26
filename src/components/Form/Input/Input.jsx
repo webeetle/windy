@@ -3,6 +3,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 
+//Utils
+import { generateShadow } from "../../../Utils/Utils";
+
 const Input = ({
   fullWidth,
   color = "gray",
@@ -15,37 +18,6 @@ const Input = ({
   suffix = null,
   ...rest
 }) => {
-  const decorateShadowInpt = () => {
-    switch (shadow) {
-      case "none":
-        return {
-          "shadow-none": shadow === "none",
-        };
-
-      case "sm":
-        return {
-          "shadow-sm": shadow === "sm",
-        };
-
-      case "md":
-        return {
-          "shadow-md": shadow === "md",
-        };
-
-      case "lg":
-        return {
-          "shadow-lg": shadow === "lg",
-        };
-
-      case "xl":
-        return {
-          "shadow-xl": shadow === "xl",
-        };
-
-      default:
-        break;
-    }
-  };
   const roundedInptHandler = () => {
     switch (rounded) {
       case "none":
@@ -103,7 +75,7 @@ const Input = ({
           "focus:ring-pink-700 focus:ring-2 ring-pink-300": color === "pink",
         },
         roundedInptHandler(),
-        decorateShadowInpt(),
+        generateShadow(shadow),
         {
           "z-10": suffix || prefix,
         },
@@ -115,7 +87,7 @@ const Input = ({
     overrideTailwindClasses(
       classnames(
         def,
-        decorateShadowInpt(),
+        generateShadow(shadow),
         {
           "bg-gray-50 text-gray-500": color === "gray",
           "bg-red-50 text-red-500": color === "red",
