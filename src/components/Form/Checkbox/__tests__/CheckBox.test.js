@@ -10,15 +10,28 @@ test("<Checkbox /> should render", () => {
 });
 
 test("<Checkbox /> should checked", () => {
-  render(<Checkbox label="Hi" checked={true} />);
+  render(
+    <Checkbox label="Hi" gradient={false} color="indigo" checked={true} />
+  );
 
   const component = screen.getByTestId("CheckBox-1");
-  expect(component).toBeChecked();
+  expect(component).toHaveClass("bg-indigo-500");
 });
 
 test("<Checkbox /> should not checked", () => {
-  render(<Checkbox label="Hi" checked={false} />);
+  render(
+    <Checkbox label="Hi" gradient={false} color="indigo" checked={false} />
+  );
 
   const component = screen.getByTestId("CheckBox-1");
-  expect(component).not.toBeChecked();
+  expect(component).not.toHaveClass("bg-indigo-500");
+});
+
+test("<Checkbox/> Click Event ", () => {
+  render(<Checkbox gradient={false} label="Hi" color="indigo" />);
+
+  const component = screen.getByTestId("CheckBox-1");
+  expect(component).not.toHaveClass("bg-indigo-500");
+  fireEvent.click(component);
+  expect(component).toHaveClass("bg-indigo-500");
 });
