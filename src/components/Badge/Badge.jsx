@@ -16,7 +16,7 @@ const Badge = ({
   shadow = "md",
   className = "",
   pointer = false,
-  onClick = () => null,
+  ...props
 }) => {
   const decorateShadowSelect = () => {
     switch (shadow) {
@@ -123,7 +123,7 @@ const Badge = ({
 
   return (
     <div
-      onClick={() => (typeof onClick() === "function" ? onClick() : null)}
+      {...props}
       className={overrideTailwindClasses(
         classnames(
           decorateBadgeLayout(),
