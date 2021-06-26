@@ -83,7 +83,16 @@ const Badge = ({
 
 Badge.propTypes = {
   text: PropTypes.string,
-  color: PropTypes.string,
+  color: PropTypes.oneOf([
+    "gray",
+    "red",
+    "yellow",
+    "green",
+    "blue",
+    "indigo",
+    "purple",
+    "pink",
+  ]),
   rounded: PropTypes.string,
   layout: PropTypes.string,
   disabled: PropTypes.bool,

@@ -65,3 +65,36 @@ export const generateRounded = (rounded = "md") => {
       };
   }
 };
+
+export const generateSize = (size = "md") => {
+  switch (size) {
+    case "xs":
+      return {
+        "text-xs font-medium px-2.5 py-1.5": size === "xs",
+      };
+    case "sm":
+      return {
+        "text-sm font-medium px-4 py-2": size === "sm",
+      };
+    case "md":
+      return {
+        "text-sm font-medium px-4 py-2": !size || size === "md",
+      };
+    case "lg":
+      return {
+        "text-base font-medium px-4 py-2": size === "lg",
+      };
+    case "xl":
+      return {
+        "text-base font-medium px-6 py-3": size === "xl",
+      };
+  }
+};
+
+export const generateDisabled = (disabled) => {
+  if (disabled) {
+    return {
+      "opacity-50 pointer-events-none": true,
+    };
+  }
+};

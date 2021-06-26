@@ -4,13 +4,18 @@ import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 
 //Utils
-import { generateRounded } from "../../Utils/Utils";
+import {
+  generateRounded,
+  generateShadow,
+  generateSize,
+  generateDisabled,
+} from "../../Utils/Utils";
 
 const Button = ({
-  size = false,
+  size,
   color = "indigo",
   layout = "contained",
-  shadow = true,
+  shadow,
   light = true,
   dark = false,
   gradient = true,
@@ -30,16 +35,11 @@ const Button = ({
           "hover:text-indigo-500": color === "indigo",
           "hover:text-purple-500": color === "purple",
           "hover:text-pink-500": color === "pink",
-          "opacity-50 pointer-events-none": disabled,
-          "text-sm font-medium": !size || size === "md",
-          "text-xs font-medium": size === "sm" || size === "xs",
-          "text-base font-medium": size === "lg" || size === "xl",
         };
       }
       case "bordered": {
         return {
           "border-solid border": true,
-          "opacity-50 pointer-events-none": disabled,
           "border-gray-300 text-gray-700 hover:bg-gray-50 active:bg-gray-200":
             color === "gray",
           "border-red-300 text-red-700 hover:bg-red-50 active:bg-red-200":
@@ -56,19 +56,10 @@ const Button = ({
             color === "purple",
           "border-pink-300 text-pink-700 hover:bg-pink-50 active:bg-pink-200":
             color === "pink",
-
-          "shadow hover:shadow-sm": shadow,
-
-          "text-sm font-medium px-4 py-2": !size || size === "md",
-          "text-xs font-medium px-3 py-2": size === "sm",
-          "text-xs font-medium px-2.5 py-1.5": size === "xs",
-          "text-base font-medium px-4 py-2": size === "lg",
-          "text-base font-medium px-6 py-3": size === "xl",
         };
       }
       case "contained": {
         return {
-          "opacity-50 pointer-events-none": disabled,
           "bg-gray-500 hover:bg-gray-600": !gradient && color === "gray",
           "bg-red-500 hover:bg-red-600": !gradient && color === "red",
           "bg-yellow-500 hover:bg-yellow-600": !gradient && color === "yellow",
@@ -97,14 +88,6 @@ const Button = ({
 
           "text-white": light && !dark,
           "text-black": dark,
-
-          "shadow hover:shadow-sm": shadow,
-
-          "text-sm font-medium px-4 py-2": !size || size === "md",
-          "text-xs font-medium px-3 py-2": size === "sm",
-          "text-xs font-medium px-2.5 py-1.5": size === "xs",
-          "text-base font-medium px-4 py-2": size === "lg",
-          "text-base font-medium px-6 py-3": size === "xl",
           "border-none border-transparent": true,
         };
       }
@@ -123,6 +106,9 @@ const Button = ({
         classnames(
           decorateButton(),
           generateRounded(rounded),
+          generateShadow(shadow),
+          generateSize(size),
+          generateDisabled(disabled),
           "inline-flex items-center outline-none focus:outline-none transition duration-150 ease-in-out",
           `${props.className ?? ""}`
         )
