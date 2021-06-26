@@ -6,10 +6,13 @@ import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import classnames from "classnames";
 
+//Utils
+import { generateShadow, generateRounded } from "../../../Utils/Utils";
+
 const Select = ({
   color = "gray",
-  rounded = "md",
-  shadow = "md",
+  rounded,
+  shadow,
   options = [],
   disabled = false,
   onSelect = () => null,
@@ -18,70 +21,6 @@ const Select = ({
   const [selected, setSelected] = useState(
     rest.selected ? options.find((x) => x.value === rest.selected) : options[0]
   );
-
-  const decorateShadowSelect = () => {
-    switch (shadow) {
-      case "none":
-        return {
-          "shadow-none": shadow === "none",
-        };
-
-      case "sm":
-        return {
-          "shadow-sm": shadow === "sm",
-        };
-
-      case "md":
-        return {
-          "shadow-md": shadow === "md",
-        };
-
-      case "lg":
-        return {
-          "shadow-lg": shadow === "lg",
-        };
-
-      case "xl":
-        return {
-          "shadow-xl": shadow === "xl",
-        };
-
-      default:
-        break;
-    }
-  };
-
-  const decorateRoundedSelect = () => {
-    switch (rounded) {
-      case "none":
-        return {
-          "rounded-none": rounded === "none",
-        };
-
-      case "md":
-        return {
-          "rounded-md": rounded === "md",
-        };
-
-      case "lg":
-        return {
-          "rounded-lg": rounded === "lg",
-        };
-
-      case "xl":
-        return {
-          "rounded-xl": rounded === "xl",
-        };
-
-      case "full":
-        return {
-          "rounded-full": rounded === "full",
-        };
-
-      default:
-        break;
-    }
-  };
 
   const decorateBgSelect = () => {
     switch (color) {
@@ -158,8 +97,8 @@ const Select = ({
             classnames(
               "w-full flex-1 px-3 py-2 text-left focus:outline-none ring-1",
               decorateBgSelect(),
-              decorateRoundedSelect(),
-              decorateShadowSelect()
+              generateRounded(rounded),
+              generateShadow(shadow)
             )
           )}
         >

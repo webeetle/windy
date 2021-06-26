@@ -3,6 +3,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 
+//Utils
+import { generateRounded } from "../../Utils/Utils";
+
 const Button = ({
   size = false,
   color = "indigo",
@@ -15,34 +18,6 @@ const Button = ({
   disabled = false,
   ...props
 }) => {
-  const roundedHandler = () => {
-    switch (rounded) {
-      case "none":
-        return {
-          "rounded-none": rounded === "none",
-        };
-      case "sm":
-        return {
-          "rounded-sm": rounded === "sm",
-        };
-      case "md":
-        return {
-          "rounded-md": rounded === "md",
-        };
-      case "lg":
-        return {
-          "rounded-lg": rounded === "lg",
-        };
-      case "full":
-        return {
-          "rounded-full": rounded === "full",
-        };
-      default:
-        return {
-          "rounded-md": rounded === "md",
-        };
-    }
-  };
   const decorateButton = () => {
     switch (layout) {
       case "text": {
@@ -147,7 +122,7 @@ const Button = ({
       className={overrideTailwindClasses(
         classnames(
           decorateButton(),
-          roundedHandler(),
+          generateRounded(rounded),
           "inline-flex items-center outline-none focus:outline-none transition duration-150 ease-in-out",
           `${props.className ?? ""}`
         )

@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import classnames from "classnames";
 
+//Utils
+import { generateShadow, generateRounded } from "../../Utils/Utils";
+
 const Badge = ({
   text = "Badge",
   color = "blue",
@@ -13,73 +16,11 @@ const Badge = ({
   dark = false,
   light = true,
   size = "sm",
-  shadow = "md",
+  shadow,
   className = "",
   pointer = false,
   ...props
 }) => {
-  const decorateShadowSelect = () => {
-    switch (shadow) {
-      case "none":
-        return {
-          "shadow-none": shadow === "none",
-        };
-
-      case "sm":
-        return {
-          "shadow-sm": shadow === "sm",
-        };
-
-      case "md":
-        return {
-          "shadow-md": shadow === "md",
-        };
-
-      case "lg":
-        return {
-          "shadow-lg": shadow === "lg",
-        };
-
-      case "xl":
-        return {
-          "shadow-xl": shadow === "xl",
-        };
-
-      default:
-        break;
-    }
-  };
-  const decorateRoundedSelect = () => {
-    switch (rounded) {
-      case "none":
-        return {
-          "rounded-none": rounded === "none",
-        };
-
-      case "md":
-        return {
-          "rounded-md": rounded === "md",
-        };
-
-      case "lg":
-        return {
-          "rounded-lg": rounded === "lg",
-        };
-
-      case "xl":
-        return {
-          "rounded-xl": rounded === "xl",
-        };
-
-      case "full":
-        return {
-          "rounded-full": rounded === "full",
-        };
-
-      default:
-        break;
-    }
-  };
   const decorateBadgeLayout = () => {
     switch (layout) {
       case "bordered":
@@ -127,8 +68,8 @@ const Badge = ({
       className={overrideTailwindClasses(
         classnames(
           decorateBadgeLayout(),
-          decorateRoundedSelect(),
-          decorateShadowSelect(),
+          generateRounded(rounded),
+          generateShadow(shadow),
           `w-auto bg-${color}-200 border ${className ?? ""} ${
             pointer && "cursor-pointer"
           }`
