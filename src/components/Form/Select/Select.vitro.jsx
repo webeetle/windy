@@ -7,7 +7,6 @@ export const Basic = () => {
     <div className="flex items-center space-x-5">
       <div className="w-72">
         <Select
-          rounded="none"
           onSelect={({ value }) => console.log(`Selected : ${value}`)}
           selected={"Tom Cook"}
           options={[
@@ -30,7 +29,6 @@ export const Rounded = () => {
       <div className="w-48">
         <Select
           shadow="none"
-          rounded="none"
           color="white"
           rounded="none"
           onSelect={({ value }) => console.log(`Selected : ${value}`)}
