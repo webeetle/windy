@@ -14,7 +14,7 @@
     "url": "https://github.com/webeetle/windy/issues"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
     "build": "rollup -c"
   },
   "author": "Webeetle",
@@ -34,6 +34,9 @@
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.14.5",
     "@vitro/cli": "^0.2.5",
+    "babel-jest": "^27.0.5",
+    "jest": "^27.0.5",
+    "react-test-renderer": "^17.0.2",
     "rollup": "^2.52.2",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
