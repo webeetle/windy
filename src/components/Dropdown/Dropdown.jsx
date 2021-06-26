@@ -5,11 +5,19 @@ import { overrideTailwindClasses } from "tailwind-override";
 import classnames from "classnames";
 import PropTypes from "prop-types";
 
+//Utils
+import {
+  generateDisabled,
+  generateRounded,
+  generateShadow,
+  generateSize,
+} from "../../Utils/Utils";
+
 const Dropdown = ({
-  size = false,
+  size = "md",
   color = "blue",
   layout = "contained",
-  shadow = true,
+  shadow = "md",
   light = true,
   dark = false,
   rounded = "md",
@@ -20,39 +28,10 @@ const Dropdown = ({
   options = [],
   ...props
 }) => {
-  const roundedHandler = () => {
-    switch (rounded) {
-      case "none":
-        return {
-          "rounded-none": rounded === "none",
-        };
-      case "sm":
-        return {
-          "rounded-sm": rounded === "sm",
-        };
-      case "md":
-        return {
-          "rounded-md": rounded === "md",
-        };
-      case "lg":
-        return {
-          "rounded-lg": rounded === "lg",
-        };
-      case "full":
-        return {
-          "rounded-full": rounded === "full",
-        };
-      default:
-        return {
-          "rounded-md": rounded === "md",
-        };
-    }
-  };
   const decorateDropdown = () => {
     switch (layout) {
       case "text": {
         return {
-          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "hover:text-gray-500 px-4 py-2": color === "gray",
           "hover:text-red-500 px-4 py-2": color === "red",
           "hover:text-yellow-500 px-4 py-2": color === "yellow",
@@ -64,17 +43,11 @@ const Dropdown = ({
           //Dark Mode
           // "text-white": light && !dark,
           "text-black": dark,
-          //Size
-          "text-sm font-medium px-4 py-2": !size || size === "md",
-          "text-xs font-medium px-3 py-2": size === "sm",
-          "text-xs font-medium px-2.5 py-1.5": size === "xs",
-          "text-base font-medium px-4 py-2": size === "lg",
-          "text-base font-medium px-6 py-3": size === "xl",
         };
       }
       case "contained":
         return {
-          "opacity-50 pointer-events-none": disabled,
+          // "opacity-50 pointer-events-none": disabled,
           "bg-gray-500 hover:bg-gray-600": !gradient && color === "gray",
           "bg-red-500 hover:bg-red-600": !gradient && color === "red",
           "bg-yellow-500 hover:bg-yellow-600": !gradient && color === "yellow",
@@ -104,18 +77,11 @@ const Dropdown = ({
           //Dark Mode
           "text-white": light && !dark,
           "text-black": dark,
-          //Size
-          "text-sm font-medium px-4 py-2": !size || size === "md",
-          "text-xs font-medium px-3 py-2": size === "sm",
-          "text-xs font-medium px-2.5 py-1.5": size === "xs",
-          "text-base font-medium px-4 py-2": size === "lg",
-          "text-base font-medium px-6 py-3": size === "xl",
-          "shadow hover:shadow-sm": shadow,
         };
 
       case "bordered":
         return {
-          "opacity-50 pointer-events-none px-4 py-2": disabled,
+          // "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent border-2 text-blue-500 border-blue-300 hover:bg-blue-50 hover:text-blue-600 px-4 py-2":
             color === "blue",
           "bg-transparent border-2 border-gray-300 text-gray-700 hover:bg-gray-50 active:bg-gray-200 px-4 py-2":
@@ -138,13 +104,6 @@ const Dropdown = ({
           //Dark Mode
           // "text-white": light && !dark,
           "text-black": dark,
-          //Size
-          "text-sm font-medium px-4 py-2": !size || size === "md",
-          "text-xs font-medium px-3 py-2": size === "sm",
-          "text-xs font-medium px-2.5 py-1.5": size === "xs",
-          "text-base font-medium px-4 py-2": size === "lg",
-          "text-base font-medium px-6 py-3": size === "xl",
-          "shadow hover:shadow-sm": shadow,
         };
 
       default:
@@ -158,8 +117,11 @@ const Dropdown = ({
         <Menu.Button
           className={overrideTailwindClasses(
             classnames(
-              roundedHandler(),
               decorateDropdown(),
+              generateShadow(shadow),
+              generateRounded(rounded),
+              generateDisabled(disabled),
+              generateSize(size),
               `inline-flex items-center justify-center w-full hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75${
                 props.className ?? ""
               }`

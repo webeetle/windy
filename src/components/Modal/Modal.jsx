@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 
 import { overrideTailwindClasses } from "tailwind-override";
 import classnames from "classnames";
+import { generateRounded } from "../../Utils/Utils";
 const Modal = ({
   isOpen = false,
   onClose = () => null,
@@ -69,31 +70,6 @@ const Modal = ({
     }
   };
 
-  const decorateRoundedModal = () => {
-    switch (rounded) {
-      case "sm":
-        return {
-          "rounded-md": rounded === "sm",
-        };
-
-      case "md":
-        return {
-          "rounded-xl": rounded === "md",
-        };
-      case "lg":
-        return {
-          "rounded-2xl": rounded === "lg",
-        };
-      case "none":
-        return {
-          "rounded-none": rounded === "none",
-        };
-      default:
-        return {
-          "rounded-2xl": rounded === "lg",
-        };
-    }
-  };
   const decorateSizeModal = () => {
     switch (size) {
       case "sm":
@@ -141,7 +117,11 @@ const Modal = ({
         >
           <div
             className={overrideTailwindClasses(
-              classnames(decorateRoundedModal(), decorateSizeModal(), "mx-auto")
+              classnames(
+                generateRounded(rounded),
+                decorateSizeModal(),
+                "mx-auto"
+              )
             )}
           >
             <Transition.Child
@@ -173,7 +153,7 @@ const Modal = ({
               <div
                 className={overrideTailwindClasses(
                   classnames(
-                    decorateRoundedModal(),
+                    generateRounded(rounded),
                     decorateSizeModal(),
                     "inline-block px-5 py-3 text-left align-middle transition-all transform bg-white shadow-xl"
                   )

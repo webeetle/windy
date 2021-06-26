@@ -7,7 +7,11 @@ import { overrideTailwindClasses } from "tailwind-override";
 import classnames from "classnames";
 
 //Utils
-import { generateShadow, generateRounded } from "../../../Utils/Utils";
+import {
+  generateShadow,
+  generateRounded,
+  generateDisabled,
+} from "../../../Utils/Utils";
 
 const Select = ({
   color = "gray",
@@ -26,56 +30,47 @@ const Select = ({
     switch (color) {
       case "white":
         return {
-          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent focus:ring-2 ring-0 ring-black border-black text-black hover:bg-gray-50":
             color === "white",
         };
       case "gray":
         return {
-          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent focus:ring-2 focus:ring-gray-500 ring-gray-300 text-black hover:bg-gray-50":
             color === "gray",
         };
       case "red":
         return {
-          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent focus:ring-2 focus:ring-red-500 ring-red-500 text-black hover:bg-red-50":
             color === "red",
         };
       case "yellow":
         return {
-          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent focus:ring-2 focus:ring-yellow-500 ring-yellow-500 text-black hover:bg-yellow-50":
             color === "yellow",
         };
 
       case "green":
         return {
-          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent focus:ring-2 focus:ring-green-500 ring-green-500 text-black hover:bg-green-50":
             color === "green",
         };
       case "blue":
         return {
-          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent focus:ring-2 focus:ring-blue-500 ring-blue-500 text-black hover:bg-blue-50":
             color === "blue",
         };
       case "indigo":
         return {
-          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent focus:ring-2 focus:ring-indigo-500 ring-indigo-500 text-black hover:bg-indigo-50":
             color === "indigo",
         };
       case "purple":
         return {
-          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent focus:ring-2 focus:ring-purple-500 ring-purple-500 text-black hover:bg-purple-50":
             color === "purple",
         };
       case "pink":
         return {
-          "opacity-50 pointer-events-none px-4 py-2": disabled,
           "bg-transparent focus:ring-2 focus:ring-pink-500 ring-pink-500 text-black hover:bg-pink-50":
             color === "pink",
         };
@@ -98,7 +93,8 @@ const Select = ({
               "w-full flex-1 px-3 py-2 text-left focus:outline-none ring-1",
               decorateBgSelect(),
               generateRounded(rounded),
-              generateShadow(shadow)
+              generateShadow(shadow),
+              generateDisabled(disabled)
             )
           )}
         >

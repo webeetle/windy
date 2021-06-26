@@ -9,6 +9,7 @@ import {
   generateShadow,
   generateRounded,
   generateSize,
+  generateDisabled,
 } from "../../Utils/Utils";
 
 const Badge = ({
@@ -29,7 +30,6 @@ const Badge = ({
     switch (layout) {
       case "bordered":
         return {
-          "opacity-50 pointer-events-none px-4 py-0.5": disabled,
           "text-blue-500 border-blue-300 hover:text-blue-600 px-2 py-0.5":
             color === "blue",
           "border-gray-300 text-gray-700 active:bg-gray-200 px-2 py-0.5":
@@ -68,6 +68,7 @@ const Badge = ({
           generateRounded(rounded),
           generateShadow(shadow),
           generateSize(size),
+          generateDisabled(disabled),
           `w-auto  bg-${color}-200 border transition duration-150 ease-in-out hover:shadow-none ${
             className ?? ""
           } ${pointer && "cursor-pointer"}`
