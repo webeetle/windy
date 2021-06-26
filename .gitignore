@@ -4,3 +4,4 @@ coverage
 package-lock.json
 dist
 distvitro
+__snapshots__
