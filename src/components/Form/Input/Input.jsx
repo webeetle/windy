@@ -151,7 +151,7 @@ const Input = ({
             {prefix}
           </span>
         )}
-        <input className={inptclss()} {...rest} />
+        <input data-testid="input-1" className={inptclss()} {...rest} />
         {suffix && (
           <span
             className={clssSuffixPrefix(

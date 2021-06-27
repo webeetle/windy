@@ -80,6 +80,7 @@ const Radio = ({
   return (
     <label className="flex justify-start items-center space-x-2 cursor-pointer">
       <input
+        data-testid="radio-1"
         ref={myRef}
         onClick={(e) => {
           if (!isChecked) {
