@@ -84,6 +84,13 @@ test("<Input /> default value ", () => {
   expect(component).toHaveValue("value");
 });
 
+test("<Input /> type number ", () => {
+  render(<Input rounded="sm" shadow="sm" defaultValue="value" type="number" />);
+
+  const component = screen.getByTestId("input-1");
+  expect(component).toHaveAttribute("type", "number");
+});
+
 test("<Input /> change event ", () => {
   render(<ExampleInput />);
   const component = screen.getByLabelText("ExampleInput");
