@@ -74,21 +74,21 @@ const Button = ({
           "bg-purple-500 hover:bg-purple-600": !gradient && color === "purple",
           "bg-pink-500 hover:bg-pink-600": !gradient && color === "pink",
 
-          "bg-gradient-to-l from-gray-500 to-gray-600 hover:opacity-80":
+          "bg-gradient-to-l from-gray-500 to-gray-600 hover:from-gray-400 hover:to-gray-500":
             gradient && color === "gray",
-          "bg-gradient-to-l from-red-500 to-red-600 hover:opacity-80":
+          "bg-gradient-to-l from-red-500 to-red-600 hover:from-red-400 hover:to-red-500":
             gradient && color === "red",
-          "bg-gradient-to-l from-yellow-500 to-yellow-600 hover:opacity-80":
+          "bg-gradient-to-l from-yellow-500 to-yellow-600 hover:from-yellow-400 hover:to-yellow-500":
             gradient && color === "yellow",
-          "bg-gradient-to-l from-green-500 to-green-600 hover:opacity-80":
+          "bg-gradient-to-l from-green-500 to-green-600 hover:from-green-400 hover:to-green-500":
             gradient && color === "green",
-          "bg-gradient-to-l from-blue-500 to-blue-600 hover:opacity-80":
+          "bg-gradient-to-l from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500":
             gradient && color === "blue",
-          "bg-gradient-to-l from-indigo-500 to-indigo-600 hover:opacity-80":
+          "bg-gradient-to-l from-indigo-500 to-indigo-600 hover:from-indigo-400 hover:to-indigo-500":
             gradient && color === "indigo",
-          "bg-gradient-to-l from-purple-500 to-purple-600 hover:opacity-80":
+          "bg-gradient-to-l from-purple-500 to-purple-600 hover:from-purple-400 hover:to-purple-500":
             gradient && color === "purple",
-          "bg-gradient-to-l from-pink-500 to-pink-600 hover:opacity-80":
+          "bg-gradient-to-l from-pink-500 to-pink-600 hover:from-pink-400 hover:to-pink-500":
             gradient && color === "pink",
 
           "text-white": light && !dark,
