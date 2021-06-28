@@ -8,7 +8,7 @@ export const Size = () => {
       <p>Gradient:</p>
       <div className="flex space-x-5">
         <Checkbox color="gray" label="gray" />
-        <Checkbox color="blue" label="red" />
+        <Checkbox color="blue" label="red" checked={true} />
         <Checkbox color="yellow" label="yellow" />
         <Checkbox color="green" label="green" />
         <Checkbox color="blue" label="blue" />

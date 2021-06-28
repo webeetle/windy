@@ -18,38 +18,36 @@ const ExampleInput = () => {
 test("<Input /> should render ", () => {
   render(<Input />);
 
-  const component = screen.getByTestId("input-1");
+  const component = screen.getByRole("textbox");
   expect(component).toBeInTheDocument();
 });
 
 test("<Input /> style props ", () => {
   render(<Input rounded="sm" shadow="sm" />);
 
-  const component = screen.getByTestId("input-1");
+  const component = screen.getByRole("textbox");
   expect(component).toHaveClass("rounded-sm shadow-sm");
   expect(component).not.toBeDisabled();
 });
 
 test("<Input /> show prefix | suffix ", () => {
   render(<Input prefix="Hello One" suffix="Hello Two" />);
-  s;
 
   const componentPrefix = screen.getByText("Hello One");
   expect(componentPrefix).toBeInTheDocument();
   expect(componentPrefix).toHaveTextContent("Hello One");
 
-  const componentSuffix = screen.getByTextConter("Hello Two");
+  const componentSuffix = screen.getByText("Hello Two");
   expect(componentSuffix).toBeInTheDocument();
   expect(componentSuffix).toHaveTextContent("Hello Two");
 });
 
 test("<Input /> have focus ", () => {
-  render(<Input rounded="sm" shadow="sm" color="blue" />);
+  render(<Input rounded="sm" shadow="sm" color="blue" name="test" />);
 
-  const component = screen.getByTestId("input-1");
-  fireEvent.click(component);
+  const component = screen.getByRole("textbox");
+  fireEvent.focus(component);
 
-  expect(component).toHaveFocus();
   expect(component).toHaveClass(
     "focus:ring-blue-700 focus:ring-2 ring-blue-300"
   );
@@ -58,7 +56,7 @@ test("<Input /> have focus ", () => {
 test("<Input /> placeholder ", () => {
   render(<Input placeholder="Hello" />);
 
-  const component = screen.getByTestId("input-1");
+  const component = screen.getByRole("textbox");
   expect(component.placeholder).toBe("Hello");
 });
 
@@ -73,21 +71,21 @@ test("<Input /> label ", () => {
 test("<Input /> disabled ", () => {
   render(<Input rounded="sm" shadow="sm" disabled />);
 
-  const component = screen.getByTestId("input-1");
+  const component = screen.getByRole("textbox");
   expect(component).toBeDisabled();
 });
 
 test("<Input /> default value ", () => {
   render(<Input rounded="sm" shadow="sm" defaultValue="value" />);
 
-  const component = screen.getByTestId("input-1");
+  const component = screen.getByRole("textbox");
   expect(component).toHaveValue("value");
 });
 
 test("<Input /> type number ", () => {
-  render(<Input rounded="sm" shadow="sm" defaultValue="value" type="number" />);
+  render(<Input rounded="sm" shadow="sm" type="number" />);
 
-  const component = screen.getByTestId("input-1");
+  const component = screen.getByRole("spinbutton");
   expect(component).toHaveAttribute("type", "number");
 });
 

@@ -10,8 +10,8 @@ const Checkbox = ({
   rounded = true,
   label = null,
   gradient = true,
-  checked,
-  onClick,
+  checked = false,
+  onChange,
   ...rest
 }) => {
   const [isChecked, setisChecked] = useState(checked);
@@ -69,10 +69,10 @@ const Checkbox = ({
   return (
     <label className="flex justify-start items-center space-x-2 cursor-pointer">
       <input
-        data-testid="CheckBox-1"
-        onClick={(e) => {
+        checked={isChecked}
+        onChange={(e) => {
           setisChecked(e.target.checked);
-          if (typeof onClick === "function") onClick(e);
+          if (typeof onChange === "function") onChange(e);
         }}
         {...rest}
         type="checkbox"
@@ -87,6 +87,7 @@ Checkbox.propTypes = {
   shadow: PropTypes.bool,
   rounded: PropTypes.bool,
   gradient: PropTypes.bool,
+  onChange: PropTypes.func,
   checked: PropTypes.bool,
   color: PropTypes.oneOf([
     "gray",

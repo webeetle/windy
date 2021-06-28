@@ -3,35 +3,40 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import Checkbox from "../Checkbox";
 
 test("<Checkbox /> should render", () => {
-  render(<Checkbox label="Hi" />);
+  render(<Checkbox name="test" label="Hi" />);
 
-  const component = screen.getByText(/hi/i);
+  const component = screen.getByRole("checkbox");
   expect(component).toBeInTheDocument();
 });
 
 test("<Checkbox /> should checked", () => {
-  render(
-    <Checkbox label="Hi" gradient={false} color="indigo" checked={true} />
-  );
+  render(<Checkbox label="Hi" checked={true} />);
 
-  const component = screen.getByTestId("CheckBox-1");
-  expect(component).toHaveClass("bg-indigo-500");
+  const component = screen.getByRole("checkbox");
+  expect(component).toBeChecked();
 });
 
 test("<Checkbox /> should not checked", () => {
-  render(
-    <Checkbox label="Hi" gradient={false} color="indigo" checked={false} />
-  );
+  render(<Checkbox label="Hi" />);
 
-  const component = screen.getByTestId("CheckBox-1");
-  expect(component).not.toHaveClass("bg-indigo-500");
+  const component = screen.getByRole("checkbox");
+  expect(component).not.toBeChecked();
 });
 
-test("<Checkbox/> Click Event ", () => {
-  render(<Checkbox gradient={false} label="Hi" color="indigo" />);
+test("<Checkbox/> from no checked to checked", () => {
+  render(<Checkbox label="Hi" />);
 
-  const component = screen.getByTestId("CheckBox-1");
-  expect(component).not.toHaveClass("bg-indigo-500");
+  const component = screen.getByRole("checkbox");
+  expect(component).not.toBeChecked();
   fireEvent.click(component);
-  expect(component).toHaveClass("bg-indigo-500");
+  expect(component).toBeChecked();
+});
+
+test("<Checkbox/> from checked to no checked ", () => {
+  render(<Checkbox label="Hi" checked={true} />);
+
+  const component = screen.getByRole("checkbox");
+  expect(component).toBeChecked();
+  fireEvent.click(component);
+  expect(component).not.toBeChecked();
 });
