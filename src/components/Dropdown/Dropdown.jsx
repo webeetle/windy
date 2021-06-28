@@ -41,7 +41,8 @@ const Dropdown = ({
           "hover:text-purple-500": color === "purple",
           "hover:text-pink-500": color === "pink",
           "text-xs": size === "xs",
-          "text-sm": !size || size === "sm" || size === "md",
+          "text-sm": !size || size === "sm",
+          "text-base": !size || size === "md",
           "text-lg": size === "lg",
           "text-2xl": size === "xl",
           //Dark Mode
