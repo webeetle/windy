@@ -32,14 +32,18 @@ const Dropdown = ({
     switch (layout) {
       case "text": {
         return {
-          "hover:text-gray-500 px-4 py-2": color === "gray",
-          "hover:text-red-500 px-4 py-2": color === "red",
-          "hover:text-yellow-500 px-4 py-2": color === "yellow",
-          "hover:text-green-500 px-4 py-2": color === "green",
-          "hover:text-blue-500 px-4 py-2": color === "blue",
-          "hover:text-indigo-500 px-4 py-2": color === "indigo",
-          "hover:text-purple-500 px-4 py-2": color === "purple",
-          "hover:text-pink-500 px-4 py-2": color === "pink",
+          "hover:text-gray-500": color === "gray",
+          "hover:text-red-500": color === "red",
+          "hover:text-yellow-500": color === "yellow",
+          "hover:text-green-500": color === "green",
+          "hover:text-blue-500": color === "blue",
+          "hover:text-indigo-500": color === "indigo",
+          "hover:text-purple-500": color === "purple",
+          "hover:text-pink-500": color === "pink",
+          "text-xs": size === "xs",
+          "text-sm": !size || size === "sm" || size === "md",
+          "text-lg": size === "lg",
+          "text-2xl": size === "xl",
           //Dark Mode
           // "text-white": light && !dark,
           "text-black": dark,
@@ -118,10 +122,10 @@ const Dropdown = ({
           className={overrideTailwindClasses(
             classnames(
               decorateDropdown(),
-              generateShadow(shadow),
+              layout !== "text" && generateShadow(shadow),
+              layout !== "text" && generateSize(size),
               generateRounded(rounded),
               generateDisabled(disabled),
-              generateSize(size),
               `inline-flex items-center justify-center w-full hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75${
                 props.className ?? ""
               }`
