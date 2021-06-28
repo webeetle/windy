@@ -48,9 +48,7 @@ test("<Input /> have focus ", () => {
   const component = screen.getByTestId("input-1");
   fireEvent.focus(component);
 
-  expect(component).toHaveClass(
-    "focus:ring-blue-700 focus:ring-2 ring-blue-300"
-  );
+  expect(component).toHaveClass("focus:ring-2");
 });
 
 test("<Input /> placeholder ", () => {

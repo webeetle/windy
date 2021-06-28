@@ -19,12 +19,18 @@ const EditIcon = (props) => {
 
 export const Size = () => {
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 py-5">
       <Input disabled size="xs" type="text" placeholder="disabled input xs" />
       <Input size="sm" type="text" placeholder="input sm" />
       <Input type="text" placeholder="input md" />
       <Input size="lg" type="text" placeholder="input lg" />
       <Input size="xl" type="text" placeholder="input xl" />
+      <Input
+        size="sm"
+        type="text"
+        placeholder="class override"
+        className="focus:ring-red-500 ring-red-500 rounded-full"
+      />
     </div>
   );
 };
