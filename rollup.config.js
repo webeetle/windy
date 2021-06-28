@@ -26,7 +26,7 @@ export default {
       babelrc: false,
       extensions: EXTENSIONS,
       presets: ["@babel/preset-env", "@babel/preset-react"],
-      exclude: ["node_modules/**", "src/*/__tests__"],
+      exclude: ["node_modules/**"],
       plugins: ["babel-plugin-jsx-remove-data-test-id"],
     }),
     commonjs(),
