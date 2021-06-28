@@ -74,19 +74,19 @@ export const generateSize = (size = "md") => {
       };
     case "sm":
       return {
-        "text-sm font-medium px-4 py-2": size === "sm",
+        "text-sm font-medium px-3.5 py-1.5": size === "sm",
       };
     case "md":
       return {
-        "text-sm font-medium px-4 py-2": !size || size === "md",
+        "text-base font-medium px-4 py-2": !size || size === "md",
       };
     case "lg":
       return {
-        "text-base font-medium px-4 py-2": size === "lg",
+        "text-xl font-medium px-5 py-3": size === "lg",
       };
     case "xl":
       return {
-        "text-base font-medium px-6 py-3": size === "xl",
+        "text-2xl font-medium px-6 py-3": size === "xl",
       };
   }
 };

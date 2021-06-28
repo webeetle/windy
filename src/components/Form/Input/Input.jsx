@@ -122,8 +122,8 @@ const Input = ({
           "text-base font-medium ": !size || size === "md",
           "text-sm font-medium ": size === "sm",
           "text-xs font-medium ": size === "xs",
-          "text-lg font-medium ": size === "lg",
-          "text-xl font-medium ": size === "xl",
+          "text-xl font-medium ": size === "lg",
+          "text-2xl font-medium ": size === "xl",
         },
 
         { "opacity-50 pointer-events-none": rest.disabled },
