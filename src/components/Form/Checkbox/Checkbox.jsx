@@ -69,6 +69,7 @@ const Checkbox = ({
   return (
     <label className="flex justify-start items-center space-x-2 cursor-pointer">
       <input
+        data-testid="CheckBox-1"
         checked={isChecked}
         onChange={(e) => {
           setisChecked(e.target.checked);
