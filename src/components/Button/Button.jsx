@@ -15,7 +15,7 @@ const Button = ({
   size,
   color = "indigo",
   layout = "contained",
-  shadow,
+  shadow = "md",
   light = true,
   dark = false,
   gradient = true,
