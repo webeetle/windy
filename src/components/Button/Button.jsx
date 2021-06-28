@@ -35,6 +35,10 @@ const Button = ({
           "hover:text-indigo-500": color === "indigo",
           "hover:text-purple-500": color === "purple",
           "hover:text-pink-500": color === "pink",
+          "text-xs": size === "xs",
+          "text-sm": !size || size === "sm" || size === "md",
+          "text-lg": size === "lg",
+          "text-2xl": size === "xl",
         };
       }
       case "bordered": {
@@ -107,8 +111,8 @@ const Button = ({
         classnames(
           decorateButton(),
           generateRounded(rounded),
-          generateShadow(shadow),
-          generateSize(size),
+          layout !== "text" && generateShadow(shadow),
+          layout !== "text" && generateSize(size),
           generateDisabled(disabled),
           "inline-flex items-center outline-none focus:outline-none transition duration-150 ease-in-out",
           `${props.className ?? ""}`
