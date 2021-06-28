@@ -25,7 +25,7 @@ test("<Button /> Props", () => {
   const component = screen.getByTestId("Button-1");
 
   expect(component).toHaveClass(
-    "bg-gradient-to-l from-blue-500 to-blue-600 hover:opacity-80 text-base font-medium px-4 py-2 shadow-xl rounded-md"
+    "bg-gradient-to-l from-blue-500 to-blue-600 hover:opacity-80 text-xl font-medium px-5 py-3 shadow-xl rounded-md"
   );
 });
 
