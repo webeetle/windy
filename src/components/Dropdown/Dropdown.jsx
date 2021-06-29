@@ -15,7 +15,7 @@ import {
 
 const Dropdown = ({
   size = "md",
-  color = "blue",
+  color = "indigo",
   layout = "contained",
   shadow = "md",
   light = true,
