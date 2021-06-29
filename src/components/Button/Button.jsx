@@ -102,8 +102,8 @@ const Button = ({
   return (
     <button
       data-testid="Button-1"
-      onClick={() =>
-        typeof props.onClick === "function" ? props.onClick() : null
+      onClick={(e) =>
+        typeof props.onClick === "function" ? props.onClick(e) : null
       }
       disabled={disabled}
       style={{ ...props.style }}
@@ -136,6 +136,7 @@ Button.propTypes = {
     "indigo",
     "purple",
     "pink",
+    "none",
   ]),
   layout: PropTypes.oneOf(["text", "bordered", "contained"]),
   className: PropTypes.string,

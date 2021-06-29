@@ -202,6 +202,7 @@ Dropdown.propTypes = {
     "indigo",
     "purple",
     "pink",
+    "none",
   ]),
   layout: PropTypes.oneOf(["text", "bordered", "contained"]),
   className: PropTypes.string,
