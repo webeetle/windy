@@ -14,7 +14,7 @@ import {
 
 const Badge = ({
   text = "Badge",
-  color = "blue",
+  color = "indigo",
   rounded = "full",
   layout = "bordered",
   disabled = false,
@@ -70,7 +70,7 @@ const Badge = ({
           generateShadow(shadow),
           generateSize(size),
           generateDisabled(disabled),
-          `w-auto  bg-${color}-200 border transition duration-150 ease-in-out hover:shadow-none ${
+          `bg-${color}-200 border transition duration-150 ease-in-out hover:shadow-none ${
             className ?? ""
           } ${pointer && "cursor-pointer"}`
         )
