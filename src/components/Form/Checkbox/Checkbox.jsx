@@ -2,6 +2,7 @@ import classnames from "classnames";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
+import { generateDisabled } from "../../../Utils/Utils";
 
 const Checkbox = ({
   color = "indigo",
@@ -61,13 +62,17 @@ const Checkbox = ({
           "border-purple-500": color === "purple",
           "border-pink-500": color === "pink",
         },
-        { "pointer-events-none bg-gray-50": rest.disabled },
         `${className ?? ""}`
       )
     );
 
   return (
-    <label className="flex justify-start items-center space-x-2 cursor-pointer">
+    <label
+      className={classnames(
+        "flex justify-start items-center space-x-2 cursor-pointer",
+        generateDisabled(rest.disabled)
+      )}
+    >
       <input
         data-testid="CheckBox-1"
         checked={isChecked}

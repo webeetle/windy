@@ -8,7 +8,7 @@ export const Size = () => {
       <p>Gradient:</p>
       <div className="flex space-x-5">
         <Checkbox color="gray" label="gray" />
-        <Checkbox color="red" label="red" checked={true} />
+        <Checkbox disabled color="red" label="red" checked={true} />
         <Checkbox color="yellow" label="yellow" />
         <Checkbox color="green" label="green" />
         <Checkbox color="blue" label="blue" />
@@ -19,7 +19,7 @@ export const Size = () => {
       <p className="mt-5">No gradient:</p>
       <div className="flex space-x-5">
         <Checkbox gradient={false} color="gray" label="gray" />
-        <Checkbox gradient={false} color="red" label="red" />
+        <Checkbox disabled gradient={false} color="red" label="red" />
         <Checkbox gradient={false} color="yellow" label="yellow" />
         <Checkbox gradient={false} color="green" label="green" />
         <Checkbox gradient={false} color="blue" label="blue" />
