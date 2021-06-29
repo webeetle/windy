@@ -79,6 +79,7 @@ const Select = ({
 
   return (
     <Listbox
+      data-testid="select-1"
       disabled={disabled}
       value={selected}
       onChange={(opt) => {
@@ -112,11 +113,15 @@ const Select = ({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+          <Listbox.Options
+            data-testid="container-options"
+            className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+          >
             {options &&
               options.map((opt, optIdx) => (
                 <Listbox.Option
                   key={optIdx}
+                  data-testid="options"
                   className={({ active, selected }) =>
                     `${
                       active
@@ -167,7 +172,7 @@ Select.propTypes = {
   color: PropTypes.string,
   rounded: PropTypes.string,
   shadow: PropTypes.string,
-  options: PropTypes.array,
+  options: PropTypes.array.isRequired,
   disabled: PropTypes.bool,
   onSelect: PropTypes.func,
 };
