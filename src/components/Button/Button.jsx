@@ -105,7 +105,6 @@ const Button = ({
       onClick={(e) =>
         typeof props.onClick === "function" ? props.onClick(e) : null
       }
-      disabled={disabled}
       style={{ ...props.style }}
       disabled={disabled}
       className={overrideTailwindClasses(

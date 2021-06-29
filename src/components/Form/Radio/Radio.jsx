@@ -2,6 +2,7 @@ import classnames from "classnames";
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
+import { generateDisabled } from "../../../Utils/Utils";
 
 const Radio = ({
   color = "indigo",
@@ -34,6 +35,7 @@ const Radio = ({
         "appearance-none rounded-full h-4 w-4 bg-white border cursor-pointer ring-white ring-2 ring-inset",
         { "shadow hover:shadow-sm": shadow },
         { "border-transparent": isChecked },
+
         {
           "bg-gray-500": !gradient && isChecked && color === "gray",
           "bg-red-500": !gradient && isChecked && color === "red",
@@ -72,13 +74,17 @@ const Radio = ({
           "border-purple-500": color === "purple",
           "border-pink-500": color === "pink",
         },
-        { "pointer-events-none bg-gray-50": rest.disabled },
         `${className ?? ""}`
       )
     );
 
   return (
-    <label className="flex justify-start items-center space-x-2 cursor-pointer">
+    <label
+      className={classnames(
+        "flex justify-start items-center space-x-2",
+        generateDisabled(rest.disabled)
+      )}
+    >
       <input
         data-testid="radio-1"
         ref={myRef}
@@ -100,7 +106,6 @@ const Radio = ({
 Radio.propTypes = {
   className: PropTypes.string,
   shadow: PropTypes.bool,
-  rounded: PropTypes.bool,
   gradient: PropTypes.bool,
   checked: PropTypes.bool,
   color: PropTypes.oneOf([
