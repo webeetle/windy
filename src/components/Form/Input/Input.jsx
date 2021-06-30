@@ -169,6 +169,11 @@ Input.propTypes = {
   className: PropTypes.string,
   fullWidth: PropTypes.bool,
   shadow: PropTypes.string,
+  prefix: PropTypes.string,
+  suffix: PropTypes.string,
+  label: PropTypes.string,
+  size: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
+  rounded: PropTypes.oneOf(["sm", "md", "lg", "full", "none"]),
   color: PropTypes.oneOf([
     "gray",
     "red",
