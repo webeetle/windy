@@ -2,6 +2,7 @@ import classnames from "classnames";
 import React from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
+import { useWindy } from "../../index";
 
 //Utils
 import {
@@ -11,18 +12,25 @@ import {
   generateDisabled,
 } from "../../Utils/Utils";
 
-const Button = ({
-  size,
-  color = "indigo",
-  layout = "contained",
-  shadow = "md",
-  light = true,
-  dark = false,
-  gradient = true,
-  rounded = "md",
-  disabled = false,
-  ...props
-}) => {
+const Button = (btnProps) => {
+  const { state = {}, dispatch } = useWindy();
+  const { button } = state;
+
+  console.log(button);
+
+  const {
+    size = button.size,
+    color = button.color,
+    layout = button.layout,
+    shadow = button.shadow,
+    light = button.light,
+    dark = button.dark,
+    gradient = button.gradient,
+    rounded = button.rounded,
+    disabled = false,
+    ...props
+  } = btnProps;
+
   const decorateButton = () => {
     switch (layout) {
       case "text": {
