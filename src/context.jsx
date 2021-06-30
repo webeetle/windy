@@ -17,9 +17,8 @@ const windyTheme = {
 
 function WindyReducer(state, action) {
   switch (action.type) {
-    case "changeTheme": {
-      console.log(state);
-      return { ...state, ...action.value };
+    case "changeButton": {
+      return { ...state, button: { ...state.button, ...action.value } };
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -29,8 +28,7 @@ function WindyReducer(state, action) {
 
 function WindyProvider({ theme = null, children }) {
   const elTheme = {
-    ...windyTheme,
-    ...theme,
+    button: { ...windyTheme.button, ...theme.button },
   };
   const [state, dispatch] = React.useReducer(WindyReducer, elTheme);
   const value = { state, dispatch };
@@ -39,12 +37,12 @@ function WindyProvider({ theme = null, children }) {
   );
 }
 
-function useWindy() {
+function useWindyTheme() {
   const context = React.useContext(WindyContext);
   if (context === undefined) {
-    throw new Error("useWindy must be used within a WindyProvider");
+    throw new Error("useWindyTheme must be used within a WindyProvider");
   }
   return context;
 }
 
-export { WindyProvider, useWindy, windyTheme };
+export { WindyProvider, useWindyTheme, windyTheme };

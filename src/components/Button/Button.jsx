@@ -2,7 +2,7 @@ import classnames from "classnames";
 import React from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
-import { useWindy } from "../../index";
+import { useWindyTheme } from "../../index";
 
 //Utils
 import {
@@ -13,10 +13,8 @@ import {
 } from "../../Utils/Utils";
 
 const Button = (btnProps) => {
-  const { state = {}, dispatch } = useWindy();
+  const { state = {} } = useWindyTheme();
   const { button } = state;
-
-  console.log(button);
 
   const {
     size = button.size,
