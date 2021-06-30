@@ -25,7 +25,7 @@ test("<Input /> should render ", () => {
   expect(component).toBeInTheDocument();
 });
 
-test("<Input /> options and change selection", async () => {
+/*test("<Input /> options and change selection", async () => {
   render(<Select options={exampleOptions} />);
 
   // Open the Select
@@ -46,3 +46,4 @@ test("<Input /> options and change selection", async () => {
   // Check selections
   expect(screen.getByLabelText("Tom Cook")).toHaveTextContent("Tom Cook");
 });
+*/
