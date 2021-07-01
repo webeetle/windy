@@ -4,7 +4,7 @@ import "tailwindcss/dist/tailwind.css";
 
 import { WindyProvider } from "../../index.js";
 
-const theme = {};
+const theme = { button: { color: "purple" } };
 
 export const Contained = () => {
   return (

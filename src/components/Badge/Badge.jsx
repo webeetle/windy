@@ -3,6 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import classnames from "classnames";
+import { useWindyTheme } from "../../index";
 
 //Utils
 import {
@@ -12,51 +13,35 @@ import {
   generateDisabled,
 } from "../../Utils/Utils";
 
-const Badge = ({
-  text = "Badge",
-  color = "indigo",
-  rounded = "full",
-  layout = "bordered",
-  disabled = false,
-  dark = false,
-  light = true,
-  size,
-  shadow,
-  className = "",
-  pointer = false,
-  ...props
-}) => {
+const Badge = (badgeProps) => {
+  const {
+    state: { badge = {} },
+  } = useWindyTheme();
+
+  const {
+    text = "",
+    color = badge.color,
+    rounded = badge.rounded,
+    disabled = false,
+    size = badge.size,
+    shadow = badge.shadow,
+    className = "",
+    pointer = badge.pointer,
+    ...props
+  } = badgeProps;
+
   const decorateBadgeLayout = () => {
-    switch (layout) {
-      case "bordered":
-        return {
-          "text-blue-500 border-blue-300 hover:text-blue-600 px-2 py-0.5":
-            color === "blue",
-          "border-gray-300 text-gray-700 active:bg-gray-200 px-2 py-0.5":
-            color === "gray",
-          "border-red-300 text-red-700 active:bg-red-200 px-2 py-0.5":
-            color === "red",
-          "border-yellow-300 text-yellow-700 active:bg-yellow-200 px-2 py-0.5":
-            color === "yellow",
-          "border-green-300 text-green-700 active:bg-green-200 px-2 py-0.5":
-            color === "green",
-          "border-blue-300 text-blue-700 active:bg-blue-200 px-2 py-0.5":
-            color === "blue",
-          "border-indigo-300 text-indigo-700 active:bg-indigo-200 px-2 py-0.5":
-            color === "indigo",
-          "border-purple-300 text-purple-700 active:bg-purple-200 px-2 py-0.5":
-            color === "purple",
-          "border-pink-300 text-pink-700 active:bg-pink-200 px-2 py-0.5":
-            color === "pink",
-
-          //Dark Mode
-          // "text-white": light && !dark,
-          "text-black": dark,
-        };
-
-      default:
-        break;
-    }
+    return {
+      "border-blue-300 text-blue-500 bg-blue-200": color === "blue",
+      "border-gray-300 text-gray-700 bg-gray-200": color === "gray",
+      "border-red-300 text-red-700 bg-red-200": color === "red",
+      "border-yellow-300 text-yellow-700 bg-yellow-200": color === "yellow",
+      "border-green-300 text-green-700 bg-green-200": color === "green",
+      "border-indigo-300 text-indigo-700 bg-indigo-200": color === "indigo",
+      "border-purple-300 text-purple-700 bg-purple-200": color === "purple",
+      "border-pink-300 text-pink-700 bg-pink-200": color === "pink",
+      "cursor-pointer": pointer,
+    };
   };
 
   return (
@@ -70,9 +55,7 @@ const Badge = ({
           generateShadow(shadow),
           generateSize(size),
           generateDisabled(disabled),
-          `bg-${color}-200 border transition duration-150 ease-in-out hover:shadow-none ${
-            className ?? ""
-          } ${pointer && "cursor-pointer"}`
+          `border transition duration-150 ease-in-out ${className ?? ""}`
         )
       )}
     >
@@ -94,10 +77,7 @@ Badge.propTypes = {
     "pink",
   ]),
   rounded: PropTypes.string,
-  layout: PropTypes.string,
   disabled: PropTypes.bool,
-  dark: PropTypes.bool,
-  light: PropTypes.bool,
   size: PropTypes.string,
   shadow: PropTypes.string,
   className: PropTypes.string,

@@ -13,16 +13,15 @@ import {
 } from "../../Utils/Utils";
 
 const Button = (btnProps) => {
-  const { state = {} } = useWindyTheme();
-  const { button } = state;
+  const {
+    state: { button = {} },
+  } = useWindyTheme();
 
   const {
     size = button.size,
     color = button.color,
     layout = button.layout,
     shadow = button.shadow,
-    light = button.light,
-    dark = button.dark,
     gradient = button.gradient,
     rounded = button.rounded,
     disabled = false,
@@ -97,9 +96,7 @@ const Button = (btnProps) => {
           "bg-gradient-to-l from-pink-500 to-pink-600 hover:from-pink-400 hover:to-pink-500":
             gradient && color === "pink",
 
-          "text-white": light && !dark,
-          "text-black": dark,
-          "border-none border-transparent": true,
+          "border-none border-transparent text-white": true,
         };
       }
     }
@@ -147,8 +144,6 @@ Button.propTypes = {
   className: PropTypes.string,
   rounded: PropTypes.oneOf(["sm", "md", "lg", "full", "none"]),
   disabled: PropTypes.bool,
-  light: PropTypes.bool,
-  dark: PropTypes.bool,
   shadow: PropTypes.string,
   gradient: PropTypes.bool,
   onClick: PropTypes.func,
