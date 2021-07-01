@@ -54,6 +54,8 @@ export const Actions = () => {
         isOpen={opened}
         title="A simple Dialog"
         onClickIcon={closeModal}
+        overlayGradient={true}
+        color="indigo"
         actions={[
           <Button
             onClick={closeModal}

@@ -18,6 +18,7 @@ const Modal = ({
   children,
   rounded = "sm",
   className = "",
+  overlayGradient = false,
 }) => {
   //TODO : Enable Header Color Features
   const decorateHeaderColor = () => {
@@ -66,6 +67,52 @@ const Modal = ({
         return {
           "bg-gradient-to-l from-pink-500 to-pink-600 text-white px-5 rounded-md shadow-md":
             color === "pink",
+        };
+    }
+  };
+
+  const decorateGradientForOverlay = () => {
+    switch (color) {
+      case "gray":
+        return {
+          "bg-gradient-to-b from-gray-500 to bg-transparent ":
+            overlayGradient && color === "gray",
+        };
+      case "red":
+        return {
+          "bg-gradient-to-b from-red-500 to bg-transparent":
+            overlayGradient && color === "red",
+        };
+      case "yellow":
+        return {
+          "bg-gradient-to-b from-yellow-500 to bg-transparent":
+            overlayGradient && color === "yellow",
+        };
+
+      case "green":
+        return {
+          "bg-gradient-to-b from-green-500 to bg-transparent":
+            overlayGradient && color === "green",
+        };
+      case "blue":
+        return {
+          "bg-gradient-to-b from-blue-500 to bg-transparent":
+            overlayGradient && color === "blue",
+        };
+      case "indigo":
+        return {
+          "bg-gradient-to-b from-indigo-500 to bg-transparent":
+            overlayGradient && color === "indigo",
+        };
+      case "purple":
+        return {
+          "bg-gradient-to-b from-purple-500 to bg-transparent":
+            overlayGradient && color === "purple",
+        };
+      case "pink":
+        return {
+          "bg-gradient-to-b from-pink-500 to bg-transparent":
+            overlayGradient && color === "pink",
         };
     }
   };
@@ -133,7 +180,11 @@ const Modal = ({
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0" />
+              <Dialog.Overlay
+                className={overrideTailwindClasses(
+                  classnames(decorateGradientForOverlay(), "fixed inset-0")
+                )}
+              />
             </Transition.Child>
             <span
               className="inline-block h-screen align-bottom md:align-middle"

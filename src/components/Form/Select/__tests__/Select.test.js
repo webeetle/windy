@@ -5,7 +5,9 @@ import {
   screen,
   waitForElementToBeRemoved,
   cleanup,
+  waitFor,
 } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Select from "../Select";
 
 const exampleOptions = [
@@ -25,25 +27,12 @@ test("<Input /> should render ", () => {
   expect(component).toBeInTheDocument();
 });
 
-/*test("<Input /> options and change selection", async () => {
-  render(<Select options={exampleOptions} />);
-
-  // Open the Select
-  fireEvent.mouseDown(screen.getByLabelText("Wade Cooper"));
-
-  // Click the entries you want to select
-  fireEvent.click(screen.getByText("Tom Cook"));
-
-  // Close the select using Escape or Tab or clicking away
-  fireEvent.keyDown(document.activeElement, {
-    key: "Escape",
-    code: "Escape",
-  });
-
-  // Wait for Options to close
-  await waitForElementToBeRemoved(screen.getByText("Tom Cook"));
-
-  // Check selections
-  expect(screen.getByLabelText("Tom Cook")).toHaveTextContent("Tom Cook");
-});
-*/
+// test("<Input /> options and change selection", async () => {
+//   const { getByTestId, getByText } = render(
+//     <Select options={exampleOptions} />
+//   );
+//   // where <value> is the option value without angle brackets!
+//   userEvent.selectOptions(getByTestId("select-1"), getByText("Tom Cook"));
+//   expect(getByTestId("Tom Cook-1").selected).toBeTruthy();
+//   expect(getByTestId("Wade Cooper-1").selected).toBeFalsy();
+// });

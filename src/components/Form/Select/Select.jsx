@@ -121,7 +121,7 @@ const Select = ({
               options.map((opt, optIdx) => (
                 <Listbox.Option
                   key={optIdx}
-                  data-testid="options"
+                  data-testid={`${opt.value}-1`}
                   className={({ active, selected }) =>
                     `${
                       active
