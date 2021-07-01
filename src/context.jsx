@@ -57,7 +57,7 @@ const windyTheme = {
     size: "md",
     rounded: "md",
   },
-  panel: {},
+  panel: { layout: "default" },
 };
 
 function WindyReducer(state, action) {
