@@ -12,9 +12,9 @@
 
 Only one thing: your project must use React and Tailwind CSS
 
-## Showcase
+## Docs
 
-<a href='https://windy-showroom.vercel.app/'>Go to the showcase</a>
+<a href='https://windy-docs.vercel.app'>Go to the Documentation site</a>
 
 ## Development
 
