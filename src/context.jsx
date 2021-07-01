@@ -18,34 +18,78 @@ const windyTheme = {
     gradient: true,
     rounded: "md",
   },
-  dropdown: {},
-  checkbox: {},
-  radio: {},
-  input: {},
-  select: {},
-  modal: {},
+  dropdown: {
+    size: "md",
+    color: "indigo",
+    layout: "contained",
+    shadow: "md",
+    rounded: "md",
+    caret: true,
+    gradient: true,
+  },
+  checkbox: {
+    color: "indigo",
+    shadow: true,
+    rounded: true,
+    gradient: true,
+  },
+  input: {
+    fullWidth: false,
+    color: "gray",
+    shadow: "md",
+    rounded: "md",
+    size: "md",
+  },
+  radio: {
+    color: "indigo",
+    shadow: true,
+    gradient: true,
+  },
+
+  select: {
+    color: "gray",
+    rounded: "md",
+    shadow: "md",
+  },
+  modal: {
+    showCloseButton: true,
+    color: "white",
+    size: "md",
+    rounded: "md",
+  },
   panel: {},
 };
 
 function WindyReducer(state, action) {
   switch (action.type) {
-    case "changeButton": {
+    case "mutate": {
+      if (!action.component) {
+        throw new Error('action "mutate" required "component" attr');
+      }
       return {
         ...state,
-        button: { ...state.button, ...action.value },
+        [action.component]: { ...state[action.component], ...action.value },
       };
     }
+
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
 }
 
-function WindyProvider({ theme = null, children }) {
+function WindyProvider({ theme = {}, children }) {
   const elTheme = {
     ...windyTheme,
-    button: { ...windyTheme.button, ...theme.button },
     badge: { ...windyTheme.badge, ...theme.badge },
+    button: { ...windyTheme.button, ...theme.button },
+    dropdown: { ...windyTheme.dropdown, ...theme.dropdown },
+    checkbox: { ...windyTheme.checkbox, ...theme.checkbox },
+    input: { ...windyTheme.input, ...theme.input },
+    radio: { ...windyTheme.radio, ...theme.radio },
+    select: { ...windyTheme.select, ...theme.select },
+    modal: { ...windyTheme.modal, ...theme.modal },
+    panel: { ...windyTheme.panel, ...theme.panel },
   };
   const [state, dispatch] = React.useReducer(WindyReducer, elTheme);
   const value = { state, dispatch };

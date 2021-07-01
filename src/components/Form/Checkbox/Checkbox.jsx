@@ -3,18 +3,23 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import { generateDisabled } from "../../../Utils/Utils";
+import { useWindyTheme } from "../../../index";
 
-const Checkbox = ({
-  color = "indigo",
-  className,
-  shadow = true,
-  rounded = true,
-  label = null,
-  gradient = true,
-  checked = false,
-  onChange,
-  ...rest
-}) => {
+const Checkbox = React.forwardRef((checkboxProps, ref) => {
+  const {
+    state: { checkbox = {} },
+  } = useWindyTheme();
+  const {
+    color = checkbox.color,
+    className,
+    shadow = checkbox.shadow,
+    rounded = checkbox.rounded,
+    label = null,
+    gradient = checkbox.gradient,
+    checked = false,
+    onChange,
+    ...rest
+  } = checkboxProps;
   const [isChecked, setisChecked] = useState(checked);
 
   const inptclss = () =>
@@ -74,6 +79,7 @@ const Checkbox = ({
       )}
     >
       <input
+        ref={ref}
         data-testid="CheckBox-1"
         checked={isChecked}
         onChange={(e) => {
@@ -87,7 +93,7 @@ const Checkbox = ({
       {label && <div className="select-none">{label}</div>}
     </label>
   );
-};
+});
 Checkbox.propTypes = {
   className: PropTypes.string,
   shadow: PropTypes.bool,

@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import { overrideTailwindClasses } from "tailwind-override";
 import classnames from "classnames";
 import PropTypes from "prop-types";
+import { useWindyTheme } from "../../index";
 
 //Utils
 import {
@@ -13,21 +14,23 @@ import {
   generateSize,
 } from "../../Utils/Utils";
 
-const Dropdown = ({
-  size = "md",
-  color = "indigo",
-  layout = "contained",
-  shadow = "md",
-  light = true,
-  dark = false,
-  rounded = "md",
-  disabled = false,
-  buttonText = "",
-  caret = true,
-  gradient = true,
-  options = [],
-  ...props
-}) => {
+const Dropdown = (propsDropdown) => {
+  const {
+    state: { dropdown = {} },
+  } = useWindyTheme();
+  const {
+    size = dropdown.size,
+    color = dropdown.color,
+    layout = dropdown.layout,
+    shadow = dropdown.shadow,
+    rounded = dropdown.rounded,
+    disabled = false,
+    buttonText = "",
+    caret = dropdown.caret,
+    gradient = dropdown.gradient,
+    options = [],
+    ...props
+  } = propsDropdown;
   const decorateDropdown = () => {
     switch (layout) {
       case "text": {
@@ -45,9 +48,6 @@ const Dropdown = ({
           "text-base": !size || size === "md",
           "text-lg": size === "lg",
           "text-2xl": size === "xl",
-          //Dark Mode
-          // "text-white": light && !dark,
-          "text-black": dark,
         };
       }
       case "contained":
@@ -80,8 +80,7 @@ const Dropdown = ({
             gradient && color === "pink",
 
           //Dark Mode
-          "text-white": light && !dark,
-          "text-black": dark,
+          "text-white": true,
         };
 
       case "bordered":
@@ -105,10 +104,6 @@ const Dropdown = ({
             color === "purple",
           "bg-transparent border-2 border-pink-300 text-pink-700 hover:bg-pink-50 active:bg-pink-200 px-4 py-2":
             color === "pink",
-
-          //Dark Mode
-          // "text-white": light && !dark,
-          "text-black": dark,
         };
 
       default:
@@ -210,8 +205,6 @@ Dropdown.propTypes = {
   rounded: PropTypes.oneOf(["sm", "md", "lg", "full", "none"]),
   disabled: PropTypes.bool,
   gradient: PropTypes.bool,
-  light: PropTypes.bool,
-  dark: PropTypes.bool,
   shadow: PropTypes.bool,
   onClick: PropTypes.func,
   style: PropTypes.any,

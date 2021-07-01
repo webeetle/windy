@@ -6,7 +6,7 @@ import {
   waitForElementToBeRemoved,
   cleanup,
 } from "@testing-library/react";
-import Select from "../Select";
+import { Select, WindyProvider } from "../../../../index.js";
 
 const exampleOptions = [
   { label: "Wade Cooper", value: "Wade Cooper" },
@@ -19,7 +19,11 @@ const exampleOptions = [
 
 //NOTE : If you don't pass options array you will get an error , it needs double check
 test("<Input /> should render ", () => {
-  render(<Select options={exampleOptions} />);
+  render(
+    <WindyProvider>
+      <Select options={exampleOptions} />
+    </WindyProvider>
+  );
 
   const component = screen.getByTestId("select-1");
   expect(component).toBeInTheDocument();

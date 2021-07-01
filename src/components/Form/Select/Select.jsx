@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
+import { useWindyTheme } from "../../../index";
 
 import PropTypes from "prop-types";
 
@@ -13,15 +14,21 @@ import {
   generateDisabled,
 } from "../../../Utils/Utils";
 
-const Select = ({
-  color = "gray",
-  rounded,
-  shadow,
-  options = [],
-  disabled = false,
-  onSelect = () => null,
-  ...rest
-}) => {
+const Select = React.forwardRef((selectProps, ref) => {
+  const {
+    state: { select = {} },
+  } = useWindyTheme();
+
+  const {
+    color = select.color,
+    rounded = select.rounded,
+    shadow = select.shadow,
+    options = [],
+    disabled = false,
+    onSelect = () => null,
+    ...rest
+  } = selectProps;
+
   const [selected, setSelected] = useState(
     rest.selected ? options.find((x) => x.value === rest.selected) : options[0]
   );
@@ -81,6 +88,7 @@ const Select = ({
     <Listbox
       data-testid="select-1"
       disabled={disabled}
+      ref={ref}
       value={selected}
       onChange={(opt) => {
         setSelected(opt);
@@ -166,7 +174,7 @@ const Select = ({
       </div>
     </Listbox>
   );
-};
+});
 
 Select.propTypes = {
   color: PropTypes.string,
@@ -204,15 +212,15 @@ const CheckIcon = (props) => {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      class="h-6 w-6"
+      className="h-6 w-6"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
     >
       <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
         d="M5 13l4 4L19 7"
       />
     </svg>

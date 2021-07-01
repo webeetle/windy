@@ -12,7 +12,7 @@ import {
   generateDisabled,
 } from "../../Utils/Utils";
 
-const Button = (btnProps) => {
+const Button = React.forwardRef((btnProps, ref) => {
   const {
     state: { button = {} },
   } = useWindyTheme();
@@ -104,6 +104,7 @@ const Button = (btnProps) => {
 
   return (
     <button
+      ref={ref}
       data-testid="Button-1"
       onClick={(e) =>
         typeof props.onClick === "function" ? props.onClick(e) : null
@@ -125,7 +126,7 @@ const Button = (btnProps) => {
       {props.children}
     </button>
   );
-};
+});
 
 Button.propTypes = {
   size: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),

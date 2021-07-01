@@ -1,29 +1,39 @@
 import React, { useState } from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import Input from "../Input";
+import { Input, WindyProvider } from "../../../../index";
 
 //Example Basic Use Case
 const ExampleInput = () => {
   const [value, setValue] = useState("");
 
   return (
-    <Input
-      value={value}
-      aria-label="ExampleInput"
-      onChange={(e) => setValue(e.target.value)}
-    />
+    <WindyProvider>
+      <Input
+        value={value}
+        aria-label="ExampleInput"
+        onChange={(e) => setValue(e.target.value)}
+      />
+    </WindyProvider>
   );
 };
 
 test("<Input /> should render ", () => {
-  render(<Input />);
+  render(
+    <WindyProvider>
+      <Input />
+    </WindyProvider>
+  );
 
   const component = screen.getByTestId("input-1");
   expect(component).toBeInTheDocument();
 });
 
 test("<Input /> style props ", () => {
-  render(<Input rounded="sm" shadow="sm" />);
+  render(
+    <WindyProvider>
+      <Input rounded="sm" shadow="sm" />
+    </WindyProvider>
+  );
 
   const component = screen.getByTestId("input-1");
   expect(component).toHaveClass("rounded-sm shadow-sm");
@@ -31,7 +41,11 @@ test("<Input /> style props ", () => {
 });
 
 test("<Input /> show prefix | suffix ", () => {
-  render(<Input prefix="Hello One" suffix="Hello Two" />);
+  render(
+    <WindyProvider>
+      <Input prefix="Hello One" suffix="Hello Two" />
+    </WindyProvider>
+  );
 
   const componentPrefix = screen.getByText("Hello One");
   expect(componentPrefix).toBeInTheDocument();
@@ -43,7 +57,11 @@ test("<Input /> show prefix | suffix ", () => {
 });
 
 test("<Input /> have focus ", () => {
-  render(<Input rounded="sm" shadow="sm" color="blue" name="test" />);
+  render(
+    <WindyProvider>
+      <Input rounded="sm" shadow="sm" color="blue" name="test" />
+    </WindyProvider>
+  );
 
   const component = screen.getByTestId("input-1");
   fireEvent.focus(component);
@@ -52,14 +70,22 @@ test("<Input /> have focus ", () => {
 });
 
 test("<Input /> placeholder ", () => {
-  render(<Input placeholder="Hello" />);
+  render(
+    <WindyProvider>
+      <Input placeholder="Hello" />
+    </WindyProvider>
+  );
 
   const component = screen.getByTestId("input-1");
   expect(component.placeholder).toBe("Hello");
 });
 
 test("<Input /> label ", () => {
-  render(<Input placeholder="Hello" label="From Label" id="id" />);
+  render(
+    <WindyProvider>
+      <Input placeholder="Hello" label="From Label" id="id" />
+    </WindyProvider>
+  );
 
   const component = screen.getByText("From Label");
   expect(component).toBeInTheDocument();
@@ -67,21 +93,33 @@ test("<Input /> label ", () => {
 });
 
 test("<Input /> disabled ", () => {
-  render(<Input rounded="sm" shadow="sm" disabled />);
+  render(
+    <WindyProvider>
+      <Input rounded="sm" shadow="sm" disabled />
+    </WindyProvider>
+  );
 
   const component = screen.getByTestId("input-1");
   expect(component).toBeDisabled();
 });
 
 test("<Input /> default value ", () => {
-  render(<Input rounded="sm" shadow="sm" defaultValue="value" />);
+  render(
+    <WindyProvider>
+      <Input rounded="sm" shadow="sm" defaultValue="value" />
+    </WindyProvider>
+  );
 
   const component = screen.getByTestId("input-1");
   expect(component).toHaveValue("value");
 });
 
 test("<Input /> type number ", () => {
-  render(<Input rounded="sm" shadow="sm" type="number" />);
+  render(
+    <WindyProvider>
+      <Input rounded="sm" shadow="sm" type="number" />
+    </WindyProvider>
+  );
 
   const component = screen.getByTestId("input-1");
   expect(component).toHaveAttribute("type", "number");

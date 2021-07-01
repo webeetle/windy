@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import Radio from "../Radio";
+import { Radio, WindyProvider } from "../../../../index";
 
 test("<Radio /> should render ", () => {
-  render(<Radio />);
+  render(
+    <WindyProvider>
+      <Radio />
+    </WindyProvider>
+  );
 
   const component = screen.getByTestId("radio-1");
   expect(component).toBeInTheDocument();
@@ -11,13 +15,15 @@ test("<Radio /> should render ", () => {
 
 test("<Radio /> props style and label ", () => {
   render(
-    <Radio
-      color="indigo"
-      label="Ciao"
-      gradient={false}
-      shadow={false}
-      className="transition"
-    />
+    <WindyProvider>
+      <Radio
+        color="indigo"
+        label="Ciao"
+        gradient={false}
+        shadow={false}
+        className="transition"
+      />
+    </WindyProvider>
   );
 
   const component = screen.getByTestId("radio-1");
@@ -33,7 +39,11 @@ test("<Radio /> props style and label ", () => {
 
 test("<Radio /> should render ", () => {
   let value = true;
-  render(<Radio onClick={() => (value = false)} />);
+  render(
+    <WindyProvider>
+      <Radio onClick={() => (value = false)} />
+    </WindyProvider>
+  );
 
   const component = screen.getByTestId("radio-1");
   fireEvent.click(component);
