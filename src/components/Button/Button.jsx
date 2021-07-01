@@ -2,6 +2,7 @@ import classnames from "classnames";
 import React from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
+import { useWindyTheme } from "../../context.jsx";
 
 //Utils
 import {
@@ -11,18 +12,22 @@ import {
   generateDisabled,
 } from "../../Utils/Utils";
 
-const Button = ({
-  size,
-  color = "indigo",
-  layout = "contained",
-  shadow = "md",
-  light = true,
-  dark = false,
-  gradient = true,
-  rounded = "md",
-  disabled = false,
-  ...props
-}) => {
+const Button = React.forwardRef((btnProps, ref) => {
+  const {
+    state: { button = {} },
+  } = useWindyTheme();
+
+  const {
+    size = button.size,
+    color = button.color,
+    layout = button.layout,
+    shadow = button.shadow,
+    gradient = button.gradient,
+    rounded = button.rounded,
+    disabled = false,
+    ...props
+  } = btnProps;
+
   const decorateButton = () => {
     switch (layout) {
       case "text": {
@@ -91,9 +96,7 @@ const Button = ({
           "bg-gradient-to-l from-pink-500 to-pink-600 hover:from-pink-400 hover:to-pink-500":
             gradient && color === "pink",
 
-          "text-white": light && !dark,
-          "text-black": dark,
-          "border-none border-transparent": true,
+          "border-none border-transparent text-white": true,
         };
       }
     }
@@ -101,6 +104,7 @@ const Button = ({
 
   return (
     <button
+      ref={ref}
       data-testid="Button-1"
       onClick={(e) =>
         typeof props.onClick === "function" ? props.onClick(e) : null
@@ -122,7 +126,7 @@ const Button = ({
       {props.children}
     </button>
   );
-};
+});
 
 Button.propTypes = {
   size: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
@@ -141,8 +145,6 @@ Button.propTypes = {
   className: PropTypes.string,
   rounded: PropTypes.oneOf(["sm", "md", "lg", "full", "none"]),
   disabled: PropTypes.bool,
-  light: PropTypes.bool,
-  dark: PropTypes.bool,
   shadow: PropTypes.string,
   gradient: PropTypes.bool,
   onClick: PropTypes.func,

@@ -2,22 +2,27 @@ import classnames from "classnames";
 import React from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
+import { useWindyTheme } from "../../../context.jsx";
 
 //Utils
 import { generateShadow } from "../../../Utils/Utils";
 
-const Input = ({
-  fullWidth,
-  color = "gray",
-  className,
-  shadow = "md",
-  rounded = "md",
-  size = "md",
-  label = null,
-  prefix = null,
-  suffix = null,
-  ...rest
-}) => {
+const Input = React.forwardRef((inputProps, ref) => {
+  const {
+    state: { input = {} },
+  } = useWindyTheme();
+  const {
+    fullWidth = input.fullWidth,
+    color = input.color,
+    className,
+    shadow = input.shadow,
+    rounded = input.rounded,
+    size = input.size,
+    label = null,
+    prefix = null,
+    suffix = null,
+    ...rest
+  } = inputProps;
   const roundedInptHandler = () => {
     switch (rounded) {
       case "none":
@@ -151,7 +156,12 @@ const Input = ({
             {prefix}
           </span>
         )}
-        <input data-testid="input-1" className={inptclss()} {...rest} />
+        <input
+          ref={ref}
+          data-testid="input-1"
+          className={inptclss()}
+          {...rest}
+        />
         {suffix && (
           <span
             className={clssSuffixPrefix(
@@ -164,7 +174,7 @@ const Input = ({
       </div>
     </>
   );
-};
+});
 Input.propTypes = {
   className: PropTypes.string,
   fullWidth: PropTypes.bool,

@@ -2,6 +2,10 @@ import React from "react";
 import Dropdown from "./Dropdown";
 import "tailwindcss/dist/tailwind.css";
 
+import { WindyProvider } from "../../index.js";
+
+const theme = { dropdown: {} };
+
 const EditIcon = (props) => {
   return (
     <svg
@@ -33,28 +37,29 @@ const options = [
 export const Contained = () => {
   return (
     <div className="flex items-center space-x-5">
-      <Dropdown
-        color="indigo"
-        buttonText="Text Button"
-        layout="contained"
-        options={options}
-      />
+      <WindyProvider theme={theme}>
+        <Dropdown
+          buttonText="Text Button"
+          layout="contained"
+          options={options}
+        />
 
-      <Dropdown
-        color="gray"
-        layout="contained"
-        caret={false}
-        buttonText="No Caret"
-        options={options}
-      />
+        <Dropdown
+          color="gray"
+          layout="contained"
+          caret={false}
+          buttonText="No Caret"
+          options={options}
+        />
 
-      <Dropdown
-        color="yellow"
-        buttonText={<EditIcon />}
-        layout="contained"
-        caret={false}
-        options={options}
-      />
+        <Dropdown
+          color="yellow"
+          buttonText={<EditIcon />}
+          layout="contained"
+          caret={false}
+          options={options}
+        />
+      </WindyProvider>
     </div>
   );
 };
@@ -62,28 +67,29 @@ export const Contained = () => {
 export const Bordered = () => {
   return (
     <div className="flex items-center space-x-5">
-      <Dropdown
-        color="indigo"
-        buttonText="Text Button"
-        layout="bordered"
-        options={options}
-      />
+      <WindyProvider theme={theme}>
+        <Dropdown
+          buttonText="Text Button"
+          layout="bordered"
+          options={options}
+        />
 
-      <Dropdown
-        color="gray"
-        layout="bordered"
-        caret={false}
-        buttonText="No Caret"
-        options={options}
-      />
+        <Dropdown
+          color="gray"
+          layout="bordered"
+          caret={false}
+          buttonText="No Caret"
+          options={options}
+        />
 
-      <Dropdown
-        color="yellow"
-        buttonText={<EditIcon />}
-        layout="bordered"
-        caret={false}
-        options={options}
-      />
+        <Dropdown
+          color="yellow"
+          buttonText={<EditIcon />}
+          layout="bordered"
+          caret={false}
+          options={options}
+        />
+      </WindyProvider>
     </div>
   );
 };
@@ -91,28 +97,25 @@ export const Bordered = () => {
 export const Text = () => {
   return (
     <div className="flex items-center space-x-5">
-      <Dropdown
-        color="indigo"
-        buttonText="Text Button"
-        layout="text"
-        options={options}
-      />
+      <WindyProvider theme={theme}>
+        <Dropdown buttonText="Text Button" layout="text" options={options} />
 
-      <Dropdown
-        color="gray"
-        layout="text"
-        caret={false}
-        buttonText="No Caret"
-        options={options}
-      />
+        <Dropdown
+          color="gray"
+          layout="text"
+          caret={false}
+          buttonText="No Caret"
+          options={options}
+        />
 
-      <Dropdown
-        color="yellow"
-        buttonText={<EditIcon />}
-        layout="text"
-        caret={false}
-        options={options}
-      />
+        <Dropdown
+          color="yellow"
+          buttonText={<EditIcon />}
+          layout="text"
+          caret={false}
+          options={options}
+        />
+      </WindyProvider>
     </div>
   );
 };
@@ -120,77 +123,79 @@ export const Text = () => {
 export const Sizing = () => {
   return (
     <div className="space-y-10">
-      <div className="flex items-center space-x-5">
-        <Dropdown size="xs" buttonText="Dropdown XS" options={options} />
-        <Dropdown size="sm" buttonText="Dropdown SM" options={options} />
-        <Dropdown size="md" buttonText="Dropdown MD" options={options} />
-        <Dropdown size="lg" buttonText="Dropdown LG" options={options} />
-        <Dropdown size="xl" buttonText="Dropdown XL" options={options} />
-      </div>
-      <div className="flex items-center space-x-5">
-        <Dropdown
-          size="xs"
-          buttonText="Dropdown XS"
-          layout="bordered"
-          options={options}
-        />
-        <Dropdown
-          size="sm"
-          buttonText="Dropdown SM"
-          layout="bordered"
-          options={options}
-        />
-        <Dropdown
-          size="md"
-          buttonText="Dropdown MD"
-          layout="bordered"
-          options={options}
-        />
-        <Dropdown
-          size="lg"
-          buttonText="Dropdown LG"
-          layout="bordered"
-          options={options}
-        />
-        <Dropdown
-          size="xl"
-          buttonText="Dropdown XL"
-          layout="bordered"
-          options={options}
-        />
-      </div>
-      <div className="flex items-center space-x-14">
-        <Dropdown
-          size="xs"
-          buttonText="Dropdown XS"
-          layout="text"
-          options={options}
-        />
-        <Dropdown
-          size="sm"
-          buttonText="Dropdown SM"
-          layout="text"
-          options={options}
-        />
-        <Dropdown
-          size="md"
-          buttonText="Dropdown MD"
-          layout="text"
-          options={options}
-        />
-        <Dropdown
-          size="lg"
-          buttonText="Dropdown LG"
-          layout="text"
-          options={options}
-        />
-        <Dropdown
-          size="xl"
-          buttonText="Dropdown XL"
-          layout="text"
-          options={options}
-        />
-      </div>
+      <WindyProvider theme={theme}>
+        <div className="flex items-center space-x-5">
+          <Dropdown size="xs" buttonText="Dropdown XS" options={options} />
+          <Dropdown size="sm" buttonText="Dropdown SM" options={options} />
+          <Dropdown size="md" buttonText="Dropdown MD" options={options} />
+          <Dropdown size="lg" buttonText="Dropdown LG" options={options} />
+          <Dropdown size="xl" buttonText="Dropdown XL" options={options} />
+        </div>
+        <div className="flex items-center space-x-5">
+          <Dropdown
+            size="xs"
+            buttonText="Dropdown XS"
+            layout="bordered"
+            options={options}
+          />
+          <Dropdown
+            size="sm"
+            buttonText="Dropdown SM"
+            layout="bordered"
+            options={options}
+          />
+          <Dropdown
+            size="md"
+            buttonText="Dropdown MD"
+            layout="bordered"
+            options={options}
+          />
+          <Dropdown
+            size="lg"
+            buttonText="Dropdown LG"
+            layout="bordered"
+            options={options}
+          />
+          <Dropdown
+            size="xl"
+            buttonText="Dropdown XL"
+            layout="bordered"
+            options={options}
+          />
+        </div>
+        <div className="flex items-center space-x-14">
+          <Dropdown
+            size="xs"
+            buttonText="Dropdown XS"
+            layout="text"
+            options={options}
+          />
+          <Dropdown
+            size="sm"
+            buttonText="Dropdown SM"
+            layout="text"
+            options={options}
+          />
+          <Dropdown
+            size="md"
+            buttonText="Dropdown MD"
+            layout="text"
+            options={options}
+          />
+          <Dropdown
+            size="lg"
+            buttonText="Dropdown LG"
+            layout="text"
+            options={options}
+          />
+          <Dropdown
+            size="xl"
+            buttonText="Dropdown XL"
+            layout="text"
+            options={options}
+          />
+        </div>
+      </WindyProvider>
     </div>
   );
 };

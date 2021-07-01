@@ -2,6 +2,8 @@
 
 > A React UI Kit based on Tailwind
 
+<img src="https://windy-docs.vercel.app/img/windy_banner_site.png" />
+
 ## Install
 
 `npm i @webeetle/windy`

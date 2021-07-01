@@ -2,8 +2,14 @@ import classnames from "classnames";
 import React from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
+import { useWindyTheme } from "../../context.jsx";
 
-const Panel = ({ layout = "deafult", ...props }) => {
+const Panel = (panelProps) => {
+  const {
+    state: { panel = {} },
+  } = useWindyTheme();
+
+  const { layout = panel.layout, ...props } = panelProps;
   return (
     <div
       className={overrideTailwindClasses(

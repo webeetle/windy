@@ -1,22 +1,26 @@
 import classnames from "classnames";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import { generateDisabled } from "../../../Utils/Utils";
+import { useWindyTheme } from "../../../context.jsx";
 
-const Radio = ({
-  color = "indigo",
-  className,
-  shadow = true,
-  label = null,
-  gradient = true,
-  checked,
-  name,
-  onClick,
-  ...rest
-}) => {
+const Radio = React.forwardRef((radioProps, ref) => {
+  const {
+    state: { radio = {} },
+  } = useWindyTheme();
+  const {
+    color = radio.color,
+    className,
+    shadow = radio.shadow,
+    label = null,
+    gradient = radio.gradient,
+    checked,
+    name,
+    onClick,
+    ...rest
+  } = radioProps;
   const [isChecked, setisChecked] = useState(checked);
-  const myRef = useRef(null);
 
   const eventHandler = (e) => {
     setisChecked(false);
@@ -81,13 +85,13 @@ const Radio = ({
   return (
     <label
       className={classnames(
-        "flex justify-start items-center space-x-2",
+        "flex justify-start items-center space-x-2 cursor-pointer",
         generateDisabled(rest.disabled)
       )}
     >
       <input
         data-testid="radio-1"
-        ref={myRef}
+        ref={ref}
         onClick={(e) => {
           if (!isChecked) {
             document.dispatchEvent(new Event(`${name}:empty`));
@@ -102,7 +106,7 @@ const Radio = ({
       {label && <div className="select-none">{label}</div>}
     </label>
   );
-};
+});
 Radio.propTypes = {
   className: PropTypes.string,
   shadow: PropTypes.bool,

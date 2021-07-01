@@ -1,17 +1,19 @@
 import React from "react";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import Badge from "../Badge";
+import { Badge, WindyProvider } from "../../../index.js";
 
 test("<Badge/> Should Render ", () => {
   render(
-    <Badge
-      text="Hello"
-      color="blue"
-      disabled={true}
-      onClick={() => {}}
-      rounded="full"
-      shadow="none"
-    />
+    <WindyProvider>
+      <Badge
+        text="Hello"
+        color="blue"
+        disabled={true}
+        onClick={() => {}}
+        rounded="full"
+        shadow="none"
+      />
+    </WindyProvider>
   );
   const component = screen.getByTestId("badge-1");
   expect(component).toBeInTheDocument();
@@ -19,14 +21,16 @@ test("<Badge/> Should Render ", () => {
 
 test("<Badge/> Props ", () => {
   render(
-    <Badge
-      text="Hello"
-      color="blue"
-      disabled={true}
-      onClick={() => setValue(10)}
-      rounded="full"
-      shadow="none"
-    />
+    <WindyProvider>
+      <Badge
+        text="Hello"
+        color="blue"
+        disabled={true}
+        onClick={() => setValue(10)}
+        rounded="full"
+        shadow="none"
+      />
+    </WindyProvider>
   );
 
   const component = screen.getByTestId("badge-1");
@@ -46,14 +50,16 @@ test("<Badge/> Props ", () => {
 test("<Badge/> Click Event ", () => {
   let value = 0;
   render(
-    <Badge
-      text="Hello"
-      color="blue"
-      disabled={true}
-      onClick={() => (value = 10)}
-      rounded="full"
-      shadow="none"
-    />
+    <WindyProvider>
+      <Badge
+        text="Hello"
+        color="blue"
+        disabled={true}
+        onClick={() => (value = 10)}
+        rounded="full"
+        shadow="none"
+      />
+    </WindyProvider>
   );
 
   const component = screen.getByTestId("badge-1");
@@ -62,14 +68,22 @@ test("<Badge/> Click Event ", () => {
 });
 
 test("<Badge/> Give Custom ClassName ", () => {
-  render(<Badge className="bg-red-500" />);
+  render(
+    <WindyProvider>
+      <Badge className="bg-red-500" />
+    </WindyProvider>
+  );
 
   const component = screen.getByTestId("badge-1");
   expect(component).toHaveClass("bg-red-500");
 });
 
 test("<Badge/> Give Custom Style ", () => {
-  render(<Badge color="blue" style={{ backgroundColor: "red" }} />);
+  render(
+    <WindyProvider>
+      <Badge color="blue" style={{ backgroundColor: "red" }} />
+    </WindyProvider>
+  );
 
   const component = screen.getByTestId("badge-1");
   expect(component).toHaveStyle({ "background-color": "red" });

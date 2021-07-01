@@ -1,6 +1,6 @@
 import React from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import PropTypes from "prop-types";
 
 import { overrideTailwindClasses } from "tailwind-override";
