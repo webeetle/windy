@@ -116,6 +116,7 @@ export const OverlayWithGradient = () => {
           onClickIcon={closeModal}
           overlayGradient={true}
           color="indigo"
+          rounded="md"
           actions={[
             <Button
               onClick={closeModal}

@@ -158,6 +158,7 @@ const Modal = ({
         as={Fragment}
       >
         <Dialog
+          data-testid="modal-container"
           as="div"
           className="fixed inset-0 z-50 overflow-y-auto bg-gray-500 bg-opacity-50"
           onClose={() => (typeof onClose() === "function" ? onClose() : null)}
