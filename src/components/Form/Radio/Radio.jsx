@@ -1,9 +1,9 @@
 import classnames from "classnames";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import { generateDisabled } from "../../../Utils/Utils";
-import { useWindyTheme } from "../../../index";
+import { useWindyTheme } from "../../../context.jsx";
 
 const Radio = React.forwardRef((radioProps, ref) => {
   const {

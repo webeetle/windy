@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import { generateDisabled } from "../../../Utils/Utils";
-import { useWindyTheme } from "../../../index";
+import { useWindyTheme } from "../../../context.jsx";
 
 const Checkbox = React.forwardRef((checkboxProps, ref) => {
   const {

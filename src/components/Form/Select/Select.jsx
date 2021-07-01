@@ -1,6 +1,6 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { useWindyTheme } from "../../../index";
+import { useWindyTheme } from "../../../context.jsx";
 
 import PropTypes from "prop-types";
 

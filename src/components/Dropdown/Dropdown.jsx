@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import { overrideTailwindClasses } from "tailwind-override";
 import classnames from "classnames";
 import PropTypes from "prop-types";
-import { useWindyTheme } from "../../index";
+import { useWindyTheme } from "../../context.jsx";
 
 //Utils
 import {

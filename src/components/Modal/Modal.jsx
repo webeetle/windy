@@ -1,12 +1,12 @@
 import React from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import PropTypes from "prop-types";
 
 import { overrideTailwindClasses } from "tailwind-override";
 import classnames from "classnames";
 import { generateRounded } from "../../Utils/Utils";
-import { useWindyTheme } from "../../index";
+import { useWindyTheme } from "../../context.jsx";
 const Modal = (modalProps) => {
   const {
     state: { modal = {} },

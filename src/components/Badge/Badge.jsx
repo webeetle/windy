@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import classnames from "classnames";
-import { useWindyTheme } from "../../index";
+import { useWindyTheme } from "../../context.jsx";
 
 //Utils
 import {
