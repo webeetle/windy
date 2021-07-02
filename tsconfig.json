@@ -1,9 +1,16 @@
 {
-  "include": ["src/**/*.js", "src/**/*.jsx"],
-  "exclude": ["src/**/*.vitro.jsx", "src/**/__tests__", "src/**/__snapshot__"],
+  "include": ["src/**/*"],
+  "exclude": [
+    "src/**/*.vitro.jsx",
+    "src/**/__tests__",
+    "src/**/__test__",
+    "src/**/__snapshot__"
+  ],
   "compilerOptions": {
     "esModuleInterop": true,
     "allowJs": true,
+    "checkJs": false,
+    "jsx": "react",
     "declaration": true,
     "emitDeclarationOnly": true,
     "outDir": "dist"
