@@ -6,20 +6,27 @@ import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import classnames from "classnames";
 import { generateRounded } from "../../Utils/Utils";
-const Modal = ({
-  isOpen = false,
-  onClose = () => null,
-  onClickIcon = () => null,
-  showCloseButton = true,
-  color = "white",
-  title = "",
-  size = "md",
-  actions = [],
-  children,
-  rounded = "sm",
-  className = "",
-  overlayGradient = false,
-}) => {
+import { useWindyTheme } from "../../context.jsx";
+const Modal = (modalProps) => {
+  const {
+    state: { modal = {} },
+  } = useWindyTheme();
+
+  const {
+    isOpen = false,
+    onClose = () => null,
+    onClickIcon = () => null,
+    showCloseButton = modal.showCloseButton,
+    color = modal.color,
+    title = "",
+    size = modal.size,
+    actions = [],
+    children,
+    rounded = modal.rounded,
+    className = "",
+    overlayGradient = modal.overlayGradient,
+  } = modalProps;
+
   //TODO : Enable Header Color Features
   const decorateHeaderColor = () => {
     switch (color) {

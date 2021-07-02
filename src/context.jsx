@@ -56,6 +56,7 @@ const windyTheme = {
     color: "white",
     size: "md",
     rounded: "md",
+    overlayGradient: false,
   },
   panel: { layout: "default" },
 };
