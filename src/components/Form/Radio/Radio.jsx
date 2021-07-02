@@ -5,7 +5,7 @@ import { overrideTailwindClasses } from "tailwind-override";
 import { generateDisabled } from "../../../Utils/Utils";
 import { useWindyTheme } from "../../../context.jsx";
 
-const Radio = React.forwardRef((radioProps, ref) => {
+const Radio = (radioProps) => {
   const {
     state: { radio = {} },
   } = useWindyTheme();
@@ -91,7 +91,6 @@ const Radio = React.forwardRef((radioProps, ref) => {
     >
       <input
         data-testid="radio-1"
-        ref={ref}
         onClick={(e) => {
           if (!isChecked) {
             document.dispatchEvent(new Event(`${name}:empty`));
@@ -106,7 +105,7 @@ const Radio = React.forwardRef((radioProps, ref) => {
       {label && <div className="select-none">{label}</div>}
     </label>
   );
-});
+};
 Radio.propTypes = {
   className: PropTypes.string,
   shadow: PropTypes.bool,

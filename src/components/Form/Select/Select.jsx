@@ -14,7 +14,7 @@ import {
   generateDisabled,
 } from "../../../Utils/Utils";
 
-const Select = React.forwardRef((selectProps, ref) => {
+const Select = (selectProps) => {
   const {
     state: { select = {} },
   } = useWindyTheme();
@@ -88,7 +88,6 @@ const Select = React.forwardRef((selectProps, ref) => {
     <Listbox
       data-testid="select-1"
       disabled={disabled}
-      ref={ref}
       value={selected}
       onChange={(opt) => {
         setSelected(opt);
@@ -174,7 +173,7 @@ const Select = React.forwardRef((selectProps, ref) => {
       </div>
     </Listbox>
   );
-});
+};
 
 Select.propTypes = {
   color: PropTypes.string,

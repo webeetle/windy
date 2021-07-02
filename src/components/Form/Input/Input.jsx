@@ -7,7 +7,7 @@ import { useWindyTheme } from "../../../context.jsx";
 //Utils
 import { generateShadow } from "../../../Utils/Utils";
 
-const Input = React.forwardRef((inputProps, ref) => {
+const Input = (inputProps, ref) => {
   const {
     state: { input = {} },
   } = useWindyTheme();
@@ -156,12 +156,7 @@ const Input = React.forwardRef((inputProps, ref) => {
             {prefix}
           </span>
         )}
-        <input
-          ref={ref}
-          data-testid="input-1"
-          className={inptclss()}
-          {...rest}
-        />
+        <input data-testid="input-1" className={inptclss()} {...rest} />
         {suffix && (
           <span
             className={clssSuffixPrefix(
@@ -174,7 +169,7 @@ const Input = React.forwardRef((inputProps, ref) => {
       </div>
     </>
   );
-});
+};
 Input.propTypes = {
   className: PropTypes.string,
   fullWidth: PropTypes.bool,
