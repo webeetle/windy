@@ -18,7 +18,11 @@ test("<Modal /> Should Render ", () => {
 
   fireEvent.click(trigger);
 
-  render(<Modal isOpen={flag}>Ciao</Modal>);
+  render(
+    <WindyProvider>
+      <Modal isOpen={flag}>Ciao</Modal>
+    </WindyProvider>
+  );
   const component = screen.getByTestId("modal-container");
   expect(component).toBeInTheDocument();
 });

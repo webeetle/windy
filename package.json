@@ -16,8 +16,8 @@
   },
   "scripts": {
     "test": "jest --coverage",
-    "build": "npm run create-ts-types && npm run test -- -u && rollup -c",
-    "create-ts-types": "npx tsc src/**/*.js --declaration --allowJs --emitDeclarationOnly --outDir types"
+    "build": "npm run test -- -u && rollup -c && npm run create-ts-types",
+    "create-ts-types": "npx tsc"
   },
   "author": "Webeetle",
   "license": "Apache 2.0",
@@ -37,6 +37,7 @@
     "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.14.5",
+    "@rollup/plugin-typescript": "^8.2.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.1.9",
