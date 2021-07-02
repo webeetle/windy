@@ -41,7 +41,6 @@ const Panel = (panelProps) => {
 };
 
 Panel.propTypes = {
-  children: PropTypes.any,
   className: PropTypes.string,
   layout: PropTypes.oneOf([
     "error",
@@ -51,7 +50,6 @@ Panel.propTypes = {
     "paper",
     "dashed",
   ]),
-  style: PropTypes.any,
 };
 
 export default Panel;

@@ -148,8 +148,6 @@ Button.propTypes = {
   shadow: PropTypes.string,
   gradient: PropTypes.bool,
   onClick: PropTypes.func,
-  children: PropTypes.any,
-  style: PropTypes.any,
 };
 
 export default Button;

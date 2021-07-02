@@ -207,7 +207,6 @@ Dropdown.propTypes = {
   gradient: PropTypes.bool,
   shadow: PropTypes.bool,
   onClick: PropTypes.func,
-  style: PropTypes.any,
   buttonText: PropTypes.string,
   caret: PropTypes.bool,
 };
