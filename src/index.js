@@ -12,6 +12,8 @@ import Badge from "./components/Badge/Badge.jsx";
 
 import Loader from "./components/Loaders/Loader.jsx";
 
+import Avatar from "./components/Avatar/Avatar.jsx";
+
 import { WindyProvider, useWindyTheme, windyTheme } from "./context.jsx";
 
 export {
@@ -25,6 +27,7 @@ export {
   Modal,
   Badge,
   Loader,
+  Avatar,
   WindyProvider,
   useWindyTheme,
   windyTheme,

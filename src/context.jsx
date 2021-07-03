@@ -60,6 +60,13 @@ const windyTheme = {
   },
   panel: { layout: "default" },
   loader: { color: "indigo" },
+  avatar: {
+    size: "md",
+    rounded: "full",
+    color: null,
+    stroke: "md",
+    shadow: "none",
+  },
 };
 
 function WindyReducer(state, action) {
@@ -93,6 +100,7 @@ function WindyProvider({ theme = {}, children }) {
     modal: { ...windyTheme.modal, ...theme.modal },
     panel: { ...windyTheme.panel, ...theme.panel },
     loader: { ...windyTheme.loader, ...theme.loader },
+    avatar: { ...windyTheme.avatar, ...theme.avatar },
   };
   const [state, dispatch] = React.useReducer(WindyReducer, elTheme);
   const value = { state, dispatch };
