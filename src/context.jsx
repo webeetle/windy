@@ -68,6 +68,7 @@ const windyTheme = {
     shadow: "none",
   },
   carousel: {},
+  table: { color: "indigo" },
 };
 
 function WindyReducer(state, action) {
@@ -103,6 +104,7 @@ function WindyProvider({ theme = {}, children }) {
     loader: { ...windyTheme.loader, ...theme.loader },
     avatar: { ...windyTheme.avatar, ...theme.avatar },
     carousel: { ...windyTheme.carousel, ...theme.carousel },
+    table: { ...windyTheme.table, ...theme.table },
   };
   const [state, dispatch] = React.useReducer(WindyReducer, elTheme);
   const value = { state, dispatch };
