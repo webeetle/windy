@@ -14,6 +14,8 @@ import Loader from "./components/Loaders/Loader.jsx";
 
 import Avatar from "./components/Avatar/Avatar.jsx";
 
+import Carousel from "./components/Carousel/Carousel.jsx";
+
 import { WindyProvider, useWindyTheme, windyTheme } from "./context.jsx";
 
 export {
@@ -28,6 +30,7 @@ export {
   Badge,
   Loader,
   Avatar,
+  Carousel,
   WindyProvider,
   useWindyTheme,
   windyTheme,

@@ -113,4 +113,23 @@ const Avatar = (avatarProps) => {
   );
 };
 
+Avatar.propTypes = {
+  size: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
+  color: PropTypes.oneOf([
+    "gray",
+    "red",
+    "yellow",
+    "green",
+    "blue",
+    "indigo",
+    "purple",
+    "pink",
+    "none",
+  ]),
+  className: PropTypes.string,
+  stroke: PropTypes.string,
+  rounded: PropTypes.oneOf(["sm", "md", "lg", "full", "none"]),
+  onClick: PropTypes.func,
+};
+
 export default Avatar;
