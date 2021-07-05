@@ -89,7 +89,8 @@ const Table = (tableProps) => {
 
   const filterCallback = (row, value) => {
     for (const col of columns.map((x) => x.value)) {
-      if (row[col].toLowerCase().includes(value)) {
+      const regeEx = new RegExp(value, "ig");
+      if (regeEx.test(row[col])) {
         return true;
       }
     }
