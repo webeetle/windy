@@ -32,14 +32,16 @@ const Table = (tableProps) => {
         return (
           <th
             scope="col"
-            className="px-6 py-3 w-full text-left text-xs font-medium  uppercase tracking-wider flex flex-row justify-between items-center"
+            className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider "
           >
-            {label}
-            <ArrowOrderHandler
-              onOrdering={(state) =>
-                setSortingParams({ mode: state, prop: value })
-              }
-            />
+            <div className="flex items-center justify-between">
+              {label}
+              <ArrowOrderHandler
+                onOrdering={(state) =>
+                  setSortingParams({ mode: state, prop: value })
+                }
+              />
+            </div>
           </th>
         );
       } else {
@@ -185,7 +187,7 @@ const Table = (tableProps) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex-col">
       {search && (
         <div className="w-1/3 py-2">
           <Input
@@ -200,7 +202,7 @@ const Table = (tableProps) => {
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="">
+              <thead>
                 <tr
                   className={overrideTailwindClasses(
                     classnames(generateArrowColor())

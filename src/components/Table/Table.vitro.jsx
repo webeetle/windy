@@ -8,7 +8,7 @@ const theme = { table: {} };
 const cols = [
   { label: "nome", value: "nome", ordered: false },
   { label: "cognome", value: "cognome", ordered: true },
-  { label: "età", value: "età", ordered: false },
+  { label: "età", value: "età", ordered: true },
   { label: "rank", value: "rank", ordered: true },
 ];
 const data = [
@@ -40,7 +40,7 @@ const data = [
 
 export const Basic = () => {
   return (
-    <div className="w-2/4">
+    <div className="w-3/4">
       <WindyProvider theme={theme}>
         <Table columns={cols} data={data} />
       </WindyProvider>
