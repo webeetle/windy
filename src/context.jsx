@@ -63,9 +63,10 @@ const windyTheme = {
   avatar: {
     size: "md",
     rounded: "full",
-    color: null,
+    color: "gray",
     stroke: "md",
     shadow: "none",
+    layout: "image",
   },
   carousel: {},
   table: { color: "indigo" },

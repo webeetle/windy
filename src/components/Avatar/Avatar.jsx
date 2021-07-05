@@ -12,13 +12,15 @@ const Avatar = (avatarProps) => {
   } = useWindyTheme();
 
   const {
+    layout = avatar.layout,
     color = avatar.color,
     rounded = avatar.rounded,
     size = avatar.size,
     shadow = avatar.shadow,
     stroke = avatar.stroke,
     className = "",
-    src = "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    text = "",
+    src = "",
     ...props
   } = avatarProps;
 
@@ -26,7 +28,7 @@ const Avatar = (avatarProps) => {
     switch (size) {
       case "xs":
         return {
-          "h-6 w-6": size === "xs",
+          "h-8 w-8": size === "xs",
         };
       case "sm":
         return {
@@ -34,15 +36,15 @@ const Avatar = (avatarProps) => {
         };
       case "md":
         return {
-          "h-20 w-20": size === "md",
+          "h-16 w-16": size === "md",
         };
       case "lg":
         return {
-          "h-28 w-28": size === "lg",
+          "h-20 w-20": size === "lg",
         };
       case "xl":
         return {
-          "h-36 w-36": size === "xl",
+          "h-24 w-24": size === "xl",
         };
 
       default:
@@ -92,29 +94,124 @@ const Avatar = (avatarProps) => {
     }
   };
 
+  const decorateStrokeTextWidth = () => {
+    switch (stroke) {
+      case "none":
+        return {
+          "border-none": stroke === "none",
+        };
+      case "sm":
+        return {
+          ["border-1"]: stroke === "sm",
+        };
+      case "md":
+        return {
+          "border-2": stroke === "md",
+        };
+      case "lg":
+        return {
+          "border-4": stroke === "lg",
+        };
+      case "xl":
+        return {
+          "border-8": stroke === "xl",
+        };
+
+      default:
+        break;
+    }
+  };
+
+  const decorateAvatarTextLayout = () => {
+    return {
+      "border-white": !color,
+      "border-gray-300": color === "gray",
+      "border-red-300": color === "red",
+      "border-yellow-300": color === "yellow",
+      "border-green-300": color === "green",
+      "border-indigo-300": color === "indigo",
+      "border-purple-300": color === "purple",
+      "border-pink-300": color === "pink",
+      "border-blue-300": color === "blue",
+    };
+  };
+
+  const decorateAvatarTextSize = () => {
+    switch (size) {
+      case "xs":
+        return {
+          "text-xs": size === "xs",
+        };
+      case "sm":
+        return {
+          "text-sm": size === "sm",
+        };
+      case "md":
+        return {
+          "text-2xl": size === "md",
+        };
+      case "lg":
+        return {
+          "text-4xl": size === "lg",
+        };
+      case "xl":
+        return {
+          "text-5xl": size === "xl",
+        };
+
+      default:
+        break;
+    }
+  };
+
   return (
-    <img
-      data-testid="avatar"
-      className={overrideTailwindClasses(
-        classnames(
-          generateRounded(rounded),
-          generateShadow(shadow),
-          generateAvatarSize(),
-          decorateAvatarLayout(),
-          decorateStrokeWidth(),
-          "inline-block",
-          className
-        )
+    <>
+      {layout === "image" ? (
+        <img
+          data-testid="avatar"
+          className={overrideTailwindClasses(
+            classnames(
+              generateRounded(rounded),
+              generateShadow(shadow),
+              generateAvatarSize(),
+              decorateAvatarLayout(),
+              decorateStrokeWidth(),
+              "inline-block",
+              className
+            )
+          )}
+          src={src}
+          alt=""
+          {...props}
+        />
+      ) : (
+        <div
+          data-testid="avatar"
+          className={overrideTailwindClasses(
+            classnames(
+              generateRounded(rounded),
+              generateShadow(shadow),
+              generateAvatarSize(),
+              decorateAvatarTextSize(),
+              decorateAvatarTextLayout(),
+              decorateStrokeTextWidth(),
+              "inline-flex justify-center items-center bg-gray-300",
+              className
+            )
+          )}
+        >
+          {text}
+        </div>
       )}
-      src={src}
-      alt=""
-      {...props}
-    />
+    </>
   );
 };
 
 Avatar.propTypes = {
+  layout: PropTypes.oneOf(["image", "text"]),
+  text: PropTypes.any,
   size: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
+  shadow: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
   color: PropTypes.oneOf([
     "gray",
     "red",
@@ -127,7 +224,7 @@ Avatar.propTypes = {
     "none",
   ]),
   className: PropTypes.string,
-  stroke: PropTypes.string,
+  stroke: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
   rounded: PropTypes.oneOf(["sm", "md", "lg", "full", "none"]),
   onClick: PropTypes.func,
 };

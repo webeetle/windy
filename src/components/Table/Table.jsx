@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import { useWindyTheme } from "../../context.jsx";
@@ -58,7 +58,16 @@ const Table = (tableProps) => {
 
   const generateRows = (array) => {
     if (!array || array.length <= 0) {
-      return [];
+      return (
+        <tr>
+          <td
+            colSpan={columns.length}
+            className="py-2 text-center text-gray-400"
+          >
+            No Data
+          </td>
+        </tr>
+      );
     }
 
     return array.map((value, idx) => (
@@ -137,6 +146,7 @@ const Table = (tableProps) => {
           <Input
             color={color}
             value={searchValue}
+            placeholder={"Search..."}
             onChange={(e) => setSearchValue(e.target.value)}
           />
         </div>
@@ -167,6 +177,24 @@ const Table = (tableProps) => {
       </div>
     </div>
   );
+};
+
+Table.propTypes = {
+  columns: PropTypes.any,
+  data: PropTypes.any,
+  search: PropTypes.bool,
+  color: PropTypes.oneOf([
+    "gray",
+    "red",
+    "yellow",
+    "green",
+    "blue",
+    "indigo",
+    "purple",
+    "pink",
+    "none",
+  ]),
+  className: PropTypes.string,
 };
 
 export default Table;

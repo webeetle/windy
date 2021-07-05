@@ -21,14 +21,34 @@ test("<Avatar/>  should render", () => {
 test("<Avatar/>  props", () => {
   render(
     <WindyProvider theme={theme}>
-      <Avatar rounded="full" stroke="md" color="blue" size="md" />
+      <Avatar rounded="full" stroke="md" shadow="sm" color="blue" size="md" />
+    </WindyProvider>
+  );
+
+  const component = screen.getByTestId("avatar");
+
+  expect(component).toHaveClass("ring-2 ring-blue-300 rounded-full shadow-sm");
+});
+
+test("<Avatar/>  text", () => {
+  render(
+    <WindyProvider theme={theme}>
+      <Avatar
+        rounded="full"
+        layout="text"
+        text="RT"
+        stroke="md"
+        shadow="sm"
+        color="blue"
+        size="md"
+      />
     </WindyProvider>
   );
 
   const component = screen.getByTestId("avatar");
 
   expect(component).toHaveClass(
-    "ring-2 ring-blue-300 rounded-full shadow-none"
+    "border-2 border-blue-300 rounded-full shadow-sm"
   );
 });
 
