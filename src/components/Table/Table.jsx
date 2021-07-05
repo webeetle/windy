@@ -6,6 +6,7 @@ import { useWindyTheme } from "../../context.jsx";
 
 import { Input } from "../../index.js";
 import ArrowOrderHandler from "./Components/ArrowOrderHandler.jsx";
+import Pagination from "./Components/Pagination.jsx";
 
 const Table = (tableProps) => {
   const {
@@ -17,11 +18,17 @@ const Table = (tableProps) => {
     data = [],
     color = table.color,
     search = false,
+    onSearch = null,
+    onSorting = null,
+    paged = false,
+    pageSize = 10,
     ...props
   } = tableProps;
 
   const [searchValue, setSearchValue] = useState(null);
   const [sortingParams, setSortingParams] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [maxPage, setMaxPage] = useState(0);
 
   const generateColumns = (array) => {
     if (!array || array.length <= 0) {
@@ -173,14 +180,28 @@ const Table = (tableProps) => {
     );
   };
 
+  const paginateRows = (rows) => {
+    return rows.slice(currentPage * pageSize, pageSize * (currentPage + 1));
+  };
+
   const evaluateRows = (data) => {
     let rows = [...data];
     if (!!searchValue && search) {
+      if (typeof onSearch === "function") {
+        onSearch(searchValue);
+      }
       rows = filterRows(rows);
     }
 
     if (!!sortingParams) {
+      if (typeof onSorting === "function") {
+        onSorting(sortingParams);
+      }
       rows = orderRows(rows);
+    }
+
+    if (!!paged) {
+      rows = paginateRows(rows);
     }
 
     return rows;
@@ -218,6 +239,17 @@ const Table = (tableProps) => {
           </div>
         </div>
       </div>
+      {paged && (
+        <div>
+          <Pagination
+            onNext={() => setCurrentPage(currentPage + 1)}
+            onBack={() => setCurrentPage(currentPage - 1)}
+            maxPages={maxPage}
+            currentPage={currentPage}
+            totals={data.length}
+          />
+        </div>
+      )}
     </div>
   );
 };
@@ -241,10 +273,3 @@ Table.propTypes = {
 };
 
 export default Table;
-const orderingDataHandler = (order, param) => {
-  const dataListCopy = [...cryptoList];
-  if (!order) {
-    return setCryptoList(dataListCopy.sort((a, b) => b[param] - a[param]));
-  }
-  return setCryptoList(dataListCopy.sort((a, b) => a[param] - b[param]));
-};

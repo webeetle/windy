@@ -50,9 +50,16 @@ export const Basic = () => {
 
 export const WithSearch = () => {
   return (
-    <div className="w-2/4">
+    <div className="w-3/4">
       <WindyProvider theme={theme}>
-        <Table columns={cols} data={data} search={true} color="red" />
+        <Table
+          columns={cols}
+          data={data}
+          search={true}
+          color="red"
+          paged={true}
+          pageSize={1}
+        />
       </WindyProvider>
     </div>
   );
