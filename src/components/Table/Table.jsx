@@ -21,7 +21,7 @@ const Table = (tableProps) => {
   } = tableProps;
 
   const [searchValue, setSearchValue] = useState(null);
-  const [sortingParams, setSortingParams] = useState();
+  const [sortingParams, setSortingParams] = useState(null);
 
   const generateColumns = (array) => {
     if (!array || array.length <= 0) {
@@ -36,7 +36,6 @@ const Table = (tableProps) => {
           >
             {label}
             <ArrowOrderHandler
-              //   TODO : Define A Way to order elements in table
               onOrdering={(state) =>
                 setSortingParams({ mode: state, prop: value })
               }
@@ -140,6 +139,51 @@ const Table = (tableProps) => {
     }
   };
 
+  const filterRows = (rows) =>
+    (rows = data.filter((row) => filterCallback(row, searchValue)));
+
+  const orderingCallBack = (mode, a, b) => {
+    if (typeof a === "string" && typeof b === "string") {
+      if (mode) {
+        return ("" + a).localeCompare(b);
+      } else {
+        return ("" + b).localeCompare(a);
+      }
+    }
+    if (mode) {
+      return -1;
+    } else {
+      return 1;
+    }
+  };
+
+  const orderRows = (rows) => {
+    console.log(sortingParams, "sortingParams");
+
+    return rows.sort(
+      (a, b) =>
+        sortingParams.mode !== null &&
+        orderingCallBack(
+          sortingParams.mode,
+          a[sortingParams.prop],
+          b[sortingParams.prop]
+        )
+    );
+  };
+
+  const evaluateRows = (data) => {
+    let rows = [...data];
+    if (!!searchValue && search) {
+      rows = filterRows(rows);
+    }
+
+    if (!!sortingParams) {
+      rows = orderRows(rows);
+    }
+
+    return rows;
+  };
+
   return (
     <div className="flex flex-col">
       {search && (
@@ -166,11 +210,7 @@ const Table = (tableProps) => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {generateRows(
-                  !!searchValue && search
-                    ? data.filter((row) => filterCallback(row, searchValue))
-                    : data
-                )}
+                {generateRows(evaluateRows(data))}
               </tbody>
             </table>
           </div>

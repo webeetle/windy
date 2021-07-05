@@ -7,7 +7,7 @@ const theme = { table: {} };
 
 const cols = [
   { label: "nome", value: "nome", ordered: false },
-  { label: "cognome", value: "cognome", ordered: false },
+  { label: "cognome", value: "cognome", ordered: true },
   { label: "età", value: "età", ordered: false },
   { label: "rank", value: "rank", ordered: true },
 ];
