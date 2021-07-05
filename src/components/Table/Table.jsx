@@ -5,6 +5,7 @@ import { overrideTailwindClasses } from "tailwind-override";
 import { useWindyTheme } from "../../context.jsx";
 
 import { Input } from "../../index.js";
+import ArrowOrderHandler from "./Components/ArrowOrderHandler.jsx";
 
 const Table = (tableProps) => {
   const {
@@ -20,19 +21,39 @@ const Table = (tableProps) => {
   } = tableProps;
 
   const [searchValue, setSearchValue] = useState(null);
+  const [sortingParams, setSortingParams] = useState();
 
   const generateColumns = (array) => {
     if (!array || array.length <= 0) {
       return [];
     }
-    return array.map((col) => (
-      <th
-        scope="col"
-        className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
-      >
-        {col}
-      </th>
-    ));
+    return array.map(({ label, ordered, value }) => {
+      if (ordered) {
+        return (
+          <th
+            scope="col"
+            className="px-6 py-3 w-full text-left text-xs font-medium  uppercase tracking-wider flex flex-row justify-between items-center"
+          >
+            {label}
+            <ArrowOrderHandler
+              //   TODO : Define A Way to order elements in table
+              onOrdering={(state) =>
+                setSortingParams({ mode: state, prop: value })
+              }
+            />
+          </th>
+        );
+      } else {
+        return (
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+          >
+            {label}
+          </th>
+        );
+      }
+    });
   };
 
   const generateRows = (array) => {
@@ -58,7 +79,7 @@ const Table = (tableProps) => {
   };
 
   const filterCallback = (row, value) => {
-    for (const col of columns) {
+    for (const col of columns.map((x) => x.value)) {
       if (row[col].toLowerCase().includes(value)) {
         return true;
       }
@@ -149,3 +170,10 @@ const Table = (tableProps) => {
 };
 
 export default Table;
+const orderingDataHandler = (order, param) => {
+  const dataListCopy = [...cryptoList];
+  if (!order) {
+    return setCryptoList(dataListCopy.sort((a, b) => b[param] - a[param]));
+  }
+  return setCryptoList(dataListCopy.sort((a, b) => a[param] - b[param]));
+};

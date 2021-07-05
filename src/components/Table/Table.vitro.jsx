@@ -5,29 +5,34 @@ import { WindyProvider, Table } from "../../index.js";
 
 const theme = { table: {} };
 
-const cols = ["nome", "congmome", "età", "rank"];
+const cols = [
+  { label: "nome", value: "nome", ordered: false },
+  { label: "cognome", value: "cognome", ordered: false },
+  { label: "età", value: "età", ordered: false },
+  { label: "rank", value: "rank", ordered: true },
+];
 const data = [
   {
     nome: "John",
-    congmome: "Cook",
+    cognome: "Cook",
     età: "33",
     rank: "1",
   },
   {
     nome: "Mik",
-    congmome: "One",
+    cognome: "One",
     età: "34",
     rank: "2",
   },
   {
     nome: "Nik",
-    congmome: "Ciao",
+    cognome: "Ciao",
     età: "35",
     rank: "3",
   },
   {
     nome: "Prova",
-    congmome: "Cook",
+    cognome: "Cook",
     età: "36",
     rank: "4",
   },
