@@ -6,40 +6,50 @@ import { WindyProvider, Table } from "../../index.js";
 const theme = { table: {} };
 
 const cols = [
+  {
+    label: "Render Custom",
+    value: "actions",
+    renderComponent: (row, value) => (
+      <div>
+        {row.data.nome} - {row.data.eta} anni
+      </div>
+    ),
+    ordered: false,
+  },
   { label: "nome", value: "nome", ordered: false },
   { label: "cognome", value: "cognome", ordered: true },
-  { label: "età", value: "età", ordered: true },
+  { label: "età", value: "eta", ordered: true },
   { label: "rank", value: "rank", ordered: true },
 ];
 const data = [
   {
     nome: "John",
     cognome: "Cook",
-    età: "33",
+    eta: "33",
     rank: "1",
   },
   {
     nome: "Mik",
     cognome: "One",
-    età: "34",
+    eta: "34",
     rank: "2",
   },
   {
     nome: "Nik",
     cognome: "Ciao",
-    età: "35",
+    eta: "35",
     rank: "3",
   },
   {
     nome: "Prova",
     cognome: "Cook",
-    età: "36",
+    eta: "36",
     rank: "4",
   },
   {
     nome: "Jiik",
     cognome: "Book",
-    età: "36",
+    eta: "36",
     rank: "4",
   },
 ];

@@ -81,18 +81,30 @@ const Table = (tableProps) => {
     }
 
     return array.map((value, idx) => (
-      <tr key={idx}>{generateRowContent(value).map((x) => x)}</tr>
+      <tr key={idx}>{generateRowContent(value, idx).map((x) => x)}</tr>
     ));
   };
 
-  const generateRowContent = (object) => {
+  const generateRowContent = (object, idx) => {
     const arr = [];
-    for (const key in object) {
-      arr.push(
-        <td className="px-6 py-4 whitespace-nowrap">
-          <div className="text-sm text-gray-900">{object[key]}</div>
-        </td>
-      );
+    for (const col of columns) {
+      console.log(col, object, columns);
+      if (typeof col.renderComponent === "function") {
+        arr.push(
+          <td className="px-6 py-4 whitespace-nowrap">
+            {col.renderComponent(
+              { data: { ...object }, rowIndex: idx },
+              object[col.value]
+            )}
+          </td>
+        );
+      } else {
+        arr.push(
+          <td className="px-6 py-4 whitespace-nowrap">
+            <div className="text-sm text-gray-900">{object[col.value]}</div>
+          </td>
+        );
+      }
     }
     return arr;
   };
