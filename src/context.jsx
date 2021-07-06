@@ -59,7 +59,7 @@ const windyTheme = {
     overlayGradient: false,
   },
   panel: { layout: "default" },
-  loader: { color: "indigo" },
+  loader: { color: "indigo", type: "circle" },
   avatar: {
     size: "md",
     rounded: "full",

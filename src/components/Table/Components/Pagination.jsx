@@ -1,6 +1,14 @@
+import classNames from "classnames";
 import React from "react";
 
-const Pagination = ({ onNext, onBack, maxPages, currentPage, totals }) => {
+const Pagination = ({
+  onNext,
+  onBack,
+  maxPages,
+  currentPage,
+  totals,
+  pageSize,
+}) => {
   return (
     <div className="bg-white py-3 flex items-center justify-between border-t border-gray-200 ">
       <div className="flex-1 flex justify-between sm:hidden">
@@ -15,11 +23,10 @@ const Pagination = ({ onNext, onBack, maxPages, currentPage, totals }) => {
         <div>
           <p className="text-sm text-gray-700">
             Showing{" "}
+            <span className="font-medium">{pageSize * currentPage + 1}</span> to{" "}
             <span className="font-medium">
-              {(currentPage + 1) * maxPages - (maxPages - 1)}
+              {pageSize * (currentPage + 2) - 2}
             </span>{" "}
-            to{" "}
-            <span className="font-medium">{maxPages * (currentPage + 1)}</span>{" "}
             of
             {"  "}
             <span className="font-medium">{totals}</span> results
@@ -31,20 +38,27 @@ const Pagination = ({ onNext, onBack, maxPages, currentPage, totals }) => {
             aria-label="Pagination"
           >
             <div
-              style={currentPage === 0 ? { pointerEvents: "none" } : {}}
-              className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              onClick={onBack}
+              className={classNames(
+                { "pointer-events-none opacity-50": currentPage === 0 },
+                "relative cursor-pointer inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              )}
             >
               <span className="sr-only">Previous</span>
-              <ArrowLeft aria-hidden="true" onClick={onBack} />
+              <ArrowLeft aria-hidden="true" />
             </div>
             <div
-              style={
-                currentPage === maxPages - 1 ? { pointerEvents: "none" } : {}
-              }
-              className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              onClick={onNext}
+              className={classNames(
+                {
+                  "pointer-events-none opacity-50":
+                    currentPage === maxPages - 1,
+                },
+                "relative cursor-pointer inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              )}
             >
               <span className="sr-only">Next</span>
-              <ArrowRight aria-hidden="true" onClick={onNext} />
+              <ArrowRight aria-hidden="true" />
             </div>
           </nav>
         </div>

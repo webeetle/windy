@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import { useWindyTheme } from "../../context.jsx";
@@ -26,9 +26,11 @@ const Table = (tableProps) => {
   } = tableProps;
 
   const [searchValue, setSearchValue] = useState(null);
+  const [localData, setLocalData] = useState(data);
   const [sortingParams, setSortingParams] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
-  const [maxPage, setMaxPage] = useState(0);
+  const [maxPage, setMaxPage] = useState(parseInt(data.length / pageSize) + 1);
+  const [count, setCount] = useState(data.length);
 
   const generateColumns = (array) => {
     if (!array || array.length <= 0) {
@@ -149,7 +151,7 @@ const Table = (tableProps) => {
   };
 
   const filterRows = (rows) =>
-    (rows = data.filter((row) => filterCallback(row, searchValue)));
+    rows.filter((row) => filterCallback(row, searchValue));
 
   const orderingCallBack = (mode, a, b) => {
     if (typeof a === "string" && typeof b === "string") {
@@ -166,25 +168,33 @@ const Table = (tableProps) => {
     }
   };
 
-  const orderRows = (rows) => {
-    console.log(sortingParams, "sortingParams");
+  const orderRows = useCallback(
+    (rows) => {
+      return rows.sort(
+        (a, b) =>
+          sortingParams.mode !== null &&
+          orderingCallBack(
+            sortingParams.mode,
+            a[sortingParams.prop],
+            b[sortingParams.prop]
+          )
+      );
+    },
+    [sortingParams]
+  );
 
-    return rows.sort(
-      (a, b) =>
-        sortingParams.mode !== null &&
-        orderingCallBack(
-          sortingParams.mode,
-          a[sortingParams.prop],
-          b[sortingParams.prop]
-        )
-    );
-  };
+  const paginateRows = useCallback(
+    (rows) => {
+      const sliced = rows.slice(
+        currentPage * pageSize,
+        pageSize * (currentPage + 1)
+      );
+      return sliced;
+    },
+    [currentPage, pageSize]
+  );
 
-  const paginateRows = (rows) => {
-    return rows.slice(currentPage * pageSize, pageSize * (currentPage + 1));
-  };
-
-  const evaluateRows = (data) => {
+  useEffect(() => {
     let rows = [...data];
     if (!!searchValue && search) {
       if (typeof onSearch === "function") {
@@ -204,12 +214,24 @@ const Table = (tableProps) => {
       }
     }
 
+    if (search && !!searchValue) {
+      const newMaxPage = parseInt(rows.length / pageSize) + 1;
+      if (newMaxPage < maxPage) {
+        setCurrentPage(0);
+      }
+      setMaxPage(parseInt(newMaxPage));
+      setCount(rows.length);
+    } else {
+      setMaxPage(parseInt(data.length / pageSize) + 1);
+      setCount(data.length);
+    }
+
     if (!!paged) {
       rows = paginateRows(rows);
     }
 
-    return rows;
-  };
+    setLocalData([...rows]);
+  }, [searchValue, sortingParams, currentPage]);
 
   return (
     <div className="flex-col">
@@ -237,7 +259,7 @@ const Table = (tableProps) => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {generateRows(evaluateRows(data))}
+                {generateRows(localData)}
               </tbody>
             </table>
           </div>
@@ -246,11 +268,12 @@ const Table = (tableProps) => {
       {paged && (
         <div>
           <Pagination
-            onNext={() => setCurrentPage(currentPage + 1)}
-            onBack={() => setCurrentPage(currentPage - 1)}
+            onNext={() => setCurrentPage((currentPage) => currentPage + 1)}
+            onBack={() => setCurrentPage((currentPage) => currentPage - 1)}
             maxPages={maxPage}
             currentPage={currentPage}
-            totals={data.length}
+            totals={count}
+            pageSize={pageSize}
           />
         </div>
       )}
