@@ -26,7 +26,7 @@ const Table = (tableProps) => {
   } = tableProps;
 
   const [searchValue, setSearchValue] = useState(null);
-  const [localData, setLocalData] = useState(data);
+  const [localData, setLocalData] = useState([...data]);
   const [sortingParams, setSortingParams] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [maxPage, setMaxPage] = useState(parseInt(data.length / pageSize) + 1);
@@ -36,12 +36,13 @@ const Table = (tableProps) => {
     if (!array || array.length <= 0) {
       return [];
     }
-    return array.map(({ label, ordered, value }) => {
+    return array.map(({ label, ordered, value, width = null }) => {
       if (ordered) {
         return (
           <th
             scope="col"
-            className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider "
+            className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+            style={width ? { width: width } : {}}
           >
             <div className="flex items-center justify-between">
               {label}
@@ -57,7 +58,8 @@ const Table = (tableProps) => {
         return (
           <th
             scope="col"
-            className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+            className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+            style={width ? { width: width } : {}}
           >
             {label}
           </th>
@@ -81,7 +83,7 @@ const Table = (tableProps) => {
     }
 
     return array.map((value, idx) => (
-      <tr key={idx}>{generateRowContent(value, idx).map((x) => x)}</tr>
+      <tr key={idx}>{generateRowContent(value, idx)}</tr>
     ));
   };
 
@@ -91,10 +93,12 @@ const Table = (tableProps) => {
       if (typeof col.renderComponent === "function") {
         arr.push(
           <td className="px-6 py-4 whitespace-nowrap">
-            {col.renderComponent(
-              { data: { ...object }, rowIndex: idx },
-              object[col.value]
-            )}
+            <div className="text-sm text-gray-900">
+              {col.renderComponent(
+                { data: { ...object }, rowIndex: idx },
+                object[col.value] || null
+              )}
+            </div>
           </td>
         );
       } else {
@@ -255,7 +259,7 @@ const Table = (tableProps) => {
   return (
     <div className="flex-col">
       {search && (
-        <div className="w-1/3 py-2">
+        <div className="w-full md:w-1/3 py-2">
           <Input
             color={color}
             value={searchValue}

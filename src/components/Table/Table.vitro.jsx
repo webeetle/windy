@@ -15,6 +15,7 @@ const cols = [
       </div>
     ),
     ordered: false,
+    width: 200,
   },
   { label: "nome", value: "nome", ordered: false },
   { label: "cognome", value: "cognome", ordered: true },
