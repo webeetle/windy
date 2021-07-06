@@ -88,7 +88,6 @@ const Table = (tableProps) => {
   const generateRowContent = (object, idx) => {
     const arr = [];
     for (const col of columns) {
-      console.log(col, object, columns);
       if (typeof col.renderComponent === "function") {
         arr.push(
           <td className="px-6 py-4 whitespace-nowrap">
@@ -99,11 +98,23 @@ const Table = (tableProps) => {
           </td>
         );
       } else {
-        arr.push(
-          <td className="px-6 py-4 whitespace-nowrap">
-            <div className="text-sm text-gray-900">{object[col.value]}</div>
-          </td>
-        );
+        if (
+          object[col.value] &&
+          typeof object[col.value] !== "object" &&
+          !Array.isArray(object[col.value])
+        ) {
+          arr.push(
+            <td className="px-6 py-4 whitespace-nowrap">
+              <div className="text-sm text-gray-900">{object[col.value]}</div>
+            </td>
+          );
+        } else {
+          arr.push(
+            <td className="px-6 py-4 whitespace-nowrap">
+              <div className="text-sm text-gray-900"></div>
+            </td>
+          );
+        }
       }
     }
     return arr;
@@ -239,7 +250,7 @@ const Table = (tableProps) => {
     }
 
     setLocalData([...rows]);
-  }, [searchValue, sortingParams, currentPage]);
+  }, [searchValue, sortingParams, currentPage, data]);
 
   return (
     <div className="flex-col">
