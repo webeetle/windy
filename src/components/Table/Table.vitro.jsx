@@ -36,6 +36,12 @@ const data = [
     età: "36",
     rank: "4",
   },
+  {
+    nome: "Jiik",
+    cognome: "Book",
+    età: "36",
+    rank: "4",
+  },
 ];
 
 export const Basic = () => {
@@ -58,7 +64,7 @@ export const WithSearch = () => {
           search={true}
           color="red"
           paged={true}
-          pageSize={1}
+          pageSize={2}
         />
       </WindyProvider>
     </div>
