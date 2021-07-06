@@ -1,8 +1,8 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import classnames from "classnames";
-import { useWindyTheme } from "../../context";
+import { useWindyTheme } from "../../context.jsx";
 
 const Loader = (loaderProps) => {
   const {
@@ -141,6 +141,21 @@ const Loader = (loaderProps) => {
       )}
     </>
   );
+};
+
+Loader.propTypes = {
+  color: PropTypes.oneOf([
+    "gray",
+    "red",
+    "yellow",
+    "green",
+    "blue",
+    "indigo",
+    "purple",
+    "pink",
+    "none",
+  ]),
+  type: PropTypes.oneOf(["linear", "circle"]),
 };
 
 export default Loader;
