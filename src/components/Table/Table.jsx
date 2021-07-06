@@ -189,15 +189,19 @@ const Table = (tableProps) => {
     if (!!searchValue && search) {
       if (typeof onSearch === "function") {
         onSearch(searchValue);
+      } else {
+        setCurrentPage(0);
+        rows = filterRows(rows);
       }
-      rows = filterRows(rows);
     }
 
     if (!!sortingParams) {
       if (typeof onSorting === "function") {
         onSorting(sortingParams);
+      } else {
+        setCurrentPage(0);
+        rows = orderRows(rows);
       }
-      rows = orderRows(rows);
     }
 
     if (!!paged) {

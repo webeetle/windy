@@ -58,7 +58,7 @@ export const WithSearch = () => {
           search={true}
           color="red"
           paged={true}
-          pageSize={1}
+          pageSize={2}
         />
       </WindyProvider>
     </div>
