@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import { useWindyTheme } from "../../context.jsx";
 
-import { Input } from "../../index.js";
+import Input from "../Form/Input/Input.jsx";
 import ArrowOrderHandler from "./Components/ArrowOrderHandler.jsx";
 import Pagination from "./Components/Pagination.jsx";
 
