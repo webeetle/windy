@@ -60,7 +60,7 @@ const Media = (mediaProps) => {
           )
         )}
       >
-        {src && (
+        {src ? (
           <img
             data-testid="media-img-1"
             className={overrideTailwindClasses(
@@ -74,8 +74,9 @@ const Media = (mediaProps) => {
             src={src}
             alt="media-image"
           />
+        ) : (
+          <div data-testid="media-component-1">{media}</div>
         )}
-        {media && media}
       </div>
       <div>{props.children}</div>
     </div>

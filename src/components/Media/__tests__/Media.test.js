@@ -3,31 +3,50 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { Media, WindyProvider } from "../../../index.js";
 
 //Render
-test("<Media/> Should Render ", () => {
+test("<Media/> Should Render src", () => {
   render(
     <WindyProvider>
       <Media>
         <h4 className="text-lg font-bold">Lorem ipsum</h4>
         <p className="mt-1">
-          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam expedita quia omnis voluptatem. Minus
-          quidem ipsam quia iusto.
+          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam
+          expedita quia omnis voluptatem. Minus quidem ipsam quia iusto.
         </p>
       </Media>
     </WindyProvider>
   );
   const component = screen.getByTestId("media-1");
   expect(component).toBeInTheDocument();
+});
+
+test("<Media/> Should Render component", () => {
+  render(
+    <WindyProvider>
+      <Media>
+        <h4 className="text-lg font-bold">Lorem ipsum</h4>
+        <p className="mt-1">
+          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam
+          expedita quia omnis voluptatem. Minus quidem ipsam quia iusto.
+        </p>
+      </Media>
+    </WindyProvider>
+  );
+  const component = screen.getByTestId("media-1");
+  expect(component).toBeInTheDocument();
+
+  const componentMedia = screen.getByTestId("media-component-1");
+  expect(componentMedia).toBeInTheDocument();
 });
 
 //Basic complete
 test("<Media/> Should Render ", () => {
   render(
     <WindyProvider>
-      <Media>
+      <Media src="test">
         <h4 className="text-lg font-bold">Lorem ipsum</h4>
         <p className="mt-1">
-          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam expedita quia omnis voluptatem. Minus
-          quidem ipsam quia iusto.
+          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam
+          expedita quia omnis voluptatem. Minus quidem ipsam quia iusto.
         </p>
       </Media>
     </WindyProvider>
@@ -35,20 +54,20 @@ test("<Media/> Should Render ", () => {
   const component = screen.getByTestId("media-1");
   expect(component).toBeInTheDocument();
 
-  const mediaImgContainer = screen.getByTestId("media-img-container-1")
-  expect(mediaImgContainer).toBeInTheDocument()
-  expect(mediaImgContainer).toHaveClass("mr-4 self-start flex-shrink-0")
+  const mediaImgContainer = screen.getByTestId("media-img-container-1");
+  expect(mediaImgContainer).toBeInTheDocument();
+  expect(mediaImgContainer).toHaveClass("mr-4 self-start flex-shrink-0");
 });
 
 //Rounded
 test("<Media/> Should Render ", () => {
   render(
     <WindyProvider>
-      <Media rounded>
+      <Media src="test" rounded>
         <h4 className="text-lg font-bold">Lorem ipsum</h4>
         <p className="mt-1">
-          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam expedita quia omnis voluptatem. Minus
-          quidem ipsam quia iusto.
+          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam
+          expedita quia omnis voluptatem. Minus quidem ipsam quia iusto.
         </p>
       </Media>
     </WindyProvider>
@@ -56,24 +75,24 @@ test("<Media/> Should Render ", () => {
   const component = screen.getByTestId("media-1");
   expect(component).toBeInTheDocument();
 
-  const mediaImgContainer = screen.getByTestId("media-img-container-1")
-  expect(mediaImgContainer).toBeInTheDocument()
+  const mediaImgContainer = screen.getByTestId("media-img-container-1");
+  expect(mediaImgContainer).toBeInTheDocument();
 
-  const mediaImg = screen.getByTestId("media-img-1")
-  expect(mediaImg).toBeInTheDocument()
+  const mediaImg = screen.getByTestId("media-img-1");
+  expect(mediaImg).toBeInTheDocument();
 
-  expect(mediaImg).toHaveClass("rounded-full")
+  expect(mediaImg).toHaveClass("rounded-full");
 });
 
 //Align to center
 test("<Media/> Should Render ", () => {
   render(
     <WindyProvider>
-      <Media align="center">
+      <Media src="test" align="center">
         <h4 className="text-lg font-bold">Lorem ipsum</h4>
         <p className="mt-1">
-          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam expedita quia omnis voluptatem. Minus
-          quidem ipsam quia iusto.
+          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam
+          expedita quia omnis voluptatem. Minus quidem ipsam quia iusto.
         </p>
       </Media>
     </WindyProvider>
@@ -81,21 +100,21 @@ test("<Media/> Should Render ", () => {
   const component = screen.getByTestId("media-1");
   expect(component).toBeInTheDocument();
 
-  const mediaImgContainer = screen.getByTestId("media-img-container-1")
-  expect(mediaImgContainer).toBeInTheDocument()
+  const mediaImgContainer = screen.getByTestId("media-img-container-1");
+  expect(mediaImgContainer).toBeInTheDocument();
 
-  expect(mediaImgContainer).toHaveClass("self-center")
+  expect(mediaImgContainer).toHaveClass("self-center");
 });
 
 //Align to end
 test("<Media/> Should Render ", () => {
   render(
     <WindyProvider>
-      <Media align="end">
+      <Media src="test" align="end">
         <h4 className="text-lg font-bold">Lorem ipsum</h4>
         <p className="mt-1">
-          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam expedita quia omnis voluptatem. Minus
-          quidem ipsam quia iusto.
+          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam
+          expedita quia omnis voluptatem. Minus quidem ipsam quia iusto.
         </p>
       </Media>
     </WindyProvider>
@@ -103,21 +122,21 @@ test("<Media/> Should Render ", () => {
   const component = screen.getByTestId("media-1");
   expect(component).toBeInTheDocument();
 
-  const mediaImgContainer = screen.getByTestId("media-img-container-1")
-  expect(mediaImgContainer).toBeInTheDocument()
+  const mediaImgContainer = screen.getByTestId("media-img-container-1");
+  expect(mediaImgContainer).toBeInTheDocument();
 
-  expect(mediaImgContainer).toHaveClass("self-end")
+  expect(mediaImgContainer).toHaveClass("self-end");
 });
 
 //Stretched
 test("<Media/> Should Render ", () => {
   render(
     <WindyProvider>
-      <Media sizeToFit>
+      <Media src="test" sizeToFit>
         <h4 className="text-lg font-bold">Lorem ipsum</h4>
         <p className="mt-1">
-          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam expedita quia omnis voluptatem. Minus
-          quidem ipsam quia iusto.
+          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam
+          expedita quia omnis voluptatem. Minus quidem ipsam quia iusto.
         </p>
       </Media>
     </WindyProvider>
@@ -125,27 +144,26 @@ test("<Media/> Should Render ", () => {
   const component = screen.getByTestId("media-1");
   expect(component).toBeInTheDocument();
 
-  const mediaImgContainer = screen.getByTestId("media-img-container-1")
-  expect(mediaImgContainer).toBeInTheDocument()
+  const mediaImgContainer = screen.getByTestId("media-img-container-1");
+  expect(mediaImgContainer).toBeInTheDocument();
 
-  expect(mediaImgContainer).toHaveClass("mr-4 self-stretch flex-shrink-0")
+  expect(mediaImgContainer).toHaveClass("mr-4 self-stretch flex-shrink-0");
 });
 
 //Media on right
 test("<Media/> Should Render ", () => {
   render(
     <WindyProvider>
-      <Media position="end">
+      <Media src="test" position="end">
         <h4 className="text-lg font-bold">Lorem ipsum</h4>
         <p className="mt-1">
-          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam expedita quia omnis voluptatem. Minus
-          quidem ipsam quia iusto.
+          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam
+          expedita quia omnis voluptatem. Minus quidem ipsam quia iusto.
         </p>
       </Media>
     </WindyProvider>
   );
   const component = screen.getByTestId("media-1");
 
-  expect(component).toHaveClass("flex pt-5 flex-row-reverse")
+  expect(component).toHaveClass("flex pt-5 flex-row-reverse");
 });
-
