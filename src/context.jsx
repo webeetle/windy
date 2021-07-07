@@ -63,7 +63,7 @@ const windyTheme = {
     position: "start",
     size: "sm",
     align: "start"
-  }
+  },
   loader: { color: "indigo", type: "circle" },
   avatar: {
     size: "md",
@@ -107,7 +107,7 @@ function WindyProvider({ theme = {}, children }) {
     select: { ...windyTheme.select, ...theme.select },
     modal: { ...windyTheme.modal, ...theme.modal },
     panel: { ...windyTheme.panel, ...theme.panel },
-    media: { ...windyTheme.media, ...theme.media}
+    media: { ...windyTheme.media, ...theme.media},
     loader: { ...windyTheme.loader, ...theme.loader },
     avatar: { ...windyTheme.avatar, ...theme.avatar },
     carousel: { ...windyTheme.carousel, ...theme.carousel },
