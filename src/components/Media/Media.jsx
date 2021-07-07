@@ -12,7 +12,8 @@ const Media = (mediaProps) => {
 
   const {
     className = "",
-    media = "",
+    media = null,
+    src = null,
     align = defMedia.align,
     rounded = false,
     size = defMedia.size,
@@ -24,15 +25,15 @@ const Media = (mediaProps) => {
   const getImageSize = (size = "sm", sizeToFit = false) => {
     switch (size) {
       case "xs":
-        return !sizeToFit ? "h-12 w-12" : "h-full w-12"
+        return !sizeToFit ? "h-12 w-12" : "h-full w-12";
       case "sm":
-        return !sizeToFit ? "h-16 w-16" : "h-full w-16"
+        return !sizeToFit ? "h-16 w-16" : "h-full w-16";
       case "md":
-        return !sizeToFit ? "h-24 w-24" : "h-full w-24"
+        return !sizeToFit ? "h-24 w-24" : "h-full w-24";
       case "lg":
-        return !sizeToFit ? "h-32 w-32" : "h-full w-32"
+        return !sizeToFit ? "h-32 w-32" : "h-full w-32";
       case "xl":
-        return !sizeToFit ? "h-40 w-40" : "h-full w-40"
+        return !sizeToFit ? "h-40 w-40" : "h-full w-40";
     }
   };
 
@@ -43,7 +44,7 @@ const Media = (mediaProps) => {
       className={overrideTailwindClasses(
         classnames(
           "flex pt-5",
-          position === "end" ? 'flex-row-reverse' : '',
+          position === "end" ? "flex-row-reverse" : "",
           className
         )
       )}
@@ -52,24 +53,31 @@ const Media = (mediaProps) => {
         data-testid="media-img-container-1"
         className={overrideTailwindClasses(
           classnames(
-            position === "start" ? 'mr-4' : 'ml-4',
+            position === "start" ? "mr-4" : "ml-4",
             `self-${align}`,
-            sizeToFit ? 'self-stretch' : '',
+            sizeToFit ? "self-stretch" : "",
             "flex-shrink-0"
           )
-        )}>
-        <img data-testid="media-img-1" className={overrideTailwindClasses(
-          classnames(
-            getImageSize(size, sizeToFit),
-            rounded && !sizeToFit ? 'rounded-full' : 'rounded',
-            sizeToFit ? 'object-cover' : '',
-            "inline-block"
-          )
-        )} src={media} alt='media-image'/>
+        )}
+      >
+        {src && (
+          <img
+            data-testid="media-img-1"
+            className={overrideTailwindClasses(
+              classnames(
+                getImageSize(size, sizeToFit),
+                rounded && !sizeToFit ? "rounded-full" : "rounded",
+                sizeToFit ? "object-cover" : "",
+                "inline-block"
+              )
+            )}
+            src={src}
+            alt="media-image"
+          />
+        )}
+        {media && media}
       </div>
-      <div>
-        {props.children}
-      </div>
+      <div>{props.children}</div>
     </div>
   );
 };
@@ -81,7 +89,7 @@ Media.propTypes = {
   rounded: PropTypes.bool,
   size: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
   sizeToFit: PropTypes.bool,
-  position: PropTypes.oneOf(["start", "end"])
+  position: PropTypes.oneOf(["start", "end"]),
 };
 
 export default Media;
