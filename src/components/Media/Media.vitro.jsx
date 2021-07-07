@@ -244,6 +244,14 @@ export const Nested = () => {
               non dapibus massa. Phasellus nec porta sapien. Proin tempus velit
               neque, quis blandit nulla bibendum sit amet.
             </p>
+            <Media
+              media={"https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"}>
+              <h4 className="text-lg font-bold">Lorem ipsum</h4>
+              <p className="mt-1">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non dapibus massa. Phasellus nec porta
+                sapien. Proin tempus velit neque, quis blandit nulla bibendum sit amet.
+              </p>
+            </Media>
           </Media>
         </Media>
       </WindyProvider>
