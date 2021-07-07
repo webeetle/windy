@@ -60,6 +60,7 @@ const windyTheme = {
   },
   panel: { layout: "default" },
   media: {
+    responsive: true,
     position: "start",
     size: "sm",
     align: "start",

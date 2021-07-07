@@ -19,6 +19,7 @@ const Media = (mediaProps) => {
     size = defMedia.size,
     sizeToFit = false,
     position = defMedia.position,
+    responsive = defMedia.responsive,
     ...props
   } = mediaProps;
 
@@ -43,7 +44,8 @@ const Media = (mediaProps) => {
       {...props}
       className={overrideTailwindClasses(
         classnames(
-          "flex pt-5",
+          { "md:flex pb-5 md:pb-0 md:pt-5": responsive },
+          { "flex pt-5": !responsive },
           position === "end" ? "flex-row-reverse" : "",
           className
         )
