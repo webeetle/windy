@@ -1,5 +1,6 @@
 import React from "react";
 import Media from "./Media";
+import Button from "../Button/Button";
 import "tailwindcss/dist/tailwind.css";
 
 import { WindyProvider } from "../../index.js";
@@ -15,6 +16,36 @@ export const Basic = () => {
             "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
           }
         >
+          <h4 className="text-lg font-bold">Lorem ipsum</h4>
+          <p className="mt-1">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+            non dapibus massa.
+          </p>
+        </Media>
+      </WindyProvider>
+    </div>
+  );
+};
+
+export const MediaComponents = () => {
+  return (
+    <div className="flex items-center space-x-5 max-w-4xl w-full">
+      <WindyProvider theme={theme}>
+        <Media media={<Button>Button</Button>}>
+          <h4 className="text-lg font-bold">Lorem ipsum</h4>
+          <p className="mt-1">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+            non dapibus massa.
+          </p>
+        </Media>
+        <Media align="center" media={<Button>Button</Button>}>
+          <h4 className="text-lg font-bold">Lorem ipsum</h4>
+          <p className="mt-1">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+            non dapibus massa.
+          </p>
+        </Media>
+        <Media align="end" media={<Button>Button</Button>}>
           <h4 className="text-lg font-bold">Lorem ipsum</h4>
           <p className="mt-1">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
@@ -245,11 +276,15 @@ export const Nested = () => {
               neque, quis blandit nulla bibendum sit amet.
             </p>
             <Media
-              media={"https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"}>
+              src={
+                "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              }
+            >
               <h4 className="text-lg font-bold">Lorem ipsum</h4>
               <p className="mt-1">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non dapibus massa. Phasellus nec porta
-                sapien. Proin tempus velit neque, quis blandit nulla bibendum sit amet.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Praesent non dapibus massa. Phasellus nec porta sapien. Proin
+                tempus velit neque, quis blandit nulla bibendum sit amet.
               </p>
             </Media>
           </Media>
