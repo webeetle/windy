@@ -10,6 +10,8 @@ import Select from "./components/Form/Select/Select.jsx";
 import Modal from "./components/Modal/Modal.jsx";
 import Badge from "./components/Badge/Badge.jsx";
 
+import Media from "./components/Media/Media.jsx";
+
 import { WindyProvider, useWindyTheme, windyTheme } from "./context.jsx";
 
 export {
@@ -25,4 +27,5 @@ export {
   WindyProvider,
   useWindyTheme,
   windyTheme,
+  Media,
 };

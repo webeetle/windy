@@ -59,6 +59,11 @@ const windyTheme = {
     overlayGradient: false,
   },
   panel: { layout: "default" },
+  media: {
+    position: "start",
+    size: "sm",
+    align: "start"
+  }
 };
 
 function WindyReducer(state, action) {
@@ -91,6 +96,7 @@ function WindyProvider({ theme = {}, children }) {
     select: { ...windyTheme.select, ...theme.select },
     modal: { ...windyTheme.modal, ...theme.modal },
     panel: { ...windyTheme.panel, ...theme.panel },
+    media: { ...windyTheme.media, ...theme.media}
   };
   const [state, dispatch] = React.useReducer(WindyReducer, elTheme);
   const value = { state, dispatch };
