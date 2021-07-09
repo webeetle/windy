@@ -115,6 +115,7 @@ const Dropdown = (propsDropdown) => {
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button
+          data-testid="dropdown-button-1"
           className={overrideTailwindClasses(
             classnames(
               decorateDropdown(),
@@ -129,7 +130,7 @@ const Dropdown = (propsDropdown) => {
           )}
         >
           {buttonText}
-          {caret && <ArrowDown />}
+          {caret && <ArrowDown data-testid="caret-1"/>}
         </Menu.Button>
       </div>
       <Transition
@@ -142,10 +143,10 @@ const Dropdown = (propsDropdown) => {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute z-20 right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="px-1 py-1 ">
+          <div className="px-1 py-1">
             {options.length > 0 &&
-              options.map((opt) => (
-                <Menu.Item>
+              options.map((opt, index) => (
+                <Menu.Item key={index}>
                   <div
                     onClick={
                       opt.handler && typeof opt.handler === "function"
