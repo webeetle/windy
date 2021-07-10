@@ -130,7 +130,7 @@ const Dropdown = (propsDropdown) => {
           )}
         >
           {buttonText}
-          {caret && <ArrowDown data-testid="caret-1"/>}
+          {caret && <ArrowDown data-testid="caret-1" />}
         </Menu.Button>
       </div>
       <Transition
@@ -219,7 +219,7 @@ const ArrowDown = (props) => {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
+      className="h-5 w-5"
       viewBox="0 0 20 20"
       fill="currentColor"
     >

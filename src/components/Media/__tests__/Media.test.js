@@ -154,7 +154,7 @@ test("<Media/> Should Render ", () => {
 test("<Media/> Should Render ", () => {
   render(
     <WindyProvider>
-      <Media src="test" position="end">
+      <Media src="test" position="end" responsive={false}>
         <h4 className="text-lg font-bold">Lorem ipsum</h4>
         <p className="mt-1">
           Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam
@@ -169,7 +169,6 @@ test("<Media/> Should Render ", () => {
 });
 
 test("<Media /> Size", () => {
-
   render(
     <WindyProvider>
       <Media src="test" size={"xs"}>
@@ -185,7 +184,7 @@ test("<Media /> Size", () => {
   const sizeXS = screen.getByTestId("media-img-1");
   expect(sizeXS).toHaveClass("h-12 w-12 rounded inline-block");
 
-  cleanup()
+  cleanup();
 
   render(
     <WindyProvider>
@@ -202,7 +201,7 @@ test("<Media /> Size", () => {
   const sizeSM = screen.getByTestId("media-img-1");
   expect(sizeSM).toHaveClass("h-16 w-16 rounded inline-block");
 
-  cleanup()
+  cleanup();
 
   render(
     <WindyProvider>
@@ -216,11 +215,10 @@ test("<Media /> Size", () => {
     </WindyProvider>
   );
 
-
   const sizeMD = screen.getByTestId("media-img-1");
   expect(sizeMD).toHaveClass("h-24 w-24 rounded inline-block");
 
-  cleanup()
+  cleanup();
 
   render(
     <WindyProvider>
@@ -237,7 +235,7 @@ test("<Media /> Size", () => {
   const sizeLG = screen.getByTestId("media-img-1");
   expect(sizeLG).toHaveClass("h-32 w-32 rounded inline-block");
 
-  cleanup()
+  cleanup();
 
   render(
     <WindyProvider>
@@ -253,5 +251,4 @@ test("<Media /> Size", () => {
 
   const sizeXL = screen.getByTestId("media-img-1");
   expect(sizeXL).toHaveClass("h-40 w-40 rounded inline-block");
-
-})
+});

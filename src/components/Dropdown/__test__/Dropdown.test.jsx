@@ -1,7 +1,7 @@
 import React from "react";
-import {fireEvent, render, screen} from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import Dropdown from "../Dropdown";
-import {WindyProvider} from "../../../index.js";
+import { WindyProvider } from "../../../index.js";
 import userEvent from "@testing-library/user-event";
 
 const EditIcon = (props) => {
@@ -22,7 +22,7 @@ const EditIcon = (props) => {
 const exampleOptions = [
   {
     label: "Text With Icon",
-    icon: <EditIcon/>,
+    icon: <EditIcon />,
     className: "hover:bg-indigo-100",
     handler: () => alert("Clicked"),
   },
@@ -33,13 +33,12 @@ const exampleOptions = [
   },
 ];
 
-
 test("<Dropdown /> should render", () => {
   render(
     <WindyProvider>
       <Dropdown
         buttonText="Text Button"
-        layout="default"
+        layout="contained"
         options={exampleOptions}
       />
     </WindyProvider>
@@ -54,7 +53,7 @@ test("<Dropdown /> should render with caret", () => {
     <WindyProvider>
       <Dropdown
         buttonText="Text Button"
-        layout="default"
+        layout="contained"
         options={exampleOptions}
       />
     </WindyProvider>
@@ -64,12 +63,11 @@ test("<Dropdown /> should render with caret", () => {
   expect(component).toBeInTheDocument();
 
   const svg = screen.getByTestId("caret-1");
-  expect(svg).toBeInTheDocument()
-
+  expect(svg).toBeInTheDocument();
 });
 
 test("<Dropdown /> should render without caret", () => {
-  const {queryByTestId} = render(
+  const { queryByTestId } = render(
     <WindyProvider>
       <Dropdown
         buttonText="Text Button"
@@ -83,8 +81,7 @@ test("<Dropdown /> should render without caret", () => {
   const component = screen.getByTestId("dropdown-button-1");
   expect(component).toBeInTheDocument();
 
-  expect(queryByTestId(/caret-1/i)).toBeNull()
-
+  expect(queryByTestId(/caret-1/i)).toBeNull();
 });
 
 test("<Dropdown /> should be text style", () => {
@@ -101,8 +98,9 @@ test("<Dropdown /> should be text style", () => {
   const component = screen.getByTestId("dropdown-button-1");
   expect(component).toBeInTheDocument();
 
-  expect(component).toHaveClass("hover:text-indigo-500 text-base rounded-md inline-flex items-center justify-center w-full hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75")
-
+  expect(component).toHaveClass(
+    "hover:text-indigo-500 text-base rounded-md inline-flex items-center justify-center w-full hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+  );
 });
 
 test("<Dropdown /> should be contained style", () => {
@@ -119,8 +117,9 @@ test("<Dropdown /> should be contained style", () => {
   const component = screen.getByTestId("dropdown-button-1");
   expect(component).toBeInTheDocument();
 
-  expect(component).toHaveClass("bg-gradient-to-l from-indigo-500 to-indigo-600 hover:opacity-80 text-white shadow-md text-base font-medium px-3.5 py-1.5 rounded-md inline-flex items-center justify-center w-full hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75")
-
+  expect(component).toHaveClass(
+    "bg-gradient-to-l from-indigo-500 to-indigo-600 hover:opacity-80 text-white shadow-md text-base font-medium px-3.5 py-1.5 rounded-md inline-flex items-center justify-center w-full hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+  );
 });
 
 test("<Dropdown /> should be bordered style", () => {
@@ -137,6 +136,7 @@ test("<Dropdown /> should be bordered style", () => {
   const component = screen.getByTestId("dropdown-button-1");
   expect(component).toBeInTheDocument();
 
-  expect(component).toHaveClass("bg-transparent border-2 border-indigo-300 text-indigo-700 hover:bg-indigo-50 active:bg-indigo-200 px-4 py-2 shadow-md text-base font-medium px-3.5 py-1.5 rounded-md inline-flex items-center justify-center w-full hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75")
-
+  expect(component).toHaveClass(
+    "bg-transparent border-2 border-indigo-300 text-indigo-700 hover:bg-indigo-50 active:bg-indigo-200 px-4 py-2 shadow-md text-base font-medium px-3.5 py-1.5 rounded-md inline-flex items-center justify-center w-full hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+  );
 });
