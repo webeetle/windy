@@ -167,3 +167,91 @@ test("<Media/> Should Render ", () => {
 
   expect(component).toHaveClass("flex pt-5 flex-row-reverse");
 });
+
+test("<Media /> Size", () => {
+
+  render(
+    <WindyProvider>
+      <Media src="test" size={"xs"}>
+        <h4 className="text-lg font-bold">Lorem ipsum</h4>
+        <p className="mt-1">
+          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam
+          expedita quia omnis voluptatem. Minus quidem ipsam quia iusto.
+        </p>
+      </Media>
+    </WindyProvider>
+  );
+
+  const sizeXS = screen.getByTestId("media-img-1");
+  expect(sizeXS).toHaveClass("h-12 w-12 rounded inline-block");
+
+  cleanup()
+
+  render(
+    <WindyProvider>
+      <Media src="test" size={"sm"}>
+        <h4 className="text-lg font-bold">Lorem ipsum</h4>
+        <p className="mt-1">
+          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam
+          expedita quia omnis voluptatem. Minus quidem ipsam quia iusto.
+        </p>
+      </Media>
+    </WindyProvider>
+  );
+
+  const sizeSM = screen.getByTestId("media-img-1");
+  expect(sizeSM).toHaveClass("h-16 w-16 rounded inline-block");
+
+  cleanup()
+
+  render(
+    <WindyProvider>
+      <Media src="test" size={"md"}>
+        <h4 className="text-lg font-bold">Lorem ipsum</h4>
+        <p className="mt-1">
+          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam
+          expedita quia omnis voluptatem. Minus quidem ipsam quia iusto.
+        </p>
+      </Media>
+    </WindyProvider>
+  );
+
+
+  const sizeMD = screen.getByTestId("media-img-1");
+  expect(sizeMD).toHaveClass("h-24 w-24 rounded inline-block");
+
+  cleanup()
+
+  render(
+    <WindyProvider>
+      <Media src="test" size={"lg"}>
+        <h4 className="text-lg font-bold">Lorem ipsum</h4>
+        <p className="mt-1">
+          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam
+          expedita quia omnis voluptatem. Minus quidem ipsam quia iusto.
+        </p>
+      </Media>
+    </WindyProvider>
+  );
+
+  const sizeLG = screen.getByTestId("media-img-1");
+  expect(sizeLG).toHaveClass("h-32 w-32 rounded inline-block");
+
+  cleanup()
+
+  render(
+    <WindyProvider>
+      <Media src="test" size={"xl"}>
+        <h4 className="text-lg font-bold">Lorem ipsum</h4>
+        <p className="mt-1">
+          Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam
+          expedita quia omnis voluptatem. Minus quidem ipsam quia iusto.
+        </p>
+      </Media>
+    </WindyProvider>
+  );
+
+  const sizeXL = screen.getByTestId("media-img-1");
+  expect(sizeXL).toHaveClass("h-40 w-40 rounded inline-block");
+
+})
