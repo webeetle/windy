@@ -19,6 +19,7 @@ import Avatar from "./components/Avatar/Avatar.jsx";
 import Carousel from "./components/Carousel/Carousel.jsx";
 import Skeleton from "./components/Skeleton/Skeleton.jsx";
 import Table from "./components/Table/Table.jsx";
+import Tooltip from "./components/Tooltip/Tooltip";
 
 import { WindyProvider, useWindyTheme, windyTheme } from "./context.jsx";
 
@@ -34,6 +35,7 @@ export {
   Badge,
   Loader,
   Avatar,
+  Tooltip,
   Carousel,
   Skeleton,
   Table,
