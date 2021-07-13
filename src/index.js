@@ -17,6 +17,7 @@ import Loader from "./components/Loaders/Loader.jsx";
 import Avatar from "./components/Avatar/Avatar.jsx";
 
 import Carousel from "./components/Carousel/Carousel.jsx";
+import Skeleton from "./components/Skeleton/Skeleton.jsx";
 import Table from "./components/Table/Table.jsx";
 
 import { WindyProvider, useWindyTheme, windyTheme } from "./context.jsx";
@@ -34,6 +35,7 @@ export {
   Loader,
   Avatar,
   Carousel,
+  Skeleton,
   Table,
   WindyProvider,
   useWindyTheme,

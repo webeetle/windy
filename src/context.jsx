@@ -75,6 +75,7 @@ const windyTheme = {
     layout: "image",
   },
   carousel: {},
+  skeleton: { color: "gray" },
   table: { color: "indigo" },
 };
 
@@ -112,6 +113,7 @@ function WindyProvider({ theme = {}, children }) {
     loader: { ...windyTheme.loader, ...theme.loader },
     avatar: { ...windyTheme.avatar, ...theme.avatar },
     carousel: { ...windyTheme.carousel, ...theme.carousel },
+    skeleton: { ...windyTheme.skeleton, ...theme.skeleton },
     table: { ...windyTheme.table, ...theme.table },
   };
   const [state, dispatch] = React.useReducer(WindyReducer, elTheme);
