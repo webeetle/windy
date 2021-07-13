@@ -232,6 +232,7 @@ const Modal = (modalProps) => {
                       {title}
                       {showCloseButton && (
                         <button
+                          aria-label="close"
                           className="focus:outline-none"
                           onClick={() =>
                             typeof onClickIcon() === "function"

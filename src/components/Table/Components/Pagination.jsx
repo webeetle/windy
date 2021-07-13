@@ -12,10 +12,22 @@ const Pagination = ({
   return (
     <div className="bg-white py-3 flex items-center justify-between border-t border-gray-200 ">
       <div className="flex-1 flex justify-between sm:hidden">
-        <div className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+        <div
+          onClick={onBack}
+          className={classNames(
+            { "pointer-events-none opacity-50": currentPage === 0 },
+            "relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+          )}
+        >
           Previous
         </div>
-        <div className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+        <div
+          onClick={onNext}
+          className={classNames(
+            { "pointer-events-none opacity-50": currentPage === maxPages - 1 },
+            "ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+          )}
+        >
           Next
         </div>
       </div>

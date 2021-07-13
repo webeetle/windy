@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import { useWindyTheme } from "../../context.jsx";
 
-import { Input } from "../../index.js";
+import Input from "../Form/Input/Input.jsx";
 import ArrowOrderHandler from "./Components/ArrowOrderHandler.jsx";
 import Pagination from "./Components/Pagination.jsx";
 
@@ -26,7 +26,7 @@ const Table = (tableProps) => {
   } = tableProps;
 
   const [searchValue, setSearchValue] = useState(null);
-  const [localData, setLocalData] = useState(data);
+  const [localData, setLocalData] = useState([...data]);
   const [sortingParams, setSortingParams] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [maxPage, setMaxPage] = useState(parseInt(data.length / pageSize) + 1);
@@ -36,12 +36,13 @@ const Table = (tableProps) => {
     if (!array || array.length <= 0) {
       return [];
     }
-    return array.map(({ label, ordered, value }) => {
+    return array.map(({ label, ordered, value, width = null }) => {
       if (ordered) {
         return (
           <th
             scope="col"
-            className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider "
+            className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+            style={width ? { width: width } : {}}
           >
             <div className="flex items-center justify-between">
               {label}
@@ -57,7 +58,8 @@ const Table = (tableProps) => {
         return (
           <th
             scope="col"
-            className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+            className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+            style={width ? { width: width } : {}}
           >
             {label}
           </th>
@@ -81,18 +83,43 @@ const Table = (tableProps) => {
     }
 
     return array.map((value, idx) => (
-      <tr key={idx}>{generateRowContent(value).map((x) => x)}</tr>
+      <tr key={idx}>{generateRowContent(value, idx)}</tr>
     ));
   };
 
-  const generateRowContent = (object) => {
+  const generateRowContent = (object, idx) => {
     const arr = [];
-    for (const key in object) {
-      arr.push(
-        <td className="px-6 py-4 whitespace-nowrap">
-          <div className="text-sm text-gray-900">{object[key]}</div>
-        </td>
-      );
+    for (const col of columns) {
+      if (typeof col.renderComponent === "function") {
+        arr.push(
+          <td className="px-6 py-4 whitespace-nowrap">
+            <div className="text-sm text-gray-900">
+              {col.renderComponent(
+                { data: { ...object }, rowIndex: idx },
+                object[col.value] || null
+              )}
+            </div>
+          </td>
+        );
+      } else {
+        if (
+          object[col.value] &&
+          typeof object[col.value] !== "object" &&
+          !Array.isArray(object[col.value])
+        ) {
+          arr.push(
+            <td className="px-6 py-4 whitespace-nowrap">
+              <div className="text-sm text-gray-900">{object[col.value]}</div>
+            </td>
+          );
+        } else {
+          arr.push(
+            <td className="px-6 py-4 whitespace-nowrap">
+              <div className="text-sm text-gray-900"></div>
+            </td>
+          );
+        }
+      }
     }
     return arr;
   };
@@ -231,12 +258,12 @@ const Table = (tableProps) => {
     }
 
     setLocalData([...rows]);
-  }, [searchValue, sortingParams, currentPage]);
+  }, [searchValue, sortingParams, currentPage, data]);
 
   return (
     <div className="flex-col">
       {search && (
-        <div className="w-1/3 py-2">
+        <div className="w-full md:w-1/3 py-2">
           <Input
             color={color}
             value={searchValue}
