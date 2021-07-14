@@ -89,6 +89,7 @@ const Tooltip = (tooltipProps) => {
       {children}
 
       <span
+        data-testid="tooltip-1"
         className={overrideTailwindClasses(
           classnames(
             decorateBgTooltip(),
@@ -106,7 +107,7 @@ const Tooltip = (tooltipProps) => {
   );
 };
 
-Tooltip.PropTypes = {
+Tooltip.prototype = {
   text: PropTypes.string,
   color: PropTypes.oneOf([
     "white",
