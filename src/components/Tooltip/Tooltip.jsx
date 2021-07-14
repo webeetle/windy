@@ -12,7 +12,7 @@ const Tooltip = (tooltipProps) => {
 
   const {
     children,
-    text = "Windy",
+    text = "",
     color = tooltip.color,
     rounded = tooltip.rounded,
     shadow = tooltip.shadow,
@@ -104,6 +104,24 @@ const Tooltip = (tooltipProps) => {
       </span>
     </div>
   );
+};
+
+Tooltip.PropTypes = {
+  text: PropTypes.string,
+  color: PropTypes.oneOf([
+    "white",
+    "gray",
+    "red",
+    "yellow",
+    "green",
+    "blue",
+    "indigo",
+    "purple",
+    "pink",
+  ]),
+  rounded: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+  shadow: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+  layout: PropTypes.oneOf(["top", "bottom"]),
 };
 
 export default Tooltip;

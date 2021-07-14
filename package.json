@@ -16,6 +16,7 @@
   },
   "scripts": {
     "test": "jest --coverage",
+    "test:dev": "jest --coverage --watch",
     "build": "npm run test -- -u && rollup -c && npm run create-ts-types",
     "create-ts-types": "npx tsc"
   },
@@ -23,7 +24,6 @@
   "license": "Apache 2.0",
   "dependencies": {
     "@headlessui/react": "^1.3.0",
-    "@tailwindcss/forms": "^0.3.3",
     "@types/react": "^17.0.13",
     "classnames": "^2.3.1",
     "react": "^17.0.2",
