@@ -93,6 +93,7 @@ Media.propTypes = {
   size: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
   sizeToFit: PropTypes.bool,
   position: PropTypes.oneOf(["start", "end"]),
+  children: PropTypes.any,
 };
 
 export default Media;

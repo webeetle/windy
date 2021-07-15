@@ -245,11 +245,11 @@ const Modal = (modalProps) => {
                       )}
                     </div>
                   </Dialog.Title>
-                  <div className="flex-1 h-auto overflow-y-auto mt-5">
+                  <div className="flex-1 h-auto mt-5 overflow-y-auto">
                     {children}
                   </div>
                   {actions && actions.length > 0 && (
-                    <div className="block md:flex space-x-0 space-y-5 md:space-y-0 md:space-x-5 md:ml-auto mt-5 items-center">
+                    <div className="items-center block mt-5 space-x-0 space-y-5 md:flex md:space-y-0 md:space-x-5 md:ml-auto">
                       {actions.map((Button) => {
                         return <div>{Button}</div>;
                       })}
@@ -274,6 +274,10 @@ Modal.propTypes = {
   className: PropTypes.string,
   actions: PropTypes.array,
   onClose: PropTypes.func,
+  onClickIcon: PropTypes.func,
+  children: PropTypes.any,
+  onClick: PropTypes.func,
+  overlayGradient: PropTypes.bool,
 };
 
 export default Modal;
@@ -283,7 +287,7 @@ const CloseIcon = (props) => {
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
-      className="h-5 w-5 cursor-pointer"
+      className="w-5 h-5 cursor-pointer"
       viewBox="0 0 20 20"
       fill="currentColor"
     >

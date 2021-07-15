@@ -24,16 +24,16 @@ const Tooltip = (tooltipProps) => {
     switch (layout) {
       case "top":
         return {
-          "-right-3 -top-10": layout === "top",
+          "-right-3 -top-3": layout === "top",
         };
       case "bottom":
         return {
-          "-left-3 -bottom-10": layout === "bottom",
+          "-left-3 -bottom-3": layout === "bottom",
         };
 
       default:
         return {
-          "-right-3 -top-10": true,
+          "-right-3 -top-3": true,
         };
     }
   };
@@ -123,6 +123,7 @@ Tooltip.prototype = {
   rounded: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
   shadow: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
   layout: PropTypes.oneOf(["top", "bottom"]),
+  children: PropTypes.any,
 };
 
 export default Tooltip;
