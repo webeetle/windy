@@ -104,11 +104,8 @@ const Button = (btnProps) => {
 
   return (
     <button
+      {...props}
       data-testid="Button-1"
-      onClick={(e) =>
-        typeof props.onClick === "function" ? props.onClick(e) : null
-      }
-      style={{ ...props.style }}
       disabled={disabled}
       className={overrideTailwindClasses(
         classnames(

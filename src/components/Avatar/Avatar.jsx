@@ -226,6 +226,7 @@ Avatar.propTypes = {
   className: PropTypes.string,
   stroke: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
   rounded: PropTypes.oneOf(["sm", "md", "lg", "full", "none"]),
+  src: PropTypes.string,
   onClick: PropTypes.func,
 };
 
