@@ -118,7 +118,25 @@ function WindyProvider({ theme = {}, children }) {
     table: { ...windyTheme.table, ...theme.table },
     tooltip: { ...windyTheme.tooltip, ...theme.tooltip },
   };
-  const [state, dispatch] = React.useReducer(WindyReducer, elTheme);
+
+  // create a ref for know if this component is mounted
+  const mounted = React.useRef(false);
+  // set ref - true when mount, false on cleanup
+  React.useEffect(() => {
+    mounted.current = true;
+    return () => (mounted.current = false);
+  }, []);
+
+  // unsafeDispatch can be called also this component is onmounted
+  const [state, unsafeDispatch] = React.useReducer(WindyReducer, elTheme);
+
+  // useCallback to optimize unsafeDispatch and don't call it on onmount
+  const dispatch = React.useCallback((...props) => {
+    if (mounted.current) {
+      unsafeDispatch(...props);
+    }
+  }, []);
+
   const value = { state, dispatch };
   return (
     <WindyContext.Provider value={value}>{children}</WindyContext.Provider>
