@@ -7,7 +7,7 @@ import { useWindyTheme } from "../../../context.jsx";
 //Utils
 import { generateShadow } from "../../../Utils/Utils";
 
-const Input = (inputProps, ref) => {
+const Input = (inputProps) => {
   const {
     state: { input = {} },
   } = useWindyTheme();

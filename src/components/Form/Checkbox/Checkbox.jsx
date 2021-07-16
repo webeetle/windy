@@ -5,7 +5,7 @@ import { overrideTailwindClasses } from "tailwind-override";
 import { generateDisabled } from "../../../Utils/Utils";
 import { useWindyTheme } from "../../../context.jsx";
 
-const Checkbox = (checkboxProps, ref) => {
+const Checkbox = (checkboxProps) => {
   const {
     state: { checkbox = {} },
   } = useWindyTheme();
