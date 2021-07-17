@@ -113,26 +113,24 @@ const Dropdown = (propsDropdown) => {
 
   return (
     <Menu as="div" className="relative inline-block text-left">
-      <div>
-        <Menu.Button
-          data-testid="dropdown-button-1"
-          className={overrideTailwindClasses(
-            classnames(
-              decorateDropdown(),
-              layout !== "text" && generateShadow(shadow),
-              layout !== "text" && generateSize(size),
-              generateRounded(rounded),
-              generateDisabled(disabled),
-              `inline-flex items-center justify-center w-full hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75${
-                props.className ?? ""
-              }`
-            )
-          )}
-        >
-          {buttonText}
-          {caret && <ArrowDown data-testid="caret-1" />}
-        </Menu.Button>
-      </div>
+      <Menu.Button
+        data-testid="dropdown-button-1"
+        className={overrideTailwindClasses(
+          classnames(
+            decorateDropdown(),
+            layout !== "text" && generateShadow(shadow),
+            layout !== "text" && generateSize(size),
+            generateRounded(rounded),
+            generateDisabled(disabled),
+            `inline-flex items-center justify-center w-full hover:bg-opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75${
+              props.className ?? ""
+            }`
+          )
+        )}
+      >
+        {buttonText}
+        {caret && <ArrowDown data-testid="caret-1" />}
+      </Menu.Button>
       <Transition
         as={Fragment}
         enter="transition ease-out duration-100"
