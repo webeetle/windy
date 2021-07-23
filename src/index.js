@@ -22,6 +22,7 @@ import Table from "./components/Table/Table.jsx";
 import Tooltip from "./components/Tooltip/Tooltip.jsx";
 
 import { WindyProvider, useWindyTheme, windyTheme } from "./context.jsx";
+import Tabs from "./components/Tabs/Tabs";
 
 export {
   Button,
@@ -39,6 +40,7 @@ export {
   Carousel,
   Skeleton,
   Table,
+  Tabs,
   WindyProvider,
   useWindyTheme,
   windyTheme,

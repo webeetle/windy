@@ -78,6 +78,7 @@ const windyTheme = {
   skeleton: { color: "gray" },
   table: { color: "indigo" },
   tooltip: { color: "indigo" },
+  tabs: { color: "indigo", rounded: "md", shadow: "md" },
 };
 
 function WindyReducer(state, action) {
@@ -117,6 +118,7 @@ function WindyProvider({ theme = {}, children }) {
     skeleton: { ...windyTheme.skeleton, ...theme.skeleton },
     table: { ...windyTheme.table, ...theme.table },
     tooltip: { ...windyTheme.tooltip, ...theme.tooltip },
+    tabs: { ...windyTheme.tabs, ...theme.tabs },
   };
 
   // create a ref for know if this component is mounted
