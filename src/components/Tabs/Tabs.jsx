@@ -10,6 +10,7 @@ import {
   generateRounded,
   generateSize,
   generateDisabled,
+  decorateBgAndText,
 } from "../../Utils/Utils";
 
 const Tabs = (tabsProps) => {
@@ -19,7 +20,7 @@ const Tabs = (tabsProps) => {
 
   const {
     color = tabs.color,
-    rounded = tabs.rounded,
+    // rounded = tabs.rounded,
     bordered = false,
     shadow = tabs.shadow,
     onChange,
@@ -37,35 +38,12 @@ const Tabs = (tabsProps) => {
     onChange(tabState);
   }, [tabState]);
 
-  const decorateTabsLayout = () => {
-    switch (color) {
-      case "blue":
-        return { "text-blue-500 bg-blue-200": color === "blue" };
-      case "gray":
-        return { "text-gray-700 bg-gray-200": color === "gray" };
-      case "red":
-        return { "text-red-700 bg-red-200": color === "red" };
-      case "yellow":
-        return { "text-yellow-700 bg-yellow-200": color === "yellow" };
-      case "green":
-        return { "text-green-700 bg-green-200": color === "green" };
-      case "indigo":
-        return { "text-indigo-700 bg-indigo-200": color === "indigo" };
-      case "purple":
-        return { "text-purple-700 bg-purple-200": color === "purple" };
-      case "pink":
-        return { "text-pink-700 bg-pink-200": color === "pink" };
-      default:
-        break;
-    }
-  };
-
   return (
     <div
       className={overrideTailwindClasses(
         classnames(
-          generateRounded(rounded),
-          decorateTabsLayout(),
+          // generateRounded(rounded),
+          decorateBgAndText(color),
           generateShadow(),
           `${bordered ? "border" : "border-none"}`
         )
@@ -95,14 +73,16 @@ const Tabs = (tabsProps) => {
 export default Tabs;
 
 Tabs.Tab = function (props) {
-  const borderSelected = props.tabIndex === props.tabState.selectedTab;
-  console.log(props, "props");
-  const borderColor = `border-${props.tabState.color}-500`;
-  const textColor = `text-${props.tabState.color}-700`;
-  const textHoverColor = `hover:text-${props.tabState.color}-500`;
+  const { tabIndex, tabState, onClick, render, label = "Tab" } = props;
+
+  const borderSelected = tabIndex === tabState.selectedTab;
+  const borderColor = `border-${tabState.color}-500`;
+  const textColor = `text-${tabState.color}-700`;
+  const textHoverColor = `hover:text-${tabState.color}-500`;
+
   return (
     <button
-      onClick={() => props.onClick(props.tabIndex)}
+      onClick={() => onClick(tabIndex)}
       className={overrideTailwindClasses(
         classnames(
           `${borderSelected ? borderColor : null}`,
@@ -112,7 +92,7 @@ Tabs.Tab = function (props) {
         )
       )}
     >
-      {props.children}
+      {typeof render === "function" ? render() : label}
     </button>
   );
 };

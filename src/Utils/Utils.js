@@ -98,3 +98,26 @@ export const generateDisabled = (disabled) => {
     };
   }
 };
+
+export const decorateBgAndText = (color) => {
+  switch (color) {
+    case "blue":
+      return { "text-blue-500 bg-blue-200": color === "blue" };
+    case "gray":
+      return { "text-gray-700 bg-gray-200": color === "gray" };
+    case "red":
+      return { "text-red-700 bg-red-200": color === "red" };
+    case "yellow":
+      return { "text-yellow-700 bg-yellow-200": color === "yellow" };
+    case "green":
+      return { "text-green-700 bg-green-200": color === "green" };
+    case "indigo":
+      return { "text-indigo-700 bg-indigo-200": color === "indigo" };
+    case "purple":
+      return { "text-purple-700 bg-purple-200": color === "purple" };
+    case "pink":
+      return { "text-pink-700 bg-pink-200": color === "pink" };
+    default:
+      break;
+  }
+};
