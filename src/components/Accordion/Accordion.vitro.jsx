@@ -4,6 +4,7 @@ import Accordion from "./Accordion";
 import { WindyProvider } from "../../index.js";
 
 const theme = { accordion: { color: "yellow", shadow: "lg" } };
+const themeTwo = { accordion: { color: "purple", shadow: "lg" } };
 
 export const Basic = () => {
   return (
@@ -21,7 +22,7 @@ export const Basic = () => {
 
 export const DisabledPanel = () => {
   return (
-    <WindyProvider theme={theme}>
+    <WindyProvider theme={themeTwo}>
       <div className="w-2/4">
         <Accordion>
           <Accordion.Panel label="Panel 1">Hello From Windy 1</Accordion.Panel>
