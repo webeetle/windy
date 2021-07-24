@@ -43,14 +43,37 @@ export const CustomAccordion = () => {
           <Accordion.Panel className="bg-indigo-500 text-white" label="Panel 1">
             Hello From Windy 1
           </Accordion.Panel>
-          <Accordion.Panel
-            className="bg-indigo-500 text-white"
-            label="Panel 2"
-            disabled
-          >
+          <Accordion.Panel className="bg-indigo-500 text-white" label="Panel 2">
             Hello From Windy 2
           </Accordion.Panel>
           <Accordion.Panel className="bg-indigo-500 text-white" label="Panel 3">
+            Hello From Windy 3
+          </Accordion.Panel>
+        </Accordion>
+      </div>
+    </WindyProvider>
+  );
+};
+
+export const OnClickPanel = () => {
+  const [label, setLabel] = React.useState(true);
+
+  return (
+    <WindyProvider theme={theme}>
+      <div className="w-2/4">
+        <Accordion className="bg-blue-200">
+          <Accordion.Panel className="bg-blue-400 text-white" label="Panel 1">
+            Hello From Windy 1
+          </Accordion.Panel>
+          <Accordion.Panel
+            isOpen={true}
+            onClick={() => setLabel(!label)}
+            className="bg-blue-600 text-white"
+            label={label ? "Opened" : "Closed"}
+          >
+            Hello From Windy 2
+          </Accordion.Panel>
+          <Accordion.Panel className="bg-blue-800 text-white" label="Panel 3">
             Hello From Windy 3
           </Accordion.Panel>
         </Accordion>

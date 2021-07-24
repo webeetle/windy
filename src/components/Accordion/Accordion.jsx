@@ -30,7 +30,7 @@ const Accordion = (accProps) => {
   });
 
   const onSetCurrentPanelExpandend = (currentPanelIndex) => {
-    setAccordionState((prev) => ({ ...prev, isCurrent: currentPanelIndex }));
+    setAccordionState((prev) => ({ ...prev, isExpanded: currentPanelIndex }));
   };
 
   const decorateAccordionBg = (color) => {
@@ -87,14 +87,8 @@ const Accordion = (accProps) => {
 export default Accordion;
 
 Accordion.Panel = function (props) {
-  const {
-    accordionState,
-    index,
-    className,
-    isExpanded = false,
-    ...rest
-  } = props;
-  const [toggle, setToggle] = React.useState(isExpanded);
+  const { accordionState, index, className, isOpen = false, ...rest } = props;
+  const [toggle, setToggle] = React.useState(isOpen && isOpen);
 
   const decorateAccordionPanelText = (color) => {
     switch (color) {
@@ -123,9 +117,9 @@ Accordion.Panel = function (props) {
     <>
       <button
         onClick={() => {
-          typeof props.onClick === "function" && props.onClick();
           props.onSetCurrentPanelExpandend(index);
           setToggle(!toggle);
+          typeof props.onClick === "function" ? props.onClick() : null;
         }}
         className={overrideTailwindClasses(
           classnames(
@@ -135,7 +129,6 @@ Accordion.Panel = function (props) {
             `${className ? className : ""}`
           )
         )}
-        {...rest}
       >
         {props.label}
         {toggle ? <ArrowUp /> : <ArrowDown />}
