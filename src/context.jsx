@@ -79,6 +79,7 @@ const windyTheme = {
   table: { color: "indigo" },
   tooltip: { color: "indigo" },
   tabs: { color: "indigo", rounded: "md", shadow: "md" },
+  accordion: { color: "indigo", rounded: "md", shadow: "md" },
 };
 
 function WindyReducer(state, action) {
@@ -119,9 +120,10 @@ function WindyProvider({ theme = {}, children }) {
     table: { ...windyTheme.table, ...theme.table },
     tooltip: { ...windyTheme.tooltip, ...theme.tooltip },
     tabs: { ...windyTheme.tabs, ...theme.tabs },
+    accordion: { ...windyTheme.accordion, ...theme.accordion },
   };
 
-  // create a ref for know if this component is mounted
+  // create a ref to know if this component is mounted
   const mounted = React.useRef(false);
   // set ref - true when mount, false on cleanup
   React.useEffect(() => {

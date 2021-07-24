@@ -21,10 +21,13 @@ import Skeleton from "./components/Skeleton/Skeleton.jsx";
 import Table from "./components/Table/Table.jsx";
 import Tooltip from "./components/Tooltip/Tooltip.jsx";
 
-import { WindyProvider, useWindyTheme, windyTheme } from "./context.jsx";
 import Tabs from "./components/Tabs/Tabs";
+import Accordion from "./components/Accordion/Accordion";
+
+import { WindyProvider, useWindyTheme, windyTheme } from "./context.jsx";
 
 export {
+  Accordion,
   Button,
   Panel,
   Dropdown,
