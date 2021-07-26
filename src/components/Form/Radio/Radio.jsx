@@ -1,11 +1,11 @@
 import classnames from "classnames";
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import { generateDisabled } from "../../../Utils/Utils";
 import { useWindyTheme } from "../../../context.jsx";
 
-const Radio = (radioProps) => {
+const Radio = (radioProps, ref) => {
   const {
     state: { radio = {} },
   } = useWindyTheme();
@@ -90,6 +90,7 @@ const Radio = (radioProps) => {
       )}
     >
       <input
+        ref={ref}
         data-testid="radio-1"
         onClick={(e) => {
           if (!isChecked) {
@@ -123,4 +124,4 @@ Radio.propTypes = {
   ]),
 };
 
-export default Radio;
+export default forwardRef(Radio);

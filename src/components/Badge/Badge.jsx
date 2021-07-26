@@ -65,7 +65,7 @@ const Badge = (badgeProps) => {
 };
 
 Badge.propTypes = {
-  text: PropTypes.string,
+  text: PropTypes.any,
   color: PropTypes.oneOf([
     "gray",
     "red",

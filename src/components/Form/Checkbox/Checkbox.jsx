@@ -1,11 +1,11 @@
 import classnames from "classnames";
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import { generateDisabled } from "../../../Utils/Utils";
 import { useWindyTheme } from "../../../context.jsx";
 
-const Checkbox = (checkboxProps) => {
+const Checkbox = (checkboxProps, ref) => {
   const {
     state: { checkbox = {} },
   } = useWindyTheme();
@@ -79,6 +79,7 @@ const Checkbox = (checkboxProps) => {
       )}
     >
       <input
+        ref={ref}
         data-testid="CheckBox-1"
         checked={isChecked}
         onChange={(e) => {
@@ -112,4 +113,4 @@ Checkbox.propTypes = {
   ]),
 };
 
-export default Checkbox;
+export default forwardRef(Checkbox);

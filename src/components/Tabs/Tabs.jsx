@@ -5,13 +5,7 @@ import classnames from "classnames";
 import { useWindyTheme } from "../../context.jsx";
 
 //Utils
-import {
-  generateShadow,
-  generateRounded,
-  generateSize,
-  generateDisabled,
-  decorateBgAndText,
-} from "../../Utils/Utils";
+import { generateShadow, decorateBgAndText } from "../../Utils/Utils";
 
 const Tabs = (tabsProps) => {
   const {
@@ -44,7 +38,7 @@ const Tabs = (tabsProps) => {
         classnames(
           // generateRounded(rounded),
           decorateBgAndText(color),
-          generateShadow(),
+          generateShadow(shadow),
           `${bordered ? "border" : "border-none"}`
         )
       )}
@@ -70,13 +64,24 @@ const Tabs = (tabsProps) => {
   );
 };
 
+Tabs.propTypes = {
+  onChange: PropTypes.func,
+  color: PropTypes.string,
+  bordered: PropTypes.bool,
+  shadow: PropTypes.bool,
+  children: PropTypes.any,
+};
+
 export default Tabs;
 
 Tabs.Tab = function (props) {
   const { tabIndex, tabState, onClick, render, label = "Tab" } = props;
 
   const borderSelected = tabIndex === tabState.selectedTab;
-  const borderColor = `border-${tabState.color}-500`;
+  const borderColor =
+    tabState.color === "white" || tabState.color === "none"
+      ? `border-gray-500`
+      : `border-${tabState.color}-500`;
   const textColor = `text-${tabState.color}-700`;
   const textHoverColor = `hover:text-${tabState.color}-500`;
 
@@ -95,5 +100,12 @@ Tabs.Tab = function (props) {
       {typeof render === "function" ? render() : label}
     </button>
   );
+};
+Tabs.Tab.propTypes = {
+  tabIndex: PropTypes.number,
+  tabState: PropTypes.object,
+  onClick: PropTypes.func,
+  render: PropTypes.func,
+  label: PropTypes.string,
 };
 Tabs.Tab.displayName = "Tab";

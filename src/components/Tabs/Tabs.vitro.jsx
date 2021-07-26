@@ -3,13 +3,28 @@ import "tailwindcss/dist/tailwind.css";
 import Tabs from "./Tabs";
 import { WindyProvider } from "../../index.js";
 
-const theme = { tabs: { color: "indigo", shadow: "lg" } };
+const theme = { tabs: { color: "none", shadow: "none" } };
 
 export const Basic = () => {
   return (
     <WindyProvider theme={theme}>
       <div className="w-3/4">
         <Tabs>
+          <Tabs.Tab label="Tab 1" />
+          <Tabs.Tab label="Tab 2" />
+          <Tabs.Tab label="Tab 3" />
+          <Tabs.Tab label="Tab 4" />
+        </Tabs>
+      </div>
+    </WindyProvider>
+  );
+};
+
+export const Color = () => {
+  return (
+    <WindyProvider theme={theme}>
+      <div className="w-3/4">
+        <Tabs color="indigo">
           <Tabs.Tab label="Tab 1" />
           <Tabs.Tab label="Tab 2" />
           <Tabs.Tab label="Tab 3" />

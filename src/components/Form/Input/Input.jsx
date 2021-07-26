@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import React from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import { useWindyTheme } from "../../../context.jsx";
@@ -7,7 +7,7 @@ import { useWindyTheme } from "../../../context.jsx";
 //Utils
 import { generateShadow } from "../../../Utils/Utils";
 
-const Input = (inputProps) => {
+const Input = (inputProps, ref) => {
   const {
     state: { input = {} },
   } = useWindyTheme();
@@ -156,7 +156,12 @@ const Input = (inputProps) => {
             {prefix}
           </span>
         )}
-        <input data-testid="input-1" className={inptclss()} {...rest} />
+        <input
+          ref={ref}
+          data-testid="input-1"
+          className={inptclss()}
+          {...rest}
+        />
         {suffix && (
           <span
             className={clssSuffixPrefix(
@@ -191,4 +196,4 @@ Input.propTypes = {
   ]),
 };
 
-export default Input;
+export default forwardRef(Input);

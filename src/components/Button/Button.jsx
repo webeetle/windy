@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import React from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
 import { useWindyTheme } from "../../context.jsx";
@@ -12,7 +12,7 @@ import {
   generateDisabled,
 } from "../../Utils/Utils";
 
-const Button = (btnProps) => {
+const Button = (btnProps, ref) => {
   const {
     state: { button = {} },
   } = useWindyTheme();
@@ -105,6 +105,7 @@ const Button = (btnProps) => {
   return (
     <button
       {...props}
+      ref={ref}
       data-testid="Button-1"
       disabled={disabled}
       className={overrideTailwindClasses(
@@ -147,4 +148,4 @@ Button.propTypes = {
   children: PropTypes.any,
 };
 
-export default Button;
+export default forwardRef(Button);

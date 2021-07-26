@@ -63,7 +63,7 @@ const Accordion = (accProps) => {
           decorateAccordionBg(color),
           generateRounded(rounded),
           generateShadow(shadow),
-          "w-full flex flex-col px-2 py-3",
+          "w-full flex flex-col p-3",
           `${className ? className : ""}`
         )
       )}
@@ -84,10 +84,31 @@ const Accordion = (accProps) => {
   );
 };
 
+Accordion.propTypes = {
+  label: PropTypes.string,
+  isOpen: PropTypes.bool,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  color: PropTypes.string,
+  shadow: PropTypes.bool,
+  rounded: PropTypes.bool,
+};
+
 export default Accordion;
 
 Accordion.Panel = function (props) {
-  const { accordionState, index, className, isOpen = false, ...rest } = props;
+  const {
+    accordionState,
+    index,
+    className,
+    disabled,
+    onClick,
+    onSetCurrentPanelExpandend,
+    label,
+    children,
+    isOpen = false,
+    ...rest
+  } = props;
   const [toggle, setToggle] = React.useState(isOpen && isOpen);
 
   const decorateAccordionPanelText = (color) => {
@@ -117,25 +138,36 @@ Accordion.Panel = function (props) {
     <>
       <button
         onClick={() => {
-          props.onSetCurrentPanelExpandend(index);
+          onSetCurrentPanelExpandend(index);
           setToggle(!toggle);
-          typeof props.onClick === "function" ? props.onClick() : null;
+          typeof onClick === "function" ? onClick() : null;
         }}
         className={overrideTailwindClasses(
           classnames(
-            generateDisabled(props.disabled),
+            generateDisabled(disabled),
             decorateAccordionPanelText(accordionState.color),
             "flex flex-row items-center justify-between w-full px-2 py-1 bg-white rounded-md shadow-md my-2",
             `${className ? className : ""}`
           )
         )}
       >
-        {props.label}
+        {label}
         {toggle ? <ArrowUp /> : <ArrowDown />}
       </button>
-      <div>{toggle && <div>{props.children}</div>}</div>
+      <div>{toggle && <div>{children}</div>}</div>
     </>
   );
+};
+
+Accordion.Panel.propTypes = {
+  label: PropTypes.string,
+  isOpen: PropTypes.bool,
+  children: PropTypes.any,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  onSetCurrentPanelExpandend: PropTypes.func,
+  accordionState: PropTypes.object,
 };
 
 Accordion.Panel.displayName = "AccordionPanel";

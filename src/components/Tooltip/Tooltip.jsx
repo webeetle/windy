@@ -108,7 +108,7 @@ const Tooltip = (tooltipProps) => {
 };
 
 Tooltip.prototype = {
-  text: PropTypes.string,
+  text: PropTypes.any,
   color: PropTypes.oneOf([
     "white",
     "gray",

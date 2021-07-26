@@ -12,7 +12,7 @@ const theme = {
 export const Basic = () => {
   return (
     <WindyProvider theme={theme}>
-      <Tooltip>
+      <Tooltip text={"Hello tooltip"}>
         <Button>Hello</Button>
       </Tooltip>
     </WindyProvider>
