@@ -5,7 +5,7 @@ import { overrideTailwindClasses } from "tailwind-override";
 import { generateDisabled } from "../../../Utils/Utils";
 import { useWindyTheme } from "../../../context.jsx";
 
-const Checkbox = (checkboxProps, ref) => {
+const Checkbox = forwardRef((checkboxProps, ref) => {
   const {
     state: { checkbox = {} },
   } = useWindyTheme();
@@ -93,7 +93,7 @@ const Checkbox = (checkboxProps, ref) => {
       {label && <div className="select-none">{label}</div>}
     </label>
   );
-};
+});
 Checkbox.propTypes = {
   className: PropTypes.string,
   shadow: PropTypes.bool,
@@ -113,4 +113,4 @@ Checkbox.propTypes = {
   ]),
 };
 
-export default forwardRef(Checkbox);
+export default Checkbox;

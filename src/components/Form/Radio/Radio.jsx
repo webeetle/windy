@@ -5,7 +5,7 @@ import { overrideTailwindClasses } from "tailwind-override";
 import { generateDisabled } from "../../../Utils/Utils";
 import { useWindyTheme } from "../../../context.jsx";
 
-const Radio = (radioProps, ref) => {
+const Radio = forwardRef((radioProps, ref) => {
   const {
     state: { radio = {} },
   } = useWindyTheme();
@@ -106,7 +106,7 @@ const Radio = (radioProps, ref) => {
       {label && <div className="select-none">{label}</div>}
     </label>
   );
-};
+});
 Radio.propTypes = {
   className: PropTypes.string,
   shadow: PropTypes.bool,
@@ -124,4 +124,4 @@ Radio.propTypes = {
   ]),
 };
 
-export default forwardRef(Radio);
+export default Radio;

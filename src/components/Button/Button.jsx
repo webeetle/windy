@@ -12,7 +12,7 @@ import {
   generateDisabled,
 } from "../../Utils/Utils";
 
-const Button = (btnProps, ref) => {
+const Button = forwardRef((btnProps, ref) => {
   const {
     state: { button = {} },
   } = useWindyTheme();
@@ -123,7 +123,7 @@ const Button = (btnProps, ref) => {
       {props.children}
     </button>
   );
-};
+});
 
 Button.propTypes = {
   size: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
@@ -148,4 +148,4 @@ Button.propTypes = {
   children: PropTypes.any,
 };
 
-export default forwardRef(Button);
+export default Button;

@@ -7,7 +7,7 @@ import { useWindyTheme } from "../../../context.jsx";
 //Utils
 import { generateShadow } from "../../../Utils/Utils";
 
-const Input = (inputProps, ref) => {
+const Input = forwardRef((inputProps, ref) => {
   const {
     state: { input = {} },
   } = useWindyTheme();
@@ -174,7 +174,7 @@ const Input = (inputProps, ref) => {
       </div>
     </>
   );
-};
+});
 Input.propTypes = {
   className: PropTypes.string,
   fullWidth: PropTypes.bool,
@@ -196,4 +196,4 @@ Input.propTypes = {
   ]),
 };
 
-export default forwardRef(Input);
+export default Input;
