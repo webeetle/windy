@@ -106,6 +106,6 @@ Tabs.Tab.propTypes = {
   tabState: PropTypes.object,
   onClick: PropTypes.func,
   render: PropTypes.func,
-  label: PropTypes.string,
+  label: PropTypes.any,
 };
 Tabs.Tab.displayName = "Tab";

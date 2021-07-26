@@ -85,8 +85,6 @@ const Accordion = (accProps) => {
 };
 
 Accordion.propTypes = {
-  label: PropTypes.string,
-  isOpen: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
   color: PropTypes.string,
@@ -160,7 +158,7 @@ Accordion.Panel = function (props) {
 };
 
 Accordion.Panel.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.any,
   isOpen: PropTypes.bool,
   children: PropTypes.any,
   className: PropTypes.string,
