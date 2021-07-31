@@ -25,6 +25,7 @@ import Tabs from "./components/Tabs/Tabs.jsx";
 import Accordion from "./components/Accordion/Accordion.jsx";
 
 import { WindyProvider, useWindyTheme, windyTheme } from "./context.jsx";
+import Toggle from "./components/Form/Toggle/Toggle";
 
 export {
   Accordion,
@@ -34,6 +35,7 @@ export {
   Input,
   Checkbox,
   Radio,
+  Toggle,
   Select,
   Modal,
   Badge,

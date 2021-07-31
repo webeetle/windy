@@ -80,6 +80,7 @@ const windyTheme = {
   tooltip: { color: "indigo" },
   tabs: { color: "indigo", rounded: "md", shadow: "md" },
   accordion: { color: "indigo", rounded: "md", shadow: "md" },
+  toggle: { color: "indigo" },
 };
 
 function WindyReducer(state, action) {
@@ -121,6 +122,7 @@ function WindyProvider({ theme = {}, children }) {
     tooltip: { ...windyTheme.tooltip, ...theme.tooltip },
     tabs: { ...windyTheme.tabs, ...theme.tabs },
     accordion: { ...windyTheme.accordion, ...theme.accordion },
+    toggle: { ...windyTheme.toggle, ...theme.toggle },
   };
 
   // create a ref to know if this component is mounted
