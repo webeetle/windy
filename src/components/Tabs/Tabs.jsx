@@ -18,6 +18,7 @@ const Tabs = (tabsProps) => {
     bordered = false,
     shadow = tabs.shadow,
     onChange,
+    className,
     ...props
   } = tabsProps;
 
@@ -75,7 +76,14 @@ Tabs.propTypes = {
 export default Tabs;
 
 Tabs.Tab = function (props) {
-  const { tabIndex, tabState, onClick, render, label = "Tab" } = props;
+  const {
+    tabIndex,
+    tabState,
+    onClick,
+    render,
+    label = "Tab",
+    className,
+  } = props;
 
   const borderSelected = tabIndex === tabState.selectedTab;
   const borderColor =
@@ -93,7 +101,8 @@ Tabs.Tab = function (props) {
           `${borderSelected ? borderColor : null}`,
           `${textColor ? textColor : null}`,
           `${textHoverColor ? textHoverColor : null}`,
-          "py-4 px-6 block w-full focus:outline-none border-b-2 font-medium"
+          "py-4 px-6 block w-full focus:outline-none border-b-2 font-medium",
+          `${className ? className : ""}`
         )
       )}
     >
@@ -107,5 +116,6 @@ Tabs.Tab.propTypes = {
   onClick: PropTypes.func,
   render: PropTypes.func,
   label: PropTypes.any,
+  className: PropTypes.string,
 };
 Tabs.Tab.displayName = "Tab";
