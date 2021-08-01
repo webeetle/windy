@@ -25,6 +25,7 @@ const Drawer = (drawerProps) => {
 
   const renderingComponentsFilterCallback = (item) => {
     if (item.type.displayName === "Drawer-Header") {
+      console.log(item, "item");
       return true;
     } else if (item.type.displayName === "Drawer-Content") {
       return true;
@@ -98,7 +99,12 @@ const Drawer = (drawerProps) => {
                   )}
                 >
                   {React.Children.toArray(drawerProps.children).filter(
-                    (child) => renderingComponentsFilterCallback(child)
+                    (child) =>
+                      renderingComponentsFilterCallback(
+                        React.cloneElement(child, {
+                          color: drawerProps.color || drawer.color,
+                        })
+                      )
                   )}
                 </div>
               </div>
