@@ -81,6 +81,7 @@ const windyTheme = {
   tabs: { color: "indigo", rounded: "md", shadow: "md" },
   accordion: { color: "indigo", rounded: "md", shadow: "md" },
   toggle: { color: "indigo" },
+  drawer: { color: "white" },
 };
 
 function WindyReducer(state, action) {
@@ -123,6 +124,7 @@ function WindyProvider({ theme = {}, children }) {
     tabs: { ...windyTheme.tabs, ...theme.tabs },
     accordion: { ...windyTheme.accordion, ...theme.accordion },
     toggle: { ...windyTheme.toggle, ...theme.toggle },
+    drawer: { ...windyTheme.drawer, ...theme.drawer },
   };
 
   // create a ref to know if this component is mounted

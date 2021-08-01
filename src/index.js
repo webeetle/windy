@@ -24,11 +24,14 @@ import Tooltip from "./components/Tooltip/Tooltip.jsx";
 import Tabs from "./components/Tabs/Tabs.jsx";
 import Accordion from "./components/Accordion/Accordion.jsx";
 
-import { WindyProvider, useWindyTheme, windyTheme } from "./context.jsx";
 import Toggle from "./components/Form/Toggle/Toggle";
+import Drawer from "./components/Drawer/Drawer";
+
+import { WindyProvider, useWindyTheme, windyTheme } from "./context.jsx";
 
 export {
   Accordion,
+  Drawer,
   Button,
   Panel,
   Dropdown,

@@ -121,3 +121,57 @@ export const decorateBgAndText = (color) => {
       break;
   }
 };
+
+export const decorateBg = (color, intensity = "500") => {
+  if (color !== "white" && color !== "black") {
+    return {
+      [`bg-${color}-${intensity}`]: true,
+    };
+  } else {
+    return {
+      [`bg-${color}`]: true,
+    };
+  }
+};
+
+export const decorateBgStandard = (color, intensity) => {
+  switch (color) {
+    case "white":
+      return {
+        "bg-white": color === "white",
+      };
+    case "gray":
+      return {
+        "bg-gray-500": color === "gray",
+      };
+    case "red":
+      return {
+        "bg-red-500": color === "red",
+      };
+    case "yellow":
+      return {
+        "bg-yellow-500": color === "yellow",
+      };
+
+    case "green":
+      return {
+        "bg-green-500": color === "green",
+      };
+    case "blue":
+      return {
+        "bg-blue-500": color === "blue",
+      };
+    case "indigo":
+      return {
+        "bg-indigo-500": color === "indigo",
+      };
+    case "purple":
+      return {
+        "bg-purple-500": color === "purple",
+      };
+    case "pink":
+      return {
+        "bg-pink-500": color === "pink",
+      };
+  }
+};
