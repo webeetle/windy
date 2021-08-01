@@ -1,6 +1,10 @@
 import React, { Fragment } from "react";
 
-import { decorateBgStandard, decorateBg } from "../../Utils/Utils";
+import {
+  decorateBgStandard,
+  decorateBg,
+  decorateBgWithGradient,
+} from "../../Utils/Utils";
 
 import PropTypes from "prop-types";
 import { overrideTailwindClasses } from "tailwind-override";
@@ -21,6 +25,9 @@ const Drawer = (drawerProps) => {
     color = drawer.color,
     overlay = true,
     overlayDisabled,
+    intensity = "500",
+    className,
+    setGradient,
   } = drawerProps;
 
   const renderingComponentsFilterCallback = (item) => {
@@ -33,6 +40,14 @@ const Drawer = (drawerProps) => {
       return true;
     }
   };
+
+  // const decorateBgWrapper = (color, intensity, setGradient) => {
+  //   if (setGradient && typeof setGradient === "object") {
+  //     decorateBgWithGradient(color, setGradient);
+  //   } else {
+  //     decorateBg(color, intensity);
+  //   }
+  // };
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -93,8 +108,9 @@ const Drawer = (drawerProps) => {
                 <div
                   className={overrideTailwindClasses(
                     classnames(
-                      decorateBg(color),
-                      "h-full flex flex-col shadow-xl overflow-y-scroll"
+                      decorateBg(color, intensity),
+                      "h-full flex flex-col shadow-xl overflow-y-scroll",
+                      `${className ? className : ""}`
                     )
                   )}
                 >
@@ -116,6 +132,25 @@ const Drawer = (drawerProps) => {
   );
 };
 
+Drawer.propTypes = {
+  color: PropTypes.oneOf([
+    "white",
+    "gray",
+    "red",
+    "yellow",
+    "green",
+    "blue",
+    "indigo",
+    "purple",
+    "pink",
+  ]),
+  onClose: PropTypes.func,
+  overlay: PropTypes.bool,
+  overlayDisabled: PropTypes.bool,
+  intensity: PropTypes.string,
+  className: PropTypes.string,
+};
+
 export default Drawer;
 
 Drawer.Header = function (props) {
@@ -127,40 +162,46 @@ Drawer.Header = function (props) {
         classnames(`${className ? className : ""}`)
       )}
     >
-      {children}
+      <div>{children}</div>
     </div>
   );
 };
 Drawer.Header.displayName = "Drawer-Header";
 
 Drawer.Content = function (props) {
-  const { className, children } = props;
-
-  return (
-    <div className="h-full flex flex-col bg-white shadow-xl overflow-y-scroll">
-      <div
-        className={overrideTailwindClasses(
-          classnames("relative h-full", `${className ? className : ""}`)
-        )}
-      >
-        {children}
-      </div>
-    </div>
-  );
-};
-Drawer.Content.displayName = "Drawer-Content";
-
-Drawer.Footer = function (props) {
-  const { className, children } = props;
+  const { className, children, color } = props;
 
   return (
     <div
       className={overrideTailwindClasses(
-        classnames("absolute bottom-0", `${className ? className : ""}`)
+        classnames(
+          decorateBg(color),
+          "flex flex-col overflow-y-scroll h-full",
+          `${className ? className : ""}`
+        )
       )}
     >
       {children}
     </div>
   );
 };
-Drawer.Footer.displayName = "Drawer-Footer";
+Drawer.Content.displayName = "Drawer-Content";
+
+// Drawer.Footer = function (props) {
+//   const { className, children, color } = props;
+
+//   return (
+//     <div
+//       className={overrideTailwindClasses(
+//         classnames(
+//           decorateBg(color),
+//           "absolute bottom-0",
+//           `${className ? className : ""}`
+//         )
+//       )}
+//     >
+//       {children}
+//     </div>
+//   );
+// };
+// Drawer.Footer.displayName = "Drawer-Footer";

@@ -122,18 +122,6 @@ export const decorateBgAndText = (color) => {
   }
 };
 
-export const decorateBg = (color, intensity = "500") => {
-  if (color !== "white" && color !== "black") {
-    return {
-      [`bg-${color}-${intensity}`]: true,
-    };
-  } else {
-    return {
-      [`bg-${color}`]: true,
-    };
-  }
-};
-
 export const decorateBgStandard = (color, intensity) => {
   switch (color) {
     case "white":
@@ -175,3 +163,35 @@ export const decorateBgStandard = (color, intensity) => {
       };
   }
 };
+
+///-----------START Re-Factoring Functions----------
+
+export const decorateBg = (color, intensity = "500") => {
+  if (color !== "white" && color !== "black") {
+    return {
+      [`bg-${color}-${intensity}`]: true,
+    };
+  } else {
+    return {
+      [`bg-${color}`]: true,
+    };
+  }
+};
+
+/// -----------END Re-Factoring Functions-----------
+
+// ------------START Experimental----------------
+
+export const decorateBgWithGradient = (color, obj) => {
+  if (color !== "white" && color !== "black") {
+    return {
+      [`bg-gradient-to-${obj.direction} from-${color}-${obj.from} via-${color}-${obj.via} to-${color}-${obj.to}`]: true,
+    };
+  } else {
+    return {
+      [`bg-${color}`]: true,
+    };
+  }
+};
+
+// -------------END Experimental--------------
