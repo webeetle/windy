@@ -6,6 +6,7 @@ import Input from "./components/Form/Input/Input.jsx";
 import Checkbox from "./components/Form/Checkbox/Checkbox.jsx";
 import Radio from "./components/Form/Radio/Radio.jsx";
 import Select from "./components/Form/Select/Select.jsx";
+import SelectNative from "./components/Form/SelectNative/SelectNative.jsx";
 
 import Modal from "./components/Modal/Modal.jsx";
 import Badge from "./components/Badge/Badge.jsx";
@@ -36,6 +37,7 @@ export {
   Panel,
   Dropdown,
   Input,
+  SelectNative,
   Checkbox,
   Radio,
   Toggle,
@@ -52,5 +54,5 @@ export {
   WindyProvider,
   useWindyTheme,
   windyTheme,
-  Media,
+  Media
 };
