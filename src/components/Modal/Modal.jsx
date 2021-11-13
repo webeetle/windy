@@ -9,7 +9,7 @@ import { generateRounded } from "../../Utils/Utils";
 import { useWindyTheme } from "../../context.jsx";
 const Modal = (modalProps) => {
   const {
-    state: { modal = {} },
+    state: { modal = {} }
   } = useWindyTheme();
 
   const {
@@ -24,7 +24,7 @@ const Modal = (modalProps) => {
     children,
     rounded = modal.rounded,
     className = "",
-    overlayGradient = modal.overlayGradient,
+    overlayGradient = modal.overlayGradient
   } = modalProps;
 
   //TODO : Enable Header Color Features
@@ -32,48 +32,48 @@ const Modal = (modalProps) => {
     switch (color) {
       case "white":
         return {
-          "bg-white text-black": color === "white",
+          "bg-white text-black": color === "white"
         };
       case "gray":
         return {
           "bg-gradient-to-l from-gray-500 to-gray-600 px-5 text-white rounded-md shadow-md":
-            color === "gray",
+            color === "gray"
         };
       case "red":
         return {
           "bg-gradient-to-l from-red-500 to-red-600 px-5 text-white rounded-md shadow-md":
-            color === "red",
+            color === "red"
         };
       case "yellow":
         return {
           "bg-gradient-to-l from-yellow-500 to-yellow-600 px-5 rounded-md shadow-md":
-            color === "yellow",
+            color === "yellow"
         };
 
       case "green":
         return {
           "bg-gradient-to-l from-green-500 to-green-600 text-white px-5 rounded-md shadow-md":
-            color === "green",
+            color === "green"
         };
       case "blue":
         return {
           "bg-gradient-to-l from-blue-500 to-blue-600 text-white px-5 rounded-md shadow-md":
-            color === "blue",
+            color === "blue"
         };
       case "indigo":
         return {
           "bg-gradient-to-l from-indigo-500 to-indigo-600 text-white px-5 rounded-md shadow-md":
-            color === "indigo",
+            color === "indigo"
         };
       case "purple":
         return {
           "bg-gradient-to-l from-purple-500 to-purple-600 text-white px-5 rounded-md shadow-md":
-            color === "purple",
+            color === "purple"
         };
       case "pink":
         return {
           "bg-gradient-to-l from-pink-500 to-pink-600 text-white px-5 rounded-md shadow-md":
-            color === "pink",
+            color === "pink"
         };
     }
   };
@@ -83,43 +83,43 @@ const Modal = (modalProps) => {
       case "gray":
         return {
           "bg-gradient-to-b from-gray-500 to bg-transparent ":
-            overlayGradient && color === "gray",
+            overlayGradient && color === "gray"
         };
       case "red":
         return {
           "bg-gradient-to-b from-red-500 to bg-transparent":
-            overlayGradient && color === "red",
+            overlayGradient && color === "red"
         };
       case "yellow":
         return {
           "bg-gradient-to-b from-yellow-500 to bg-transparent":
-            overlayGradient && color === "yellow",
+            overlayGradient && color === "yellow"
         };
 
       case "green":
         return {
           "bg-gradient-to-b from-green-500 to bg-transparent":
-            overlayGradient && color === "green",
+            overlayGradient && color === "green"
         };
       case "blue":
         return {
           "bg-gradient-to-b from-blue-500 to bg-transparent":
-            overlayGradient && color === "blue",
+            overlayGradient && color === "blue"
         };
       case "indigo":
         return {
           "bg-gradient-to-b from-indigo-500 to bg-transparent":
-            overlayGradient && color === "indigo",
+            overlayGradient && color === "indigo"
         };
       case "purple":
         return {
           "bg-gradient-to-b from-purple-500 to bg-transparent":
-            overlayGradient && color === "purple",
+            overlayGradient && color === "purple"
         };
       case "pink":
         return {
           "bg-gradient-to-b from-pink-500 to bg-transparent":
-            overlayGradient && color === "pink",
+            overlayGradient && color === "pink"
         };
     }
   };
@@ -128,25 +128,25 @@ const Modal = (modalProps) => {
     switch (size) {
       case "sm":
         return {
-          "mx-auto w-full md:w-2/4 md:h-2/4 text-center": size === "sm",
+          "mx-auto w-full md:w-2/4 md:h-2/4 text-center": size === "sm"
         };
       case "md":
         return {
-          "mx-auto w-full md:w-3/5 md:h-3/5 text-center": size === "md",
+          "mx-auto w-full md:w-3/5 md:h-3/5 text-center": size === "md"
         };
       case "lg":
         return {
-          "mx-auto w-full md:w-3/4 md:h-3/4 text-center": size === "lg",
+          "mx-auto w-full md:w-3/4 md:h-3/4 text-center": size === "lg"
         };
 
       case "full":
         return {
-          "mx-auto w-full h-full text-center": size === "full",
+          "mx-auto w-full h-full text-center": size === "full"
         };
 
       default:
         return {
-          "mx-auto w-full md:w-2/4 h-2/4 text-center": size === "md",
+          "mx-auto w-full md:w-2/4 h-2/4 text-center": size === "md"
         };
     }
   };
@@ -277,7 +277,7 @@ Modal.propTypes = {
   onClickIcon: PropTypes.func,
   children: PropTypes.any,
   onClick: PropTypes.func,
-  overlayGradient: PropTypes.bool,
+  overlayGradient: PropTypes.bool
 };
 
 export default Modal;
