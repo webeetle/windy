@@ -92,7 +92,7 @@ const Table = (tableProps) => {
     for (const col of columns) {
       if (typeof col.renderComponent === "function") {
         arr.push(
-          <td className="px-6 py-4 whitespace-nowrap">
+          <td tabIndex={idx} className="px-6 py-4 whitespace-nowrap">
             <div className="text-sm text-gray-900">
               {col.renderComponent(
                 { data: { ...object }, rowIndex: idx },
@@ -108,13 +108,13 @@ const Table = (tableProps) => {
           !Array.isArray(object[col.value])
         ) {
           arr.push(
-            <td className="px-6 py-4 whitespace-nowrap">
+            <td tabIndex={idx} className="px-6 py-4 whitespace-nowrap">
               <div className="text-sm text-gray-900">{object[col.value]}</div>
             </td>
           );
         } else {
           arr.push(
-            <td className="px-6 py-4 whitespace-nowrap">
+            <td tabIndex={idx} className="px-6 py-4 whitespace-nowrap">
               <div className="text-sm text-gray-900"></div>
             </td>
           );
